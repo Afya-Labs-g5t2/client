@@ -11,8 +11,6 @@ export const SectionComponent = styled.section`
 
         padding-top: 20%;
 
-        color: $font-color;
-
         border: 1px solid;
 
         z-index: 1;
@@ -107,5 +105,15 @@ export const SectionComponent = styled.section`
 
     .show-component {
         transform: translateX(0);
+    }
+
+    @media only screen and (min-width: 500px) {
+        .container {
+            position: relative;
+            padding-top: unset;
+            transform: unset;
+            width: 100%;
+        }
+        
     }
 `
