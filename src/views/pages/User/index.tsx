@@ -4,11 +4,9 @@ import React from 'react';
 
 const User: React.FC = () => {
   return (
-      <>
-      <div>
-          <h1>User</h1>
-        </div>
-      </>
+      <div className="container">
+          
+      </div>
   );
 }
 
