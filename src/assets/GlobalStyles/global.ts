@@ -4,7 +4,7 @@ export default createGlobalStyle`
     *{
         padding: 0;
         margin: 0;
-        font-family: 'Inter', 'Roboto', sans-serif;
+        font-family: 'Inter', sans-serif;
     }
 
     html {
