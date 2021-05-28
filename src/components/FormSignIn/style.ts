@@ -13,9 +13,12 @@ export const FormContent = styled.div`
     padding-right: 8vh;  
     }
 
-  input[type=text], input[type=password] {
+  input{
     padding: 12px 20px;
     margin: 8px 0;
+  }
+
+  input[type=text], input[type=password] {
     box-sizing: border-box;
     border: 2px solid #a9a5a5;
     border-radius: 1vh;
@@ -23,8 +26,6 @@ export const FormContent = styled.div`
   }
 
   input[type=submit] {
-    padding: 12px 20px;
-    margin: 8px 0;
     box-sizing: border-box;
     border-radius: 4vh;
     color: #fff;
@@ -39,5 +40,15 @@ export const FormContent = styled.div`
 input[type=submit]:hover {
   background-color: #FF5A6F;
   cursor: pointer;
+}
+
+@media (max-width: 380px)
+{
+  padding-right: 19%; 
+}
+
+@media (max-width: 360px)
+{
+  padding-right: 28%; 
 }
 `
