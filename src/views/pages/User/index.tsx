@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SectionComponent } from './styles'
 
 const User: React.FC = () => {
 
+  const [showComponent, setShowComponent] = useState(true)
+
   let userName = 'Juliana Jirkowski'
   let userEmail = 'j.jirkowski@gmail.com'
 
+  function handleClose(e: any) {
+    console.log(e)
+    setShowComponent(!showComponent)
+  }
+
   return (
+    <>
     <SectionComponent> 
-      <div className="container">
+      <div className={`container${showComponent ? ' show-component' : ''}`}>
         <div className="top-section">
           <span>Perfil</span>
-          <a href="" className="icon">
-           <span className="material-icons md-36">close</span>
+          <a href="#" className="icon">
+           <span className="material-icons md-36" onClick={handleClose}>close</span>
           </a>
         </div>
         <div className="info-section">
@@ -37,6 +45,7 @@ const User: React.FC = () => {
         </div>
       </div>
     </SectionComponent>
+    </>
   );
 }
 

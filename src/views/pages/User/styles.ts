@@ -17,6 +17,10 @@ export const SectionComponent = styled.section`
 
         z-index: 1;
 
+        transition: transform .3s;
+
+        transform: translateX(100%);
+
         .top-section {
             display: flex;
             flex-direction: row;
@@ -99,5 +103,9 @@ export const SectionComponent = styled.section`
                 }
             }
         }
+    }
+
+    .show-component {
+        transform: translateX(0);
     }
 `
