@@ -1,9 +1,9 @@
 import React from 'react';
 import Calendar from '../../../components/Calendar'
 
-const Schedule: React.FC = () => {
+const Agenda: React.FC = () => {
     return (
-        <div className="schedule">
+        <div className="agenda">
             <div className="top">TOP</div>
             <div className="mid">
                 <Calendar />
@@ -13,4 +13,4 @@ const Schedule: React.FC = () => {
     )
 }
 
-export default Schedule;
+export default Agenda;
