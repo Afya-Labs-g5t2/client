@@ -10,13 +10,12 @@ export default createGlobalStyle`
     *, *:before, *:after{
         padding: 0;
         margin: 0;
-        font-family: 'Inter', sans-serif;
-        color: var(--font-color);
         box-sizing: border-box;
     }
 
     html {
         scroll-behavior: smooth;
+        font-family: 'Inter';
     }
 
     a, u {
