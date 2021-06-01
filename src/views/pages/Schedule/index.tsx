@@ -4,11 +4,11 @@ import Calendar from '../../../components/Calendar'
 const Schedule: React.FC = () => {
     return (
         <div className="schedule">
-            <div className="top"></div>
+            <div className="top">TOP</div>
             <div className="mid">
                 <Calendar />
             </div>
-            <div className="bot"></div>
+            <div className="bot">BOTTOM</div>
         </div>
     )
 }
