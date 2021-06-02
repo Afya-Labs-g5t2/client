@@ -1,7 +1,4 @@
 import React from 'react';
-import FullCalendar from '@fullcalendar/react'
-import daygridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from '@fullcalendar/interaction'
 
 
 import { DivComponent } from './styles'
@@ -15,7 +12,7 @@ const Calendar: React.FC = () => {
     return (
         <DivComponent>
             <div className="calendar-container">
-                    <FullCalendar
+                    {/* <FullCalendar
                         locale={'pt'}
                         plugins={[daygridPlugin, interactionPlugin ]}
                         dateClick={handleDateClick}
@@ -25,7 +22,7 @@ const Calendar: React.FC = () => {
                             { title: 'event 2', date: '2021-05-02' }
                         ]}
                         
-                    />  
+                    />   */}
             </div>
         </DivComponent>
     )
