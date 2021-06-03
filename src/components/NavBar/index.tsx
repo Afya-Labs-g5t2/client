@@ -6,6 +6,8 @@ import { NavBarContent } from './style'
 function NavBar() {
 
   let history = useHistory()
+  let myRegex = /(?<=\/).*/ // Seleciona tudo depois da '/'
+  let addressPath = history.location.pathname.replace('/', '')
 
   return(
     <NavBarContent>
@@ -17,7 +19,7 @@ function NavBar() {
         </div>
         <a href="#" className="create-options-btn"></a>
         <div className="title-container">
-          <span className="title">{history.location.pathname}</span>
+          <span className="title">{addressPath.charAt(0).toUpperCase() + addressPath.slice(1)}</span>
         </div>
       </nav>
     </NavBarContent>

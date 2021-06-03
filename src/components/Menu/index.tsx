@@ -20,25 +20,25 @@ function Menu() {
               <li className="items">
                 <Link to={`/`} className="item-btn">  
                   <span className={`material-icons`}>home</span>
-                  <span>novo cliente0</span>
+                  <span>home</span>
                 </Link>
               </li>
               <li className="items">
                 <Link to={`/agenda`} className="item-btn">  
                   <span className={`material-icons`}>home</span>
-                  <span>novo cliente11</span>
+                  <span>agenda</span>
                 </Link>
               </li>
               <li className="items">
                 <Link to={`/paciente`} className="item-btn">  
                   <span className={`material-icons`}>home</span>
-                  <span>novo cliente22</span>
+                  <span>paciente</span>
                 </Link>
               </li>
               <li className="items">
                 <Link to={`/especialista`} className="item-btn">  
                   <span className={`material-icons`}>home</span>
-                  <span>novo cliente</span>
+                  <span>especialista</span>
                 </Link>
               </li>
             </ul>
