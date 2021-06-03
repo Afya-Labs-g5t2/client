@@ -1,33 +1,22 @@
 import styled from 'styled-components'
 
 export const NavBarContent = styled.nav`
-  background: #F71755;
-  display: flex;
-
-  img{
-    height: 150px;
-    width: auto;
-  }
-
-  .links-content{
-    width: 75%;
+  .nav-container {
+    position: sticky;
+    height: 55px;
+    width: 100%;
+    background: #CC849DF7;
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
     align-items: center;
+    font-size: 1.25rem;
+    padding: 0 16px;
+    z-index: 2;
 
-    a{
-      text-decoration: none;
-      background: #fff;
-      padding: 12px;
-      border-radius: 12px;
-      color: #F71755;
-      text-transform: uppercase;
-      font-weight: bold;
-      transition: 0.3s;
-
-      &:hover{
-        background: #e2e2ee;
-      }
+    .icon-container {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
     }
   }
 `

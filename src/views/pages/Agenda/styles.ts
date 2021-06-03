@@ -7,11 +7,6 @@ export const DivComponent = styled.div`
     }
     
     .top {
-        background: var(--red);
-        height: 50px;
-        width: auto;
-        position: sticky;
-        top: 0;
     }
 
     .mid {

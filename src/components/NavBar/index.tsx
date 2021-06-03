@@ -1,22 +1,25 @@
-import React from 'react';
-
-// import { Link } from 'react-router-dom';
+import React, { MouseEvent } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 import { NavBarContent } from './style'
-// import LogoAfya from '../../assets/img/logo.png';
 
-const NavBar: React.FC = () => {
+function NavBar() {
+
+  let history = useHistory()
+
   return(
     <NavBarContent>
-      {/* <Link to="/">
-        <img src={LogoAfya} alt="Logo Afya" />
-      </Link> */}
-      {/* <div className="links-content">
-        <Link to="/"> Home </Link>
-        <Link to="/criar-conta"> Inscreva-se </Link>
-        <Link to="/login"> Logar </Link>
-      </div> */}
- 
+      <nav className="nav-container">
+        <div className="icon-container" onClick={history.goBack}>
+          
+            <span className="material-icons md-36">arrow_back</span>
+          
+        </div>
+        <a href="#" className="create-options-btn"></a>
+        <div className="title-container">
+          <span className="title">{history.location.pathname}</span>
+        </div>
+      </nav>
     </NavBarContent>
   )
 }

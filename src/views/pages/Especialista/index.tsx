@@ -21,7 +21,7 @@ const Especialista: React.FC = () => {
           <h1 onClick={handleToggle}>Especialista</h1>
         </div>
         <div className="content-container">   
-          <User handleToggle={handleToggle} showComponent={showUser}/>
+          <User close={handleToggle} showComponent={showUser}/>
         </div>
         <div className="bot-container">
           <Menu />
