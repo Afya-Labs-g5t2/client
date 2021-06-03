@@ -55,7 +55,7 @@ export const HomeStyle = styled.div`
     cursor: pointer;
 }
 
-@media screen and (min-width:415px){
+@media screen and (min-width:500px){
   
 .container{
     width:60%;
