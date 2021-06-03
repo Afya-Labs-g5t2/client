@@ -5,7 +5,7 @@ import {DivComponent} from './styles'
 
 // import { Container } from './styles';
 
-const Home: React.FC = () => {
+const Home = () => {
 
   const [showUser, setShowUser] = useState(false)
 
@@ -21,7 +21,7 @@ const Home: React.FC = () => {
           <h1 onClick={handleToggle}>Home</h1>
         </div>
         <div className="content-container">   
-          <User handleToggle={handleToggle} showComponent={showUser}/>
+          <User close={handleToggle} showComponent={showUser}/>
         </div>
         <div className="bot-container">
           <Menu />

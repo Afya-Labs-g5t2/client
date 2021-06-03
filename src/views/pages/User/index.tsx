@@ -18,7 +18,7 @@ function User(props: any){
       <div className={`container${props.showComponent ? ' show-component' : ''}`}>
         <div className="top-section">
           <span>Perfil</span>
-          <a href="#" className="icon" onClick={props.handleToggle}>
+          <a href="#" className="icon" onClick={props.close}>
            <span className="material-icons md-36" >close</span>
           </a>
         </div>
