@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const DivComponent = styled.div`
-    .agenda {
+    .agenda-container {
         display: block;
         height: 100vh;
     }
@@ -10,13 +10,23 @@ export const DivComponent = styled.div`
         background: var(--red);
         height: 50px;
         width: auto;
+        position: sticky;
+        top: 0;
     }
 
     .mid {
-        height: 340px;
-        margin-top: 50px;
-        display: grid;
-        place-items: center;
+        width: 80%;
+        height: 400px;
+        display: flex;
+        margin: 0 auto;
+        margin-top: 200px;
+        justify-content: center;
+        /* display: grid;
+        place-items: center; */
+
+        .calendar-container {
+            width: 100%;
+        }
     }
 
     .bot {
@@ -25,5 +35,13 @@ export const DivComponent = styled.div`
         position: relative;
         bottom: 0;
         left: 0;
+    }
+
+    @media only screen and (min-width: 500px) {
+        .agenda-container {
+            position: relative;
+            margin-left: auto;
+            width: calc(100% - 90px);
+        }
     }
 `

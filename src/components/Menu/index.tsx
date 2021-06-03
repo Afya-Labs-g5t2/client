@@ -1,42 +1,46 @@
-import React from 'react';
-
 import { DivComponent } from './styles'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
-const Menu: React.FC = () => {
+function Menu() {
+
+  function handleClick() {
+    console.log(window.location.pathname)
+  }
   return(
     <DivComponent>
       <div className='menu-container'>
         <div className="icon-container home-btn">
-          <a href="#" className="icon-btn">
-            <div className="icon-wrapper">
-              <span className="material-icons">home</span>
-              <span className='btn-label'>inicio</span>
-            </div>
-          </a>
+          <Link to={`/`} className="icon-btn" onClick={handleClick}>
+              <div className="icon-wrapper">
+                <span className={`material-icons ${window.location.pathname === '/' && 'red'}`}>home</span>
+                <span className='btn-label'>inicio</span>
+              </div>
+          </Link>
         </div>
         <div className="icon-container agenda-btn">
-          <a href="#" className="icon-btn">
+          <Link to={`/agenda`} className="icon-btn">
             <div className="icon-wrapper">
-              <span className="material-icons">calendar_today</span>
+              <span className={`material-icons ${window.location.pathname === '/agenda' && 'red'}`}>calendar_today</span>
               <span className='btn-label'>agenda</span>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="icon-container paciente-btn">
-          <a href="#" className="icon-btn">
+          <Link to={`/paciente`} className="icon-btn">
             <div className="icon-wrapper">
-              <span className="material-icons">person</span>
+              <span className={`material-icons ${window.location.pathname === '/paciente' && 'red'}`}>person</span>
               <span className='btn-label'>paciente</span>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="icon-container especialista-btn">
-          <a href="#" className="icon-btn">
+        <Link to={`/especialista`} className="icon-btn">
             <div className="icon-wrapper">
-              <span className="material-icons">work</span>
+              <span className={`material-icons ${window.location.pathname === '/especialista' && 'red'}`}>work</span>
               <span className='btn-label'>especialista</span>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </DivComponent>

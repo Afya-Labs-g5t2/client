@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import { SectionComponent } from './styles'
 
-const User: React.FC = () => {
+function User(props: any){
 
-  const [showComponent, setShowComponent] = useState(true)
+  // const [showComponent, setShowComponent] = useState(true)
 
   let userName = 'Juliana Jirkowski'
   let userEmail = 'j.jirkowski@gmail.com'
 
-  function handleClose(e: any) {
-    console.log(e)
-    setShowComponent(!showComponent)
-  }
+  // function handleClose() {
+  //   setShowComponent(!showComponent)
+  // }
 
   return (
-    <>
+    <div className="container-wrapper">
     <SectionComponent> 
-      <div className={`container${showComponent ? ' show-component' : ''}`}>
+      <div className={`container${props.showComponent ? ' show-component' : ''}`}>
         <div className="top-section">
           <span>Perfil</span>
-          <a href="#" className="icon">
-           <span className="material-icons md-36" onClick={handleClose}>close</span>
+          <a href="#" className="icon" onClick={props.handleToggle}>
+           <span className="material-icons md-36" >close</span>
           </a>
         </div>
         <div className="info-section">
@@ -45,7 +44,7 @@ const User: React.FC = () => {
         </div>
       </div>
     </SectionComponent>
-    </>
+    </div>
   );
 }
 

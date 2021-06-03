@@ -1,13 +1,16 @@
 import React from 'react';
-import Calendar from '../../../components/Calendar'
 import Menu from '../../../components/Menu'
+import Calendar from '../../../components/Calendar'
 
 import { DivComponent } from './styles'
 
 const Agenda: React.FC = () => {
+
+
+    
     return (
         <DivComponent >
-        <div className="agenda">
+        <div className="agenda-container">
             <div className="top">TOP</div>
             <div className="mid">
                 <Calendar />
