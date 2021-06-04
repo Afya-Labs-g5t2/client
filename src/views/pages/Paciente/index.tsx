@@ -4,6 +4,8 @@ import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
 
+import mockPacientes from '../../../mockPacientes';
+
 // import { Container } from './styles';
 
 const Paciente: React.FC = () => {
@@ -13,6 +15,8 @@ const Paciente: React.FC = () => {
   function handleToggle() {
     setShowUser(!showUser)
   }
+
+  console.log(mockPacientes.pacientes)
 
   return (
       <>
@@ -30,6 +34,7 @@ const Paciente: React.FC = () => {
             </div>
           </div>  
           <div className="results-container">
+            <p className="test"></p>
           </div>  
           <User close={handleToggle} showComponent={showUser}/>
         </div>
