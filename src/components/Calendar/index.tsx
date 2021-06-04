@@ -163,6 +163,7 @@ function Calendar() {
                 onBeforeUpdateSchedule={onBeforeUpdateSchedule}
                 taskView={false}
                 scheduleView={['time']}
+                // month={{['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}}
                 />
             </DivComponent>
         </div>
