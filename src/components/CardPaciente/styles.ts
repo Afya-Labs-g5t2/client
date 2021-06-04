@@ -10,7 +10,7 @@ export const DivComponent = styled.div`
         height: 5rem;
         border-radius: 6px;
         padding: 6px;
-        margin: 1rem 0;
+        margin: .5rem 0;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         user-select: none;
         cursor: pointer;

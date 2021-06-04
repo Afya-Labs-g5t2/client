@@ -21,16 +21,17 @@ const Paciente: React.FC = () => {
     console.log(id)
   }
 
-  console.log(mockPacientes.pacientes)
-
-  const cardPaciente = mockPacientes.pacientes.map(paciente => <CardPaciente
-                                                                  key={paciente.id}
-                                                                  name={paciente.name} 
-                                                                  email={paciente.email}
-                                                                  telefone={paciente.telefone}
-                                                                  id={paciente.id} 
-                                                                  handleClick={() => handleClick(paciente.id)} 
-                                                                />)
+  const cardPaciente = mockPacientes.pacientes
+    .sort((a,b) => a.name[0] > b.name[0] ? 1 : -1)
+    .map(paciente => <CardPaciente
+                        key={paciente.id}
+                        name={paciente.name} 
+                        email={paciente.email}
+                        telefone={paciente.telefone}
+                        id={paciente.id} 
+                        handleClick={() => handleClick(paciente.id)} 
+                      />)
+                                              
 
   return (
       <DivComponent>
