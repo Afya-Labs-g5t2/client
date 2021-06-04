@@ -21,7 +21,16 @@ const Paciente: React.FC = () => {
         <div className="top-Container">
         <NavBar />
         </div>
-        <div className="content-container">   
+        <div className="content-container">
+          <div className="search-container">
+            <div className="search-field">
+              <span className="search-icon material-icons">search</span>
+              <input type="text"></input>
+              <span className="clean-icon material-icons">close</span>
+            </div>
+          </div>  
+          <div className="results-container">
+          </div>  
           <User close={handleToggle} showComponent={showUser}/>
         </div>
         <div className="bot-container">

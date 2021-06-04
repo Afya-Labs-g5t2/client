@@ -11,6 +11,46 @@ export const DivComponent = styled.div`
            display: block;
            position: relative;
            overflow: hidden;
+
+           .search-container {
+                margin: 2rem 0;
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+
+                .search-field {
+                    width: 80%;
+                    max-width: 22.5rem;
+                    display: flex;
+                    background: #fff;
+                    border-radius: 9999px;
+                    border: 1px solid var(--background-dark);
+                    align-items: center;
+                    font-size: 1.125rem;
+                    padding: 0 1rem;
+
+                    .search-icon {
+                        padding-right: 12px;
+                        color: var(--background-dark)
+                    }
+
+                    input {
+                        width: 100%;
+                        outline: none;
+                        border: none;
+                        line-height: 2rem;
+                        font-size: 1rem;
+                        word-wrap: break-word;
+                        font-family: 'Inter';
+                    }
+
+                    .clean-icon {
+                        color: var(--background-dark);
+                        padding: 0 .5rem
+                    }
+                }
+           }
        }
    }
 
