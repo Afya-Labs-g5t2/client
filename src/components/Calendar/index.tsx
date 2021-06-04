@@ -37,7 +37,7 @@ const schedules: ISchedule[] = [
 const calendars: ICalendarInfo[] = [
   {
     id: "1",
-    name: "My Calendar",
+    name: "Joao",
     color: "#ffffff",
     bgColor: "#9e5fff",
     dragBgColor: "#9e5fff",
@@ -45,7 +45,7 @@ const calendars: ICalendarInfo[] = [
   },
   {
     id: "2",
-    name: "Company",
+    name: "Felix",
     color: "#ffffff",
     bgColor: "#00a9ff",
     dragBgColor: "#00a9ff",
@@ -151,7 +151,7 @@ function Calendar() {
                 <TUICalendar
                 ref={cal}
                 height="400px"
-                view="day"
+                view="week"
                 useCreationPopup={true}
                 useDetailPopup={true}
                 template={templates}
@@ -161,6 +161,8 @@ function Calendar() {
                 onBeforeCreateSchedule={onBeforeCreateSchedule}
                 onBeforeDeleteSchedule={onBeforeDeleteSchedule}
                 onBeforeUpdateSchedule={onBeforeUpdateSchedule}
+                taskView={false}
+                scheduleView={['time']}
                 />
             </DivComponent>
         </div>
