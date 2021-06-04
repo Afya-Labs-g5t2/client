@@ -5,12 +5,15 @@ export const DivComponent = styled.div`
    .page-container {
        position: relative;
        height: 100%;
+       overflow: hide;
        
        .content-container {
+           display: flex;
+           flex-direction:column;
            height: calc(100vh - 60px - 50px); // expaco que sobra entre o menu de baixo e o nav
            display: block;
            position: relative;
-           overflow: hidden;
+           overflow: scroll;
 
            .search-container {
                 margin: 2rem 0;
@@ -50,6 +53,13 @@ export const DivComponent = styled.div`
                         padding: 0 .5rem
                     }
                 }
+           }
+
+           .results-container {
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               max-height: 100%;
            }
        }
    }

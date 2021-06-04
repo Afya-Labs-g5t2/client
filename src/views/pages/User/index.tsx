@@ -19,6 +19,7 @@ function User(props: UserProps){
   
 
   return (
+    
     <div className="container-wrapper">
     <SectionComponent> 
       <div className={`container${props.showComponent ? ' show-component' : ''}`}>
@@ -49,8 +50,9 @@ function User(props: UserProps){
           </a>
         </div>
       </div>
-    </SectionComponent>
+      </SectionComponent>
     </div>
+    
   );
 }
 

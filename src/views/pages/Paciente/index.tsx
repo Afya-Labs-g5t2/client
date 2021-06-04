@@ -3,6 +3,7 @@ import User from '../User'
 import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
+import CardPaciente from '../../../components/CardPaciente'
 
 import mockPacientes from '../../../mockPacientes';
 
@@ -16,10 +17,22 @@ const Paciente: React.FC = () => {
     setShowUser(!showUser)
   }
 
+  function handleClick(id: number) {
+    console.log(id)
+  }
+
   console.log(mockPacientes.pacientes)
 
+  const cardPaciente = mockPacientes.pacientes.map(paciente => <CardPaciente
+                                                                  key={paciente.id}
+                                                                  name={paciente.name} 
+                                                                  email={paciente.email}
+                                                                  telefone={paciente.telefone}
+                                                                  id={paciente.id} 
+                                                                  handleClick={() => handleClick(paciente.id)} 
+                                                                />)
+
   return (
-      <>
       <DivComponent>
       <div className="page-container">
         <div className="top-Container">
@@ -34,9 +47,8 @@ const Paciente: React.FC = () => {
             </div>
           </div>  
           <div className="results-container">
-            <p className="test"></p>
+            {cardPaciente}
           </div>  
-          <User close={handleToggle} showComponent={showUser}/>
         </div>
         <div className="bot-container">
           <Menu />
@@ -44,7 +56,6 @@ const Paciente: React.FC = () => {
           
       </div>
       </DivComponent>
-      </>
   );
 }
 
