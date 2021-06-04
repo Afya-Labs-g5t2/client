@@ -7,9 +7,9 @@ function Menu() {
   const [rotateIcon, setRotateIcon] = useState(false)
 
   function handleClick() {
-    console.log('menu clicked')
     setRotateIcon(!rotateIcon)
   }
+
   return(
     <DivComponent>
       <div className="bottom-section-wrapper">

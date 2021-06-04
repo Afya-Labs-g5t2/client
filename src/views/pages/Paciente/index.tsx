@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import User from '../User'
 import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
+import NavBar from '../../../components/NavBar';
 
 // import { Container } from './styles';
 
@@ -18,7 +19,7 @@ const Paciente: React.FC = () => {
       <DivComponent>
       <div className="page-container">
         <div className="top-Container">
-          <h1 onClick={handleToggle}>Paciente</h1>
+        <NavBar />
         </div>
         <div className="content-container">   
           <User close={handleToggle} showComponent={showUser}/>
