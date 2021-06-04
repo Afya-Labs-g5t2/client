@@ -50,7 +50,8 @@ export const DivComponent = styled.div`
 
                     .clean-icon {
                         color: var(--background-dark);
-                        padding: 0 .5rem
+                        padding: 0 .5rem;
+                        cursor: pointer;
                     }
                 }
            }
