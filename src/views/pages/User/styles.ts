@@ -10,7 +10,7 @@ export const SectionComponent = styled.section`
         top: 0;
         padding-top: 20%;
         border: 1px solid;
-        z-index: 1;
+        z-index: 9;
         transition: transform .3s;
         transform: translateX(100%);
 
@@ -94,7 +94,6 @@ export const SectionComponent = styled.section`
         .container {
             position: relative;
             padding-top: unset;
-            transform: unset;
             width: 100%;
         }
         
