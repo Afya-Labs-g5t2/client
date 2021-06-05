@@ -27,8 +27,7 @@ const Prontuario: React.FC = () => {
                         dataProntuario = {prontuario.dataProntuario}
                         id = {prontuario.id} 
                         handleClick={() => handleClick(prontuario.id)} 
-                      />)
-                                              
+                      />)                           
 
   return (
       <DivComponent>
@@ -39,11 +38,19 @@ const Prontuario: React.FC = () => {
         <div className="content-container">
           <div className="search-container">
             <div className="search-field">
-              <span className="search-icon material-icons">search</span>
-              <input type="text"></input>
-              <span className="clean-icon material-icons">close</span>
+              <input type="text" placeholder="Digite aqui..."/>
+              <span className="">
+                <select>
+                  <option>Por Paciente</option>
+                  <option>Por Especialista</option>
+                  <option>Por Data</option>
+                </select>
+              </span>
             </div>
-          </div>  
+          </div> 
+          <div className="filter-container">
+              <button className="filter-button">Filtrar</button>
+            </div> 
           <div className="results-container">
             {cardProntuario}
           </div>  

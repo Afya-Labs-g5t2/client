@@ -27,7 +27,7 @@ export const DivComponent = styled.div`
                     max-width: 22.5rem;
                     display: flex;
                     background: #fff;
-                    border-radius: 9999px;
+                    border-radius: 5px;
                     border: 1px solid var(--background-dark);
                     align-items: center;
                     font-size: 1.125rem;
@@ -47,6 +47,18 @@ export const DivComponent = styled.div`
                         word-wrap: break-word;
                         font-family: 'Inter';
                     }
+                    select {
+                        width: 6.4rem;
+                        padding: 7px 0px 7px;
+                        border: none;
+                        position: relative;
+                        left: 1rem;
+                        font-family: 'Inter';
+                        margin-left: -1rem;
+                        border-radius: 0.33rem;
+                        text-align-last:center;
+
+                    }
 
                     .clean-icon {
                         color: var(--background-dark);
@@ -55,6 +67,25 @@ export const DivComponent = styled.div`
                     }
                 }
            }
+           .filter-container {
+                margin: 2rem 0;
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+
+                .filter-button{
+                    background-color: #D31C5B;
+                    color: #fff;
+                    font-family: 'Inter';
+                    width: 30%;
+                    padding: 10px 0px 10px;
+                    border-radius: 5px;
+                    border: none;
+                    font-weight:bold;
+
+                }
+            }
 
            .results-container {
                display: flex;

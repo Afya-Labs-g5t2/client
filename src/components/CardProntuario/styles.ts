@@ -22,8 +22,11 @@ export const DivComponent = styled.div`
 
             .paciente-container {
                 display: flex;
-                font-weight: 700;
                 text-align: left;
+
+                .paciente-value{
+                    /* font-weight: 700; */
+                }
             }
         }
 

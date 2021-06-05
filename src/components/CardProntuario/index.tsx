@@ -14,10 +14,10 @@ function CardProntuario(props: ProntuarioProps) {
       <div className="card-prontuario-container" onClick={() => props.handleClick(props.id)}>
         <div className="info-container">
           <div className="paciente-container">
-              <span className="paciente-value">{props.nomePaciente}</span>
+          <span className="paciente-value">Paciente: {props.nomePaciente}</span>
             </div>
             <div className="especialista-container">
-              <span className="especialista-value">{props.nomeEspecialista}</span>
+              <span className="especialista-value">Especialista: {props.nomeEspecialista}</span>
             </div>
             <div className="data-container">
               <span className="data-value">Data: {props.dataProntuario}</span>
