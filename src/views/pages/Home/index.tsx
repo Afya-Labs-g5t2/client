@@ -22,7 +22,7 @@ const Home: React.FC = () => {
     return (
       <HomeStyle>
         <div className="page-container">
-          <div className="top-Container">
+          <div className="top-container">
             <h1 onClick={handleToggle}>Home</h1>
           </div>
           <div className="content-container">   

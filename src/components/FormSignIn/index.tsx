@@ -16,7 +16,7 @@ const FormSignIn: React.FC = () => {
   // const history = useHistory()
 
   const [formDataContent, setFormDataContent] = useState<IUserLogin>({} as IUserLogin);
-  const [isLoad, setIsLoad] = useState<boolean>(false);
+  const [isLoad, setIsLoad] = useState<boolean>(true);
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -48,24 +48,17 @@ const FormSignIn: React.FC = () => {
 
     <FormContent>
       <>
-        <div className={`'' ${isLoad ? "loading" : ""}`}>
-          <div className="loading-icon" >
-            {
-              isLoad ? <Lottie 
+        {
+          isLoad &&
+          <div className="loading" >
+            <Lottie 
               options={animationContent}
               width={200}
-              height={200}/> :
-
-              <p></p>
-              
-            }
-            
-              
-            
+              height={200}
+            /> 
           </div>
-        </div>
-
-        <form onSubmit={handleSubmit}>
+        } 
+        <form onSubmit={handleSubmit} className={isLoad ? 'loading-on' : ''}>
           <input type="text" name="name" placeholder="Login" onChange={e => setFormDataContent({ ...formDataContent, usuario: e.target.value })} />
           <input type="password" name="password" placeholder="Senha" onChange={e => setFormDataContent({ ...formDataContent, senha: e.target.value })} />
           <input type="submit" value="ENTRAR" />
