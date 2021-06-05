@@ -9,5 +9,6 @@ export const ContainerLogo = styled.div`
 
 export const PositionElements = styled.div`
 position: relative;
-right: 0;
+left: 2%;
+width: 98%;
 `
