@@ -1,32 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
+import User from '../User'
 import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
+import CardProntuario from '../../../components/CardProntuario'
+
+import mockProntuario from '../../../mockProntuarios';
+
+// import { Container } from './styles';
 
 const Prontuario: React.FC = () => {
+
+  const [showUser, setShowUser] = useState(false)
+
+  function handleToggle() {
+    setShowUser(!showUser)
+  }
+
+  function handleClick(id: number) {
+    console.log(id)
+  }
+
+  const cardProntuario = mockProntuario.pacientes
+    .sort((a,b) => a.name[0] > b.name[0] ? 1 : -1)
+    .map(prontuario => <CardProntuario
+                        key = {prontuario.id}
+                        nomePaciente ={prontuario.name} 
+                        nomeEspecialista ={prontuario.email}
+                        dataProntuario = {prontuario.telefone}
+                        id = {prontuario.id} 
+                        handleClick={() => handleClick(prontuario.id)} 
+                      />)
+                                              
+
   return (
-    <>
-    <DivComponent>
-    <div className="page-container">
-      <div className="top-container">
-      <NavBar />
-      </div>
-      <div className="content-container">
-        <div className="content-form">
-        <input id="filtro-input" type="text" placeholder="Digite aqui..."/>
-        <select id="select-filtro" name="select">
-          <option id="nome" value="nome" selected >Por nome</option>
-          <option id="data" value="data" >Por data</option>
-          <option id="especialista" value="especialista">Por especialista</option>
-        </select>
+      <DivComponent>
+      <div className="page-container">
+        <div className="top-Container">
+        <NavBar />
         </div>
+        <div className="content-container">
+          <div className="search-container">
+            <div className="search-field">
+              <span className="search-icon material-icons">search</span>
+              <input type="text"></input>
+              <span className="clean-icon material-icons">close</span>
+            </div>
+          </div>  
+          <div className="results-container">
+            {cardProntuario}
+          </div>  
+        </div>
+        <div className="bot-container">
+          <Menu />
+        </div>
+          
       </div>
-      <div className="bot-container">
-        <Menu />
-      </div>
-    </div>
-    </DivComponent>
-    </>
+      </DivComponent>
   );
 }
 

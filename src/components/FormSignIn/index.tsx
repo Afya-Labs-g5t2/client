@@ -16,7 +16,7 @@ const FormSignIn: React.FC = () => {
   // const history = useHistory()
 
   const [formDataContent, setFormDataContent] = useState<IUserLogin>({} as IUserLogin);
-  const [isLoad, setIsLoad] = useState<boolean>(true);
+  const [isLoad, setIsLoad] = useState<boolean>(false);
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
