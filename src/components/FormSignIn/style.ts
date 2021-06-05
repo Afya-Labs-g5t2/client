@@ -9,7 +9,6 @@ export const FormContent = styled.div`
   form {
     display: grid;
     padding-top: 15vh;
-    padding-right: 6%; 
     z-index : 1;
   }
 
@@ -43,22 +42,25 @@ input[type=submit]:hover {
   cursor: pointer;
 }
 
-.loading{
-  position: fixed;
-  top: 0;
-  background-color: #d6d6d6a3;
-  width: 104%;
-  padding-top: 48.8%;
-  right: 1px;
-  height: 111.3%;
-  z-index: 2;
-}
+.loading {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: hsla(100,100%,100%,0.8);
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    pointer-events: none;
+    pointer-events: none;
+    z-index: 2;
 
-.loading-icon{
-    position: fixed;
-    bottom: 21%;
-    left: 41%;
-}
+    path {
+      stroke: var(--red);
+    }
+  }
 
 @media (max-width: 500px){
 
@@ -86,20 +88,5 @@ input[type=submit]:hover {
     font-weight: bold;
     transition: 0.3s; 
   }
-
-  .loading{
-    position: fixed;
-    top: 0;
-    background-color: #d6d6d6a3;
-    width: 104%;
-    padding-top: 15rem;
-    height: 121.3%;
-}
-
-.loading-icon{
-    position: fixed;
-    bottom: 23%;
-    left: 20%;
-}
 }
 `
