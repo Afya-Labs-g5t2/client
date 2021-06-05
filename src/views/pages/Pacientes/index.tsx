@@ -9,7 +9,7 @@ import mockPacientes from '../../../mockPacientes';
 
 // import { Container } from './styles';
 
-const Paciente: React.FC = () => {
+const Pacientes: React.FC = () => {
 
   const [showUser, setShowUser] = useState(false)
 
@@ -60,4 +60,4 @@ const Paciente: React.FC = () => {
   );
 }
 
-export default Paciente;
+export default Pacientes;

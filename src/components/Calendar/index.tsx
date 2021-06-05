@@ -151,7 +151,7 @@ function Calendar() {
                 <TUICalendar
                 ref={cal}
                 height="400px"
-                view="week"
+                view="day"
                 useCreationPopup={true}
                 useDetailPopup={true}
                 template={templates}

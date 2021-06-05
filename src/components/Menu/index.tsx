@@ -69,7 +69,7 @@ function Menu() {
             </Link>
           </div>
           <div className="icon-container paciente-btn">
-            <Link to={`/paciente`} className="icon-btn">
+            <Link to={`/pacientes`} className="icon-btn">
               <div className="icon-wrapper">
                 <span className={`material-icons ${window.location.pathname === '/paciente' && 'red'}`}>person</span>
                 <span className='btn-label' style={{color: `${window.location.pathname === '/paciente' && 'var(--red)'}`}}>paciente</span>
