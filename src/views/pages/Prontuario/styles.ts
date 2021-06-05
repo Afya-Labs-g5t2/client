@@ -42,14 +42,14 @@ export const DivComponent = styled.div`
                         width: 100%;
                         outline: none;
                         border: none;
-                        line-height: 2rem;
+                        line-height: 2.5rem;
                         font-size: 1rem;
                         word-wrap: break-word;
                         font-family: 'Inter';
                     }
                     select {
                         width: 6.4rem;
-                        padding: 7px 0px 7px;
+                        padding: 12px 0px 10px;
                         border: none;
                         position: relative;
                         left: 1rem;
@@ -78,12 +78,11 @@ export const DivComponent = styled.div`
                     background-color: #D31C5B;
                     color: #fff;
                     font-family: 'Inter';
-                    width: 30%;
-                    padding: 10px 0px 10px;
+                    width: 7rem;
+                    padding: 16px 0px 16px;
                     border-radius: 5px;
                     border: none;
-                    font-weight:bold;
-
+                    font-weight:bold;   
                 }
             }
 
