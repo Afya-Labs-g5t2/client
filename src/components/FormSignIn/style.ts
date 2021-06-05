@@ -9,8 +9,10 @@ export const FormContent = styled.div`
   form {
     display: grid;
     padding-top: 15vh;
-    padding-right: 6%;  
-    }
+    padding-right: 6%; 
+    z-index : 1;
+  }
+
   input{
     padding: 16px;
     margin: 19px 0;
@@ -41,6 +43,23 @@ input[type=submit]:hover {
   cursor: pointer;
 }
 
+.loading{
+  position: fixed;
+  top: 0;
+  background-color: #d6d6d6a3;
+  width: 104%;
+  padding-top: 48.8%;
+  right: 1px;
+  height: 111.3%;
+  z-index: 2;
+}
+
+.loading-icon{
+    position: fixed;
+    bottom: 21%;
+    left: 41%;
+}
+
 @media (max-width: 500px){
 
   input{
@@ -67,6 +86,20 @@ input[type=submit]:hover {
     font-weight: bold;
     transition: 0.3s; 
   }
+
+  .loading{
+    position: fixed;
+    top: 0;
+    background-color: #d6d6d6a3;
+    width: 104%;
+    padding-top: 15rem;
+    height: 121.3%;
 }
 
+.loading-icon{
+    position: fixed;
+    bottom: 23%;
+    left: 20%;
+}
+}
 `
