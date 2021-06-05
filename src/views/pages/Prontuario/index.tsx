@@ -4,10 +4,7 @@ import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
 import CardProntuario from '../../../components/CardProntuario'
-
 import mockProntuario from '../../../mockProntuarios';
-
-// import { Container } from './styles';
 
 const Prontuario: React.FC = () => {
 
@@ -21,13 +18,13 @@ const Prontuario: React.FC = () => {
     console.log(id)
   }
 
-  const cardProntuario = mockProntuario.pacientes
-    .sort((a,b) => a.name[0] > b.name[0] ? 1 : -1)
+  const cardProntuario = mockProntuario.prontuarios
+    .sort((a,b) => a.nomeEspecialista > b.nomePaciente[0] ? 1 : -1)
     .map(prontuario => <CardProntuario
                         key = {prontuario.id}
-                        nomePaciente ={prontuario.name} 
-                        nomeEspecialista ={prontuario.email}
-                        dataProntuario = {prontuario.telefone}
+                        nomePaciente ={prontuario.nomePaciente} 
+                        nomeEspecialista ={prontuario.nomeEspecialista}
+                        dataProntuario = {prontuario.dataProntuario}
                         id = {prontuario.id} 
                         handleClick={() => handleClick(prontuario.id)} 
                       />)
