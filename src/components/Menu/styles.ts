@@ -8,12 +8,12 @@ export const DivComponent = styled.div`
         right: 0;
         display: flex;
         flex-direction: column;
+        pointer-events: none;
 
         .create-options-container {
             width: 100%;
             display: flex;
             flex-direction: column;
-            pointer-events: none;
 
             .btn-create-container {
                 display: flex;
@@ -136,6 +136,7 @@ export const DivComponent = styled.div`
             font-size: 12px;
             border-top: solid 1px var(--background-dark);
             z-index: 1;
+            pointer-events: auto;
 
             .icon-container {
                 display: grid;
