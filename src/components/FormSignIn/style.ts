@@ -54,12 +54,15 @@ input[type=submit]:hover {
     justify-content: center;
     margin: 0 auto;
     pointer-events: none;
-    pointer-events: none;
     z-index: 2;
 
     path {
       stroke: var(--red);
     }
+  }
+
+  .loading-on {
+    pointer-events: none;
   }
 
 @media (max-width: 500px){

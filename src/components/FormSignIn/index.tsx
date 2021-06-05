@@ -58,7 +58,7 @@ const FormSignIn: React.FC = () => {
             /> 
           </div>
         } 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={isLoad ? 'loading-on' : ''}>
           <input type="text" name="name" placeholder="Login" onChange={e => setFormDataContent({ ...formDataContent, usuario: e.target.value })} />
           <input type="password" name="password" placeholder="Senha" onChange={e => setFormDataContent({ ...formDataContent, senha: e.target.value })} />
           <input type="submit" value="ENTRAR" />
