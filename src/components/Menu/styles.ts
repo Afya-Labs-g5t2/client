@@ -13,6 +13,7 @@ export const DivComponent = styled.div`
             width: 100%;
             display: flex;
             flex-direction: column;
+            pointer-events: none;
 
             .btn-create-container {
                 display: flex;
@@ -27,6 +28,7 @@ export const DivComponent = styled.div`
                     min-height: 40px;
                     width: 64px;
                     height: 64px;
+                    pointer-events: auto;
 
                     .icon-create-container {
                         display: flex;
@@ -61,12 +63,13 @@ export const DivComponent = styled.div`
                 justify-content: flex-end;
 
                     .options {
-                        display: none;
+                        /* display: none; */
+                        opacity: 0;
                         list-style: none;
-                        /* background: var(--red); */
                         margin: 0 20px;
-                        transition: .2 ease-in-out;
+                        transition: opacity .2s ease-in-out;
                         z-index: 2;
+                        pointer-events: none;
                     }
 
                     li { 
@@ -89,6 +92,9 @@ export const DivComponent = styled.div`
 
                     .show-menu {
                         display: block;
+                        opacity: 1;
+                        transition: opacity .4s ease-in-out;
+                        pointer-events: auto;
                     }
 
                 }
