@@ -14,12 +14,11 @@ export const DivComponent = styled.div`
         border-radius: 6px;
         margin-top: 1rem;
         color: white;
-        cursor: pointer;
 
         .paciente-main {
             display: flex;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 24px;
 
             .photo-container {
                 height: 56px;
@@ -39,11 +38,21 @@ export const DivComponent = styled.div`
 
         .quick-info{
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
+
+            .acessar-prontuario {
+                background-color: var(--background-main);
+                padding: 6px;
+                border-radius: 6px;
+                font-weight: 700;
+                color: var(--font-color);
+            }
 
             .quick-sangue {
                 display: flex;
                 flex-direction: row;
+                bottom: 0;
 
                 .sangue-value {
                     margin-left: 12px;
