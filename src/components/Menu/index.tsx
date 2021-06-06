@@ -71,16 +71,16 @@ function Menu() {
           <div className="icon-container paciente-btn">
             <Link to={`/pacientes`} className="icon-btn">
               <div className="icon-wrapper">
-                <span className={`material-icons ${window.location.pathname === '/paciente' && 'red'}`}>person</span>
-                <span className='btn-label' style={{color: `${window.location.pathname === '/paciente' && 'var(--red)'}`}}>paciente</span>
+                <span className={`material-icons ${window.location.pathname.includes('pacientes') && 'red'}`}>person</span>
+                <span className='btn-label' style={{color: `${window.location.pathname.includes('pacientes') && 'var(--red)'}`}}>pacientes</span>
               </div>
             </Link>
           </div>
           <div className="icon-container especialista-btn">
           <Link to={`/especialista`} className="icon-btn">
               <div className="icon-wrapper">
-                <span className={`material-icons ${window.location.pathname === '/especialista' && 'red'}`}>work</span>
-                <span className='btn-label' style={{color: `${window.location.pathname === '/especialista' && 'var(--red)'}`}}>especialista</span>
+                <span className={`material-icons ${window.location.pathname.includes('especialista') && 'red'}`}>work</span>
+                <span className='btn-label' style={{color: `${window.location.pathname.includes('especialista') && 'var(--red)'}`}}>especialista</span>
               </div>
             </Link>
           </div>

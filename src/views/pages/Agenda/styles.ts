@@ -21,7 +21,6 @@ export const DivComponent = styled.div`
 
         .calendar-container {
             width: 100%;
-            overflow: scroll;
         }
     }
 

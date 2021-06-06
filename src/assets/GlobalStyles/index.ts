@@ -8,6 +8,8 @@ export default createGlobalStyle`
         --red-dark: #91133F;
         --background-main: #EFEFEF;
         --background-dark: #7D7D7D;
+        --background-cover: hsla(200,100%,75%,.9);
+        --content-container-height: calc(100vh - 3.5rem - 3.5rem);
     }
 
     *, *:before, *:after{

@@ -143,7 +143,7 @@ function Calendar() {
         return _getTimeTemplate(schedule, false);
       }
     };
-  
+    
     return (
         <div className="calendar-container">
             <DivComponent>
