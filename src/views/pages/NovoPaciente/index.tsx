@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
@@ -10,8 +10,14 @@ const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=
 
 const NovoPaciente: React.FC = () => {
   const [data, setData] = useState()
+  //Refs
+  const logradouroInputRef = useRef<HTMLInputElement | null>(null)
+  const bairroInputRef = useRef(null)
+  const cidadeInputRef = useRef(null)
+  const ufInputRef = useRef(null)
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  //react-hook-form
+  const { register, setValue, handleSubmit, formState: { errors } } = useForm();
   // const onSubmit = (data: any) => console.log(data);
   const toast = useToast( )
   const onSubmit = (data: any) => {
@@ -19,13 +25,35 @@ const NovoPaciente: React.FC = () => {
     toast({
       title: "Submitted!",
       status: "success",
-      duration: 20000,
+      duration: 2000,
       isClosable: true
     });
   
     setData(data);
   };
 
+
+  
+  async function checkCep(e: any) {
+    // console.log(e.target.value);
+    const cep = e.target.value
+    const urlCep = `https://viacep.com.br/ws/${cep}/json/`
+    const response = await fetch(urlCep)
+    const data = await response.json()
+
+    !data.erro && autoPopulateAdress(data)
+    
+  }
+
+  function autoPopulateAdress(data: any) {
+
+    const { logradouro, bairro, localidade, uf } = data
+
+    setValue('adress', logradouro, { shouldValidate: true })
+    setValue('bairro', bairro, { shouldValidate: true })
+    setValue('cidade', localidade, { shouldValidate: true })
+    setValue('uf', uf, { shouldValidate: true })
+  }
 
   return (
       <DivComponent>
@@ -72,7 +100,9 @@ const NovoPaciente: React.FC = () => {
                   value: /^[\d]{8}$/,
                   message: 'Digite apenas 8 digitos',
                 }, 
-              })} />
+              })}
+              onBlur={checkCep}  
+            />
             {errors.cep && <p>{errors.cep.message}</p>}
             <input type='text' placeholder='Endereco' {...register('adress', { required: 'Preencha com o endereco' })} />
             {errors.adress && <p>{errors.adress.message}</p>}
