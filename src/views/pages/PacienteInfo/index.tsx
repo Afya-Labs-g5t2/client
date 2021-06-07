@@ -1,17 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
 
 import mockPacientes from '../../../mockPacientes';
 import { useParams  } from 'react-router';
+import { api } from '../../../services/api';
 
-// import { Container } from './styles';
+interface AddressProps {
+  cep: number,
+  logradouro: string,
+  numero: number,
+  bairro: string,
+  cidade: string,
+  uf: string,
+}
 
+interface IUserRegister{
+  cpf: string
+  nome: string,
+  tel: string,
+  celular: string,
+  data_nasc: string,
+  email: string,
+  tipo_sangue: string,
+  endereco_paciente: AddressProps,
+}
 
 const PacienteInfo: React.FC = () => {
+  const [apiData, setApiData] = useState<IUserRegister>({} as IUserRegister)
   let { id } = useParams<any>()
-  const selectedCliente = mockPacientes.pacientes.filter(paciente => paciente.id.toString() === id)[0]
+
+  useEffect(() => {
+    api.get(`pacientes/${id}`)
+      .then(res => {
+        setApiData(res.data)
+      })
+      .catch(console.error)
+  }, [])
 
   return (
       <DivComponent>
@@ -25,15 +51,16 @@ const PacienteInfo: React.FC = () => {
               <div className="paciente-main">
                 <div className="photo-container"></div>
                 <div className="name-container">
-                  <span className="name">{selectedCliente.name}</span>
+                  <span className="name">{apiData.nome}</span>
                 </div>
               </div>
               <div className="quick-info">
                 <div className="quick-sangue">
                   <span className="sangue-label">Tipo sanguíneo</span>
                   <div className="sangue-value">
-                    <span className="sangue-letters">{selectedCliente.tipo_sangue.toString().slice(0,-1)}</span>
-                    <span className="sangue-sinal">{selectedCliente.tipo_sangue.toString().slice(-1,)}</span>
+                    {/* <span className="sangue-letters">{apiData.tipo_sangue.toString().slice(0,-1)}</span>
+                    <span className="sangue-sinal">{apiData.tipo_sangue.toString().slice(-1,)}</span> */}
+                    <span className="sangue-letters">{apiData.tipo_sangue}</span>
                   </div>
                 </div>
               </div>
@@ -51,23 +78,23 @@ const PacienteInfo: React.FC = () => {
                 <div className="dados-container">
                   <div className="paciente-nome-completo">
                     <span className="nome-completo-label">nome completo</span>
-                    <span className="nome-completo-value">{selectedCliente.name}</span>
+                    <span className="nome-completo-value">{apiData.nome}</span>
                   </div>
                   <div className="paciente-email">
                     <span className="email-label">e-mail</span>
-                    <span className="email-value">{selectedCliente.email}</span>
+                    <span className="email-value">{apiData.email}</span>
                   </div>
                   <div className="paciente-cpf">
                     <span className="cpf-label">CPF</span>
-                    <span className="cpf-value">{selectedCliente.cpf}</span>
+                    <span className="cpf-value">{apiData.cpf}</span>
                   </div>
                   <div className="paciente-celular">
                     <span className="celular-label">celular</span>
-                    <span className="celular-value">{selectedCliente.celular}</span>
+                    <span className="celular-value">{apiData.celular}</span>
                   </div>
                   <div className="paciente-tel">
                     <span className="tel-label">telefone</span>
-                    <span className="tel-value">{selectedCliente.telefone}</span>
+                    <span className="tel-value">{apiData.tel}</span>
                   </div>
                 </div>
               </div>
@@ -88,7 +115,7 @@ const PacienteInfo: React.FC = () => {
                   <div className="rua-wrapper">
                     <div className="logradouro-field">
                       <span className="logradouro-label">Rua</span>
-                      <span className="logradouro-value">Av Nacoes Unidas da piraciabinha de jesus</span>
+                      <span className="logradouro-value">{apiData.endereco_paciente?.logradouro}</span>
                     </div>
                     <div className="numero-field">
                       <span className="numero-label">Numero</span>
