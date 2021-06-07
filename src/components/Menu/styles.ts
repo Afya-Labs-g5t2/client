@@ -73,6 +73,7 @@ export const DivComponent = styled.div`
                     }
 
                     li { 
+                        transition: all .3s ease-in-out;
 
                         a {
                             display: flex;
@@ -87,6 +88,11 @@ export const DivComponent = styled.div`
 
                         a > span:last-child {
                             margin-left: 9px;
+                        }
+
+                        &:hover {
+                            transform: scale(1.2);
+                            text-shadow: 2px 2px var(--background-dark);
                         }
                     }
 

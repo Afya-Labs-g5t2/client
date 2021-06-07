@@ -24,9 +24,9 @@ function Menu() {
                 </Link>
               </li>
               <li className="items">
-                <Link to={`/agenda`} className="item-btn">  
-                  <span className={`material-icons`}>home</span>
-                  <span>agenda</span>
+                <Link to={`/pacientes/novo`} className="item-btn">  
+                  <span className={`material-icons`}>person_add</span>
+                  <span>Novo paciente</span>
                 </Link>
               </li>
               <li className="items">
