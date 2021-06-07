@@ -33,7 +33,7 @@ const NovoPaciente: React.FC = () => {
       "uf": "",
   };
 
-  const { register, setValue, handleSubmit, reset, formState: { errors, isSubmitSuccessful  } } = useForm({ defaultValues });
+  const { register, setValue, handleSubmit, reset, formState: { errors  } } = useForm({ defaultValues });
 
   // useEffect(() => {
   //   if (formState.isSubmitSuccessful) {
@@ -97,9 +97,11 @@ const NovoPaciente: React.FC = () => {
         <NavBar />
         </div>
         <div className="content-container">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+            <label htmlFor="nome">Nome</label>
             <input className="input-form" type='text' placeholder='Nome' {...register('nome', { required: 'Digite o primeiro nome' })} />
             {errors.nome && <p>{errors.nome.message}</p>}
+            <label htmlFor="sobrenome">Sobrenome</label>
             <input type='text' placeholder='Sobrenome' {...register('sobrenome', { required: 'Digite o sobrenome' })} />
             {errors.sobrenome && <p>{errors.sobrenome.message}</p>}
             {/* <input 
@@ -110,8 +112,10 @@ const NovoPaciente: React.FC = () => {
                 pattern: passwordValidationRegex
               })} />
               {errors.password && <p>{errors.password.message}</p>} */}
+            <label htmlFor="email">Email</label>
             <input type='text' placeholder='Email' {...register('email', { required: 'Digite o email' })} />
             {errors.email && <p>{errors.email.message}</p>}
+            <label htmlFor="cpf">CPF</label>
             <input 
               type='text' 
               placeholder='Digite o CPF (somente numeros)' 
@@ -123,9 +127,12 @@ const NovoPaciente: React.FC = () => {
                 }, 
               })} />
             {errors.cpf && <p>{errors.cpf.message}</p>}
+            <label htmlFor="celular">Celular</label>
             <input type='text' placeholder='Celular' {...register('celular', { required: 'Digite o numero de celular' })} />
             {errors.celular && <p>{errors.celular.message}</p>}
+            <label htmlFor="telefone">Telefone</label>
             <input type='text' placeholder='Telefone' {...register('telefone')} />
+            <label htmlFor="cep">CEP</label>
             <input 
               type='text' 
               placeholder='Digite o CEP (somente numeros)' 
@@ -139,18 +146,23 @@ const NovoPaciente: React.FC = () => {
               onBlur={checkCep}  
             />
             {errors.cep && <p>{errors.cep.message}</p>}
+            <label htmlFor="adress">Endereco</label>
             <input type='text' placeholder='Endereco' {...register('adress', { required: 'Preencha com o endereco' })} />
             {errors.adress && <p>{errors.adress.message}</p>}
+            <label htmlFor="numero">Numero</label>
             <input type='text' placeholder='Numero' {...register('numero', { required: 'Preencha com o numero' })} />
             {errors.numero && <p>{errors.numero.message}</p>}
+            <label htmlFor="bairro">Bairro</label>
             <input type='text' placeholder='Bairro' {...register('bairro', { required: 'Preencha com o bairro' })} />
             {errors.bairro && <p>{errors.bairro.message}</p>}
+            <label htmlFor="cidade">Cidade</label>
             <input type='text' placeholder='Cidade' {...register('cidade', { required: 'Preencha com a cidade' })} />
             {errors.cidade && <p>{errors.cidade.message}</p>}
+            <label htmlFor="uf">UF</label>
             <input type='text' placeholder='Estado' {...register('uf', { required: 'Preencha com o estado' })} />
             {errors.uf && <p>{errors.uf.message}</p>}
 
-            <input type='submit' value='Salvar'/>
+            <input className='btn-form' type='submit' value='Salvar'/>
             {/* <input
               style={{ display: "block", marginTop: 20 }}
               type="button"

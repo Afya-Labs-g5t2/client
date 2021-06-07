@@ -13,7 +13,7 @@ export const DivComponent = styled.div`
            height: calc(100vh - 3.5rem - 3.5rem); // expaco que sobra entre o menu de baixo e o nav
            display: block;
            position: relative;
-           overflow: scroll;
+           overflow: scroll;           
 
            .search-container {
                 margin: 2rem 0;
