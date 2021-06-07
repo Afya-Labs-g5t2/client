@@ -1,14 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
 import { useForm } from "react-hook-form";
+import { api, findCep } from '../../../services/api'
 
 const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
 
 
 const NovoPaciente: React.FC = () => {
   const [data, setData] = useState()
+  const [isLoading, setIsLoading] = useState(false)
   //Refs
   const logradouroInputRef = useRef<HTMLInputElement | null>(null)
   const bairroInputRef = useRef(null)
@@ -16,8 +18,43 @@ const NovoPaciente: React.FC = () => {
   const ufInputRef = useRef(null)
 
   //react-hook-form
-  const { register, setValue, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  const defaultValues = {
+      "nome": "",
+      "sobrenome": "",
+      "email": "",
+      "cpf": "",
+      "celular": "",
+      "telefone": "",
+      "cep": "",
+      "adress": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "uf": "",
+  };
+
+  const { register, setValue, handleSubmit, reset, formState: { errors, isSubmitSuccessful  } } = useForm({ defaultValues });
+
+  // useEffect(() => {
+  //   if (formState.isSubmitSuccessful) {
+  //     reset({ defaultValues });
+  //   }
+  // }, [formState, submittedData, reset]);
+
+  const onSubmit = (data: any) => {
+    setIsLoading(true)
+    api.post('/pacientes/novo', data)
+    .then(
+      response => {
+        // getData()
+        console.log(data)
+        alert('Tudo certo')
+        reset({ ...defaultValues })
+      }
+    ).catch(
+      (err) => alert(err)
+    ).finally(() => setIsLoading(false))
+  };
   // const toast = useToast( )
   // const onSubmit = (data: any) => {
   //   //console.log(data);
@@ -30,7 +67,6 @@ const NovoPaciente: React.FC = () => {
   
   //   setData(data);
   // };
-
 
   
   async function checkCep(e: any) {
@@ -62,7 +98,7 @@ const NovoPaciente: React.FC = () => {
         </div>
         <div className="content-container">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input type='text' placeholder='Nome' {...register('nome', { required: 'Digite o primeiro nome' })} />
+            <input className="input-form" type='text' placeholder='Nome' {...register('nome', { required: 'Digite o primeiro nome' })} />
             {errors.nome && <p>{errors.nome.message}</p>}
             <input type='text' placeholder='Sobrenome' {...register('sobrenome', { required: 'Digite o sobrenome' })} />
             {errors.sobrenome && <p>{errors.sobrenome.message}</p>}

@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-const api = axios.create({
-  baseURL: ''
+export const api = axios.create({
+  baseURL: 'https://super-simple-message-board.herokuapp.com/'
 })
 
-export default api;
+export const findCep = axios.create({
+  baseURL: 'https://viacep.com.br/ws/'
+})
