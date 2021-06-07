@@ -13,9 +13,7 @@ function NavBar() {
     <NavBarContent>
       <nav className="nav-container">
         <div className="icon-container" onClick={history.goBack}>
-          
             <span className="material-icons md-36">arrow_back</span>
-          
         </div>
         <a href="#" className="create-options-btn"></a>
         <div className="title-container">

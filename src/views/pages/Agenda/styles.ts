@@ -10,12 +10,12 @@ export const DivComponent = styled.div`
     }
 
     .mid {
-        width: 80%;
         height: 400px;
         display: flex;
-        margin: 0 auto;
+        margin: 0 1rem;
         margin-top: 200px;
         justify-content: center;
+        
         /* display: grid;
         place-items: center; */
 

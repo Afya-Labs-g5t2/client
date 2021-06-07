@@ -143,7 +143,7 @@ function Calendar() {
         return _getTimeTemplate(schedule, false);
       }
     };
-  
+    
     return (
         <div className="calendar-container">
             <DivComponent>
@@ -151,7 +151,7 @@ function Calendar() {
                 <TUICalendar
                 ref={cal}
                 height="400px"
-                view="week"
+                view="day"
                 useCreationPopup={true}
                 useDetailPopup={true}
                 template={templates}

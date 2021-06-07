@@ -2,7 +2,7 @@ import React, { FormEvent, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import { toast } from 'react-toastify';
-import api from '../../services/api';
+import {api} from '../../services/api';
 import animationData from '../../assets/animation/19318-loading-circle.json';
 import { FormContent } from './style';
 
