@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import PrivateRoutes from './private.routes';
-import { ChakraProvider } from "@chakra-ui/react"
 import Home from './views/pages/Home';
 import Login from './views/pages/Login';
 import Agenda from './views/pages/Agenda';
@@ -21,9 +20,7 @@ const Routes: React.FC = () => {
         <Route path="/login" component={Login}/>
         <Route path="/agenda" component={Agenda}/>
         <Route path="/pacientes" exact component={Pacientes}/>
-        <ChakraProvider>
-          <Route path="/pacientes/novo" exact component={NovoPaciente}/>
-        </ChakraProvider>
+        <Route path="/pacientes/novo" exact component={NovoPaciente}/>
         <Route path="/pacientes/:id" component={PacienteInfo}/>
         <Route path="/especialista" component={Especialista}/>
         {/* <PrivateRoutes path="/dash" exact component={Dash}/> */}

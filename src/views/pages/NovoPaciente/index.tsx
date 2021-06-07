@@ -3,7 +3,6 @@ import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
 import { useForm } from "react-hook-form";
-import { useToast } from '@chakra-ui/react'
 
 const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
 
@@ -18,19 +17,19 @@ const NovoPaciente: React.FC = () => {
 
   //react-hook-form
   const { register, setValue, handleSubmit, formState: { errors } } = useForm();
-  // const onSubmit = (data: any) => console.log(data);
-  const toast = useToast( )
-  const onSubmit = (data: any) => {
-    //console.log(data);
-    toast({
-      title: "Submitted!",
-      status: "success",
-      duration: 2000,
-      isClosable: true
-    });
+  const onSubmit = (data: any) => console.log(data);
+  // const toast = useToast( )
+  // const onSubmit = (data: any) => {
+  //   //console.log(data);
+  //   toast({
+  //     title: "Submitted!",
+  //     status: "success",
+  //     duration: 2000,
+  //     isClosable: true
+  //   });
   
-    setData(data);
-  };
+  //   setData(data);
+  // };
 
 
   
