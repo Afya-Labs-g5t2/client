@@ -10,7 +10,7 @@ export const DivComponent = styled.div`
        .content-container {
            display: flex;
            flex-direction:column;
-           height: calc(100vh - 60px - 50px); // expaco que sobra entre o menu de baixo e o nav
+           height: calc(100vh - 3.5rem - 3.5rem); // expaco que sobra entre o menu de baixo e o nav
            display: block;
            position: relative;
            overflow: scroll;

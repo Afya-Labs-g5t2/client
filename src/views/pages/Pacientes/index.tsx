@@ -6,6 +6,7 @@ import NavBar from '../../../components/NavBar';
 import CardPaciente from '../../../components/CardPaciente'
 
 import mockPacientes from '../../../mockPacientes';
+import { Link } from 'react-router-dom';
 
 // import { Container } from './styles';
 
@@ -23,14 +24,17 @@ const Paciente: React.FC = () => {
 
   const cardPaciente = mockPacientes.pacientes
     .sort((a,b) => a.name[0] > b.name[0] ? 1 : -1)
-    .map(paciente => <CardPaciente
-                        key={paciente.id}
-                        name={paciente.name} 
-                        email={paciente.email}
-                        telefone={paciente.telefone}
-                        id={paciente.id} 
-                        handleClick={() => handleClick(paciente.id)} 
-                      />)
+    .map(paciente => 
+      <Link to={`/pacientes/${paciente.id}`}>
+        <CardPaciente
+          key={paciente.id}
+          name={paciente.name} 
+          email={paciente.email}
+          telefone={paciente.telefone}
+          id={paciente.id} 
+          handleClick={() => handleClick(paciente.id)} 
+        />
+      </Link>)
                                               
 
   return (
@@ -48,7 +52,9 @@ const Paciente: React.FC = () => {
             </div>
           </div>  
           <div className="results-container">
-            {cardPaciente}
+            <Link to="/">
+              {cardPaciente}
+            </Link>
           </div>  
         </div>
         <div className="bot-container">
