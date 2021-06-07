@@ -15,6 +15,10 @@ export const DivComponent = styled.div`
         user-select: none;
         cursor: pointer;
 
+        &:hover {
+            background: var(--background-main-shadow);
+        }
+
         .info-container {
             display: flex;
             flex-direction: column;

@@ -5,9 +5,3 @@ export const ContainerLogo = styled.div`
  justify-content: center;
  padding-top: 20vh ;
 `;
-
-export const PositionElements = styled.div`
-position: relative;
-/* left: 2%; */
-/* width: 98%; */
-`
