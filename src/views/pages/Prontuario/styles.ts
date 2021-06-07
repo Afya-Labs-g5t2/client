@@ -57,7 +57,6 @@ export const DivComponent = styled.div`
                         margin-left: -1rem;
                         border-radius: 0.33rem;
                         text-align-last:center;
-
                     }
 
                     .clean-icon {
