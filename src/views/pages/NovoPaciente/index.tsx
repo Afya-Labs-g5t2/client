@@ -3,15 +3,28 @@ import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
 import { useForm } from "react-hook-form";
-
-import mockPacientes from '../../../mockPacientes';
+import { useToast } from '@chakra-ui/react'
 
 const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
 
 
 const NovoPaciente: React.FC = () => {
+  const [data, setData] = useState()
+
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  // const onSubmit = (data: any) => console.log(data);
+  const toast = useToast( )
+  const onSubmit = (data: any) => {
+    //console.log(data);
+    toast({
+      title: "Submitted!",
+      status: "success",
+      duration: 20000,
+      isClosable: true
+    });
+  
+    setData(data);
+  };
 
 
   return (
@@ -73,6 +86,12 @@ const NovoPaciente: React.FC = () => {
             {errors.uf && <p>{errors.uf.message}</p>}
 
             <input type='submit' value='Salvar'/>
+            {/* <input
+              style={{ display: "block", marginTop: 20 }}
+              type="button"
+              onClick={() => reset()}
+              value="Custom Reset Field Values & Errors"
+            /> */}
           </form>
         </div>
         <div className="bot-container">
