@@ -54,7 +54,10 @@ const PacienteInfo: React.FC = () => {
                   <span className="name">{apiData.nome}</span>
                 </div>
               </div>
-              <div className="quick-info">
+              <div className="quick-info" >
+                <a href="#" className="acessar-prontuario">
+                  <span className="prontuario-text">Prontuario</span>
+                </a>
                 <div className="quick-sangue">
                   <span className="sangue-label">Tipo sanguíneo</span>
                   <div className="sangue-value">
