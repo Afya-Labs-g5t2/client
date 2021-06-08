@@ -15,6 +15,29 @@ export const DivComponent = styled.div`
            position: relative;
            overflow: scroll;
 
+           .header-medical-container{
+                margin: 1rem 0;
+                display: flex;
+                width: 100%;
+                align-items: center;
+                flex-direction: column;
+                
+               .header-medical-item{
+                    width: 80%;
+                    max-width: 22.5rem;
+                    min-width: 20.5rem;
+                    
+                    p {
+                       font-weight: bold;
+                       margin:10px
+                       }
+
+                    span{
+                        font-weight: 500;
+                        }
+                    }               
+           }
+
            .search-container {
                 margin: 2rem 0;
                 display: flex;
@@ -25,6 +48,7 @@ export const DivComponent = styled.div`
                 .search-field {
                     width: 80%;
                     max-width: 22.5rem;
+                    min-width: 20.5rem;
                     display: flex;
                     background: #fff;
                     border-radius: 5px;
@@ -47,6 +71,7 @@ export const DivComponent = styled.div`
                         word-wrap: break-word;
                         font-family: 'Inter';
                     }
+
                     select {
                         width: 6.4rem;
                         padding: 12px 0px 10px;
@@ -66,25 +91,7 @@ export const DivComponent = styled.div`
                     }
                 }
            }
-           .filter-container {
-                margin: 2rem 0;
-                display: flex;
-                width: 100%;
-                align-items: center;
-                justify-content: center;
-
-                .filter-button{
-                    background-color: #D31C5B;
-                    color: #fff;
-                    font-family: 'Inter';
-                    width: 7rem;
-                    padding: 16px 0px 16px;
-                    border-radius: 5px;
-                    border: none;
-                    font-weight:bold;   
-                }
-            }
-
+           
            .results-container {
                display: flex;
                flex-direction: column;
