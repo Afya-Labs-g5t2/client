@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { SectionComponent } from './styles'
 
-function User(props: any){
+interface UserProps {
+  showComponent: boolean;
+  close: () => void;
+}
+
+function User(props: UserProps){
 
   // const [showComponent, setShowComponent] = useState(true)
 
@@ -11,8 +16,10 @@ function User(props: any){
   // function handleClose() {
   //   setShowComponent(!showComponent)
   // }
+  
 
   return (
+    
     <div className="container-wrapper">
     <SectionComponent> 
       <div className={`container${props.showComponent ? ' show-component' : ''}`}>
@@ -43,8 +50,9 @@ function User(props: any){
           </a>
         </div>
       </div>
-    </SectionComponent>
+      </SectionComponent>
     </div>
+    
   );
 }
 

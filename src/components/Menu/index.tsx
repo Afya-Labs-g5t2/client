@@ -56,7 +56,7 @@ function Menu() {
             <Link to={`/`} className="icon-btn">
                 <div className="icon-wrapper">
                   <span className={`material-icons ${window.location.pathname === '/' && 'red'}`}>home</span>
-                  <span className='btn-label'>inicio</span>
+                  <span className='btn-label' style={{color: `${window.location.pathname === '/' && 'var(--red)'}`}}>inicio</span>
                 </div>
             </Link>
           </div>
@@ -64,23 +64,23 @@ function Menu() {
             <Link to={`/agenda`} className="icon-btn">
               <div className="icon-wrapper">
                 <span className={`material-icons ${window.location.pathname === '/agenda' && 'red'}`}>calendar_today</span>
-                <span className='btn-label'>agenda</span>
+                <span className='btn-label' style={{color: `${window.location.pathname === '/agenda' && 'var(--red)'}`}}>agenda</span>
               </div>
             </Link>
           </div>
           <div className="icon-container paciente-btn">
-            <Link to={`/paciente`} className="icon-btn">
+            <Link to={`/pacientes`} className="icon-btn">
               <div className="icon-wrapper">
-                <span className={`material-icons ${window.location.pathname === '/paciente' && 'red'}`}>person</span>
-                <span className='btn-label'>paciente</span>
+                <span className={`material-icons ${window.location.pathname.includes('pacientes') && 'red'}`}>person</span>
+                <span className='btn-label' style={{color: `${window.location.pathname.includes('pacientes') && 'var(--red)'}`}}>pacientes</span>
               </div>
             </Link>
           </div>
           <div className="icon-container especialista-btn">
           <Link to={`/especialista`} className="icon-btn">
               <div className="icon-wrapper">
-                <span className={`material-icons ${window.location.pathname === '/especialista' && 'red'}`}>work</span>
-                <span className='btn-label'>especialista</span>
+                <span className={`material-icons ${window.location.pathname.includes('especialista') && 'red'}`}>work</span>
+                <span className='btn-label' style={{color: `${window.location.pathname.includes('especialista') && 'var(--red)'}`}}>especialista</span>
               </div>
             </Link>
           </div>

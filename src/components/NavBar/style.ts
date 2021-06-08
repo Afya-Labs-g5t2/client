@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const NavBarContent = styled.nav`
   .nav-container {
     position: sticky;
-    height: 55px;
+    height: 3.5rem;
     width: 100%;
     background: var(--background-main);
     display: flex;

@@ -2,7 +2,7 @@ import React, { FormEvent, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import { toast } from 'react-toastify';
-import api from '../../services/api';
+import {api} from '../../services/api';
 import animationData from '../../assets/animation/19318-loading-circle.json';
 import { FormContent } from './style';
 
@@ -48,24 +48,17 @@ const FormSignIn: React.FC = () => {
 
     <FormContent>
       <>
-        <div className={`'' ${isLoad ? "loading" : ""}`}>
-          <div className="loading-icon" >
-            {
-              isLoad ? <Lottie 
+        {
+          isLoad &&
+          <div className="loading" >
+            <Lottie 
               options={animationContent}
               width={200}
-              height={200}/> :
-
-              <p></p>
-              
-            }
-            
-              
-            
+              height={200}
+            /> 
           </div>
-        </div>
-
-        <form onSubmit={handleSubmit}>
+        } 
+        <form onSubmit={handleSubmit} className={isLoad ? 'loading-on' : ''}>
           <input type="text" name="name" placeholder="Login" onChange={e => setFormDataContent({ ...formDataContent, usuario: e.target.value })} />
           <input type="password" name="password" placeholder="Senha" onChange={e => setFormDataContent({ ...formDataContent, senha: e.target.value })} />
           <input type="submit" value="ENTRAR" />

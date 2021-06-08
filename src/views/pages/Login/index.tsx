@@ -1,17 +1,17 @@
 import React from 'react';
 import FormSignIn from '../../../components/FormSignIn';
 import { ReactComponent as Logo } from '../../../assets/logo.svg'
-import { ContainerLogo, PositionElements } from './styles';
+import { ContainerLogo } from './styles';
 
 const Login: React.FC = () => {
   return (
     <>
-      <PositionElements >
+      <div className="container">
         <ContainerLogo>
           <Logo />
         </ContainerLogo>
         <FormSignIn />
-      </PositionElements>
+      </div>
     </>
   );
 }

@@ -6,8 +6,11 @@ export default createGlobalStyle`
         --font-color: #13132B;
         --red: #D31C5B;
         --red-dark: #91133F;
-        --background-main: #EFEFEF;
+        --background-main: #d7d7d7;
+        --background-main-shadow: #EFEFEF;
         --background-dark: #7D7D7D;
+        --background-cover: hsla(200,100%,75%,.9);
+        --content-container-height: calc(100vh - 3.5rem - 3.5rem);
     }
 
     *, *:before, *:after{
