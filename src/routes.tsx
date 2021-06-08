@@ -8,13 +8,9 @@ import Agenda from './views/pages/Agenda';
 import Prontuario from './views/pages/Prontuario'
 import Pacientes from './views/pages/Pacientes';
 import Especialista from './views/pages/Especialista';
-<<<<<<< HEAD
-import AlterarSenha from './views/pages/Alterar_Senha';
-=======
 import PacienteInfo from './views/pages/PacienteInfo';
 import NovoPaciente from './views/pages/NovoPaciente';
 
->>>>>>> 8f53027b807f75fc3b080b86ee82143c0ffa5bd2
 
 
 const Routes: React.FC = () => {
@@ -29,7 +25,6 @@ const Routes: React.FC = () => {
         <Route path="/prontuario" exact component={Prontuario}/>
         <Route path="/pacientes/:id" component={PacienteInfo}/>
         <Route path="/especialista" component={Especialista}/>
-        <Route path="/senha" component={AlterarSenha}/>
         {/* <PrivateRoutes path="/dash" exact component={Dash}/> */}
       </Switch>
     </BrowserRouter>
