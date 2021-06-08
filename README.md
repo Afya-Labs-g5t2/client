@@ -11,11 +11,38 @@ Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **s
 ![afya](https://user-images.githubusercontent.com/43910483/121086311-61e1d780-c7b9-11eb-9cfe-f80c94232033.gif)
 
 
-### Install
-
 O projeto foi feito utilizando React.js e Typescript. As principais bibliotecas utilizadas foram:
 
 - [axios](https://github.com/axios/axios)
 - [react-router-dom](https://reactrouter.com/)
 - [styled-components](https://styled-components.com/)
 - [react-hook-form](https://react-hook-form.com/)
+
+### Install
+
+- para iniciar a instalação, clone o repositório em sua pasta local ou faça o download 
+```bash
+git clone https://github.com/Afya-Labs-g5t2/client.git
+cd client
+```
+- instale as dependências do projeto
+
+  - npm
+  ```bash
+  npm install
+  ```
+  - yarn
+  ```bash
+  yarn add
+  ```
+- Execute o aplicativo localmente
+  - npm
+  ```bash
+  npm start
+  ```
+  - yarn
+  ```bash
+  yarn start
+  ```
+
+
