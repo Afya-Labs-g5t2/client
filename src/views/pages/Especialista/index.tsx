@@ -3,14 +3,12 @@ import User from '../User'
 import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
-import ModalAgendamento from '../../../components/ModalAgendamento'
 
 // import { Container } from './styles';
 
 const Especialista: React.FC = () => {
 
   const [showUser, setShowUser] = useState(false)
-  const [showModal, setShowModal] = useState(true)
 
   function handleToggle() {
     setShowUser(!showUser)
@@ -24,7 +22,6 @@ const Especialista: React.FC = () => {
           </div>
           <div className="content-container">   
             <User close={handleToggle} showComponent={showUser}/>
-            <ModalAgendamento showModal={showModal} setShowModal={setShowModal}/>
           </div>
           <div className="bot-container">
             <Menu />

@@ -4,6 +4,7 @@ import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
 import { useParams  } from 'react-router';
 import { api } from '../../../services/api';
+import { Link } from 'react-router-dom';
 
 interface AddressProps {
   cep: number,
@@ -53,9 +54,9 @@ const PacienteInfo: React.FC = () => {
                 </div>
               </div>
               <div className="quick-info" >
-                <a href="#" className="acessar-prontuario">
+                <Link to="/prontuario" className="acessar-prontuario">
                   <span className="prontuario-text">Prontuario</span>
-                </a>
+                </Link>
                 <div className="quick-sangue">
                   <span className="sangue-label">Tipo sanguíneo</span>
                   <div className="sangue-value">

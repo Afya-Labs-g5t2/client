@@ -21,7 +21,16 @@ export const DivComponent = styled.div`
             .modal-header {
 
                 button {
+
                     line-height: 1;
+                    text-decoration: none;
+                    border: none;
+                    background: none;
+                    transition: transform 0.2s ease-in-out;
+
+                    &:hover {
+                        transform: scale(1.25)
+                    }
                 }
             }
 
