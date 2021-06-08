@@ -91,8 +91,9 @@ export const DivComponent = styled.div`
                         }
 
                         &:hover {
+                            text-shadow: 2px 2px var(--font-color);
                             transform: scale(1.2);
-                            text-shadow: 2px 2px var(--background-dark);
+                            
                         }
                     }
 

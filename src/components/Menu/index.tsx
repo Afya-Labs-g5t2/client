@@ -19,8 +19,8 @@ function Menu() {
             <ul className={`options ${rotateIcon && 'show-menu'}`}>
               <li className="items">
                 <Link to={`/`} className="item-btn">  
-                  <span className={`material-icons`}>home</span>
-                  <span>home</span>
+                  <span className={`material-icons`}>note_add</span>
+                  <span>Novo agendamento</span>
                 </Link>
               </li>
               <li className="items">
