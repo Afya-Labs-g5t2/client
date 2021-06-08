@@ -8,7 +8,7 @@ import Agenda from './views/pages/Agenda';
 import Pacientes from './views/pages/Pacientes';
 import Especialista from './views/pages/Especialista';
 <<<<<<< HEAD
-import AlterarSenha from './views/pages/Alterar_Senha';
+
 =======
 import PacienteInfo from './views/pages/PacienteInfo';
 import NovoPaciente from './views/pages/NovoPaciente';
@@ -27,7 +27,7 @@ const Routes: React.FC = () => {
         <Route path="/pacientes/novo" exact component={NovoPaciente}/>
         <Route path="/pacientes/:id" component={PacienteInfo}/>
         <Route path="/especialista" component={Especialista}/>
-        <Route path="/senha" component={AlterarSenha}/>
+        {/* <Route path="/senha" component={AlterarSenha}/> */}
         {/* <PrivateRoutes path="/dash" exact component={Dash}/> */}
       </Switch>
     </BrowserRouter>
