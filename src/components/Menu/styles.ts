@@ -142,7 +142,7 @@ export const DivComponent = styled.div`
             align-items: center;
             font-size: 12px;
             border-top: solid 1px var(--background-dark);
-            z-index: 1;
+            z-index: 2;
             pointer-events: auto;
 
             .icon-container {
