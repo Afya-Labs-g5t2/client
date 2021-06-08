@@ -57,11 +57,6 @@ export const DivComponent = styled.div`
                     font-size: 1.125rem;
                     padding: 0 1rem;
 
-                    .search-icon {
-                        padding-right: 12px;
-                        color: var(--background-dark)
-                    }
-
                     input {
                         width: 100%;
                         outline: none;
@@ -84,20 +79,65 @@ export const DivComponent = styled.div`
                         text-align-last:center;
                     }
 
-                    .clean-icon {
-                        color: var(--background-dark);
-                        padding: 0 .5rem;
-                        cursor: pointer;
-                    }
                 }
-           }
+            }
            
            .results-container {
                display: flex;
                flex-direction: column;
                align-items: center;
                max-height: 100%;
-           }
+
+               .new-descricao{
+                   display: flex;
+                   justify-content: center;
+                   flex-direction: column;
+                   align-items:center;
+                   width: 80%;
+                   max-width: 22.5rem;
+                   min-width: 20.5rem;
+                  
+                   .header-new-descricao{
+                       font-weight: bold;
+                    }
+                   
+                    form {
+                        width: 80%;
+                        height: 14rem;
+                    
+                        .input-descricao-field{
+                            width: 100%;
+                            height: 100%;
+                            margin: 1rem 0 1rem;
+                       
+                            ::placeholder{
+                                position: absolute;
+                                margin: 10px;
+                                top: 0;
+                                left: 0;
+                            }
+                        }
+                        .div-button{
+                            height: 6rem;
+                            padding-top: 1rem;
+                    
+                            .button-salvar{
+                            width: 100%;
+                            height: 3rem;
+                            background-color: #4CD62B;
+                            color: #fff;
+                            border: none;
+                            box-shadow: 2px 1.4px 4px #404040;
+                            border-radius: 5px;
+                            font-weight: bold;
+                            font-size: 1.1rem;
+
+                            }
+
+                        }
+                    }
+                }
+            }
        }
    }
 

@@ -34,9 +34,6 @@ function CardProntuario(props: ProntuarioProps) {
               </p>
             </div>
         </div>
-        <div className="icon-container">
-          <span className="material-icons">navigate_next</span>
-        </div>
       </div>
     </DivComponent>
   )

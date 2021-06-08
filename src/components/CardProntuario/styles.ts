@@ -65,16 +65,11 @@ export const DivComponent = styled.div`
                     font-weight: bold;
                     margin-bottom: 1rem;
                 }
+                
                 p {
                     padding: 1rem 0 1rem;
-
                 }
             }
-        }
-
-        .icon-container {
-            display: flex;
-            align-items: center;
         }
     }
 `

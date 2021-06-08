@@ -55,6 +55,13 @@ const Prontuario: React.FC = () => {
           </div>
           <div className="results-container">
             {cardProntuario}
+            <div className="new-descricao">
+              <p className="header-new-descricao">Nova descrição</p>
+              <form action="">
+                <textarea className="input-descricao-field" placeholder="Digite a nova descrição..." ></textarea>
+                <div className="div-button"><input className="button-salvar" id="finalizar-consulta" type="submit" value="FINALIZAR CONSULTA" /> </div>
+              </form>
+            </div>
           </div>
         </div>
         <div className="bot-container">
