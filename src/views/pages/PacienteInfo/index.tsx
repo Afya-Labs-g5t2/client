@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
-
-import mockPacientes from '../../../mockPacientes';
 import { useParams  } from 'react-router';
 import { api } from '../../../services/api';
 

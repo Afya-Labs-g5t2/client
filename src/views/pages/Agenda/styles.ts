@@ -10,10 +10,7 @@ export const DivComponent = styled.div`
     }
 
     .mid {
-        height: 400px;
         display: flex;
-        margin: 0 1rem;
-        margin-top: 200px;
         justify-content: center;
         
         /* display: grid;

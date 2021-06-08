@@ -5,7 +5,7 @@ import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
 import CardPaciente from '../../../components/CardPaciente'
 
-import mockPacientes from '../../../mockPacientes';
+import mockData from '../../../mockData';
 import { Link } from 'react-router-dom';
 import { api } from '../../../services/api';
 

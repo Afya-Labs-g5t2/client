@@ -52,13 +52,19 @@ export const DivComponent = styled.div`
             .quick-sangue {
                 display: flex;
                 flex-direction: row;
+                position: relative;
                 bottom: 0;
+
+                .sangue-label {
+                    align-self: flex-end;
+                }
 
                 .sangue-value {
                     margin-left: 12px;
                     font-weight: 700;
                     font-size: 1.25rem;
                     color: hsla(239, 70%, 74%, 1);
+                    align-self: flex-end;
                 }
 
                 .sangue-sinal {
