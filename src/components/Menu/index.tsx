@@ -14,7 +14,7 @@ function Menu() {
 
   return(
     <DivComponent>
-      <ModalAgendamento showModal={showModal} setShowModal={setShowModal}/>
+      <ModalAgendamento showModal={showModal} setShowModal={setShowModal} closeButton={() => setRotateIcon(false)}/>
       <div className="bottom-section-wrapper">
         <div className="create-options-container">
           <div className={`options-wrapper`}>

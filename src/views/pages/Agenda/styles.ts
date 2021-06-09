@@ -2,33 +2,28 @@ import styled from 'styled-components'
 
 export const DivComponent = styled.div`
     .agenda-container {
-        display: block;
-        height: 100vh;
+        position: relative;
+        height: 100%;
+        overflow: hide;
+
+        .top {
+        }
+
+        .mid {
+            display: flex;
+            flex-direction:column;
+            height: calc(100vh - 3.5rem - 3.5rem); // expaco que sobra entre o menu de baixo e o nav
+            display: block;
+            position: relative;
+            overflow: scroll;      
+        }
+
+        .bot {
+        }
+
     }
     
-    .top {
-    }
-
-    .mid {
-        display: flex;
-        justify-content: center;
-        
-        /* display: grid;
-        place-items: center; */
-
-        .calendar-container {
-            width: 100%;
-        }
-    }
-
-    .bot {
-        height: auto;
-        width: auto;
-        position: relative;
-        bottom: 0;
-        left: 0;
-    }
-
+    
     @media only screen and (min-width: 500px) {
         .agenda-container {
             position: relative;

@@ -22,8 +22,6 @@ const Agenda: React.FC = () => {
                 <NavBar />
             </div>
             <div className="mid">
-                <p onClick={() => setShowModal(!showModal)}>test</p>
-                {/* <Calendar /> */}
             </div>
             <div className="bot">
                 <Menu />    
