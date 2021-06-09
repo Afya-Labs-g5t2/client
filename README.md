@@ -16,8 +16,6 @@ Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **s
 ## Resumo
 
 - [Install](#install)
-  - [Adding Zircon as a Maven Dependency](#adding-zircon-as-a-maven-dependency)
-  - [Basic Usage](#basic-usage)
 - [Estruturação das páginas](#estruturação-das-páginas)
 - [Trabalhando no projeto](#trabalhando-no-projeto)
 - [Boas práticas](#boas-práticas)
