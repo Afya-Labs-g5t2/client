@@ -8,13 +8,12 @@ import Agenda from './views/pages/Agenda';
 import Prontuario from './views/pages/Prontuario'
 import Pacientes from './views/pages/Pacientes';
 import Especialista from './views/pages/Especialista';
-<<<<<<< HEAD
-import AlterarSenha from './views/pages/Alterar_Senha';
-=======
+import AlterarSenha from './views/pages/AlterarSenha';
+
 import PacienteInfo from './views/pages/PacienteInfo';
 import NovoPaciente from './views/pages/NovoPaciente';
 
->>>>>>> 8f53027b807f75fc3b080b86ee82143c0ffa5bd2
+//>>>>>>> 8f53027b807f75fc3b080b86ee82143c0ffa5bd2
 
 
 const Routes: React.FC = () => {
