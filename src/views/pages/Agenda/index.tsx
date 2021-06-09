@@ -13,11 +13,11 @@ const Agenda: React.FC = () => {
     return (
         <DivComponent >
         <div className="agenda-container">
-            {showModal ?
+            {/* {showModal ?
             <ModalAgendamento showModal={showModal} setShowModal={setShowModal} />
             :
             null
-            }
+            } */}
             <div className="top">
                 <NavBar />
             </div>

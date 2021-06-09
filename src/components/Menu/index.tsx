@@ -1,10 +1,12 @@
 import { DivComponent } from './styles'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import ModalAgendamento from '../../components/ModalAgendamento'
 
 function Menu() {
 
   const [rotateIcon, setRotateIcon] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   function handleClick() {
     setRotateIcon(!rotateIcon)
@@ -12,13 +14,14 @@ function Menu() {
 
   return(
     <DivComponent>
+      <ModalAgendamento showModal={showModal} setShowModal={setShowModal}/>
       <div className="bottom-section-wrapper">
         <div className="create-options-container">
           <div className={`options-wrapper`}>
             <div className={`options-background ${rotateIcon && 'show-options-background'}`}></div>
             <ul className={`options ${rotateIcon && 'show-menu'}`}>
               <li className="items">
-                <Link to={`/`} className="item-btn">  
+                <Link to={`#`} className="item-btn" onClick={() => setShowModal(!showModal)}>  
                   <span className={`material-icons`}>note_add</span>
                   <span>Novo agendamento</span>
                 </Link>
@@ -30,15 +33,12 @@ function Menu() {
                 </Link>
               </li>
               <li className="items">
-                <Link to={`/paciente`} className="item-btn">  
-                  <span className={`material-icons`}>home</span>
-                  <span>paciente</span>
-                </Link>
-              </li>
-              <li className="items">
-                <Link to={`/especialista`} className="item-btn">  
-                  <span className={`material-icons`}>home</span>
-                  <span>especialista</span>
+                <Link to={`/especialistas/novo`} className="item-btn">  
+                  <div className="wrapper-icons">
+                    <span className={`material-icons plus-incrementation`}>add</span>
+                    <span className={`material-icons`}>work</span>
+                  </div>
+                  <span>Novo especialista</span>
                 </Link>
               </li>
             </ul>

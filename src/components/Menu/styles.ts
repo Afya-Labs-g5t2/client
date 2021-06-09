@@ -86,6 +86,21 @@ export const DivComponent = styled.div`
                             color: white;
                         }
 
+                        .wrapper-icons {
+                            position: relative;
+                            transform: scale(.95);
+
+                            .plus-incrementation {
+                                display: flex;
+                                position: absolute;
+                                transform: scale(.7);
+                                color: white;
+                                left: -12px;
+                                top: -12px;
+                                font-weight: 700;
+                            }
+                        }
+
                         a > span:last-child {
                             margin-left: 9px;
                         }
@@ -123,7 +138,7 @@ export const DivComponent = styled.div`
                 height: 150vw;
                 max-width: 800px;
                 max-height: 800px;
-                transform: translate(50%,25%);
+                transform: translate(40%,30%);
             }
 
             
