@@ -10,6 +10,7 @@ import Pacientes from './views/pages/Pacientes';
 import Especialista from './views/pages/Especialista';
 import PacienteInfo from './views/pages/PacienteInfo';
 import NovoPaciente from './views/pages/NovoPaciente';
+import AlterarSenha from './views/pages/AlterarSenha';
 
 
 
