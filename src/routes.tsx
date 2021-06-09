@@ -26,7 +26,6 @@ const Routes: React.FC = () => {
         <Route path="/prontuario" exact component={Prontuario}/>
         <Route path="/pacientes/:id" component={PacienteInfo}/>
         <Route path="/especialista" component={Especialista}/>
-        <Route path="/senha" component={AlterarSenha}/>
         {/* <PrivateRoutes path="/dash" exact component={Dash}/> */}
       </Switch>
     </BrowserRouter>

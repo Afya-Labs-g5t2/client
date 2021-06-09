@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import User from '../User'
 import Menu from '../../../components/Menu'
 import {DivComponent} from './styles'
 import NavBar from '../../../components/NavBar';
 import CardPaciente from '../../../components/CardPaciente'
 
-import mockPacientes from '../../../mockPacientes';
+import mockData from '../../../mockData';
 import { Link } from 'react-router-dom';
+import { api } from '../../../services/api';
 
 // import { Container } from './styles';
 
 const Paciente: React.FC = () => {
 
   const [showUser, setShowUser] = useState(false)
+  const [apiData, setApiData] = useState<any>([])
 
   function handleToggle() {
     setShowUser(!showUser)
@@ -22,20 +24,27 @@ const Paciente: React.FC = () => {
     console.log(id)
   }
 
-  const cardPaciente = mockPacientes.pacientes
-    .sort((a,b) => a.name[0] > b.name[0] ? 1 : -1)
-    .map(paciente => 
-      <Link to={`/pacientes/${paciente.id}`}>
+  useEffect(() => {
+    api.get("pacientes")
+      .then(res => {
+        setApiData(res.data)
+      })
+      .catch(console.error)
+  }, [])
+
+  const cardPaciente = apiData
+    .sort((a: any, b: any) => a.nome > b.nome ? 1 : -1)
+    .map((paciente: any) => 
+      <Link to={`/pacientes/${paciente.id}`} key={paciente.id}>
         <CardPaciente
           key={paciente.id}
-          name={paciente.name} 
+          name={paciente.nome} 
           email={paciente.email}
-          telefone={paciente.telefone}
+          telefone={paciente.tel}
           id={paciente.id} 
           handleClick={() => handleClick(paciente.id)} 
         />
-      </Link>)
-                                              
+      </Link>)                                
 
   return (
       <DivComponent>
@@ -46,15 +55,13 @@ const Paciente: React.FC = () => {
         <div className="content-container">
           <div className="search-container">
             <div className="search-field">
-              <span className="search-icon material-icons">search</span>
+              <span className="search-icon material-icons" onClick={() => console.log(apiData)}>search</span>
               <input type="text"></input>
               <span className="clean-icon material-icons">close</span>
             </div>
           </div>  
           <div className="results-container">
-            <Link to="/">
-              {cardPaciente}
-            </Link>
+            {cardPaciente}
           </div>  
         </div>
         <div className="bot-container">

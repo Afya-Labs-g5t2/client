@@ -73,6 +73,7 @@ export const DivComponent = styled.div`
                     }
 
                     li { 
+                        transition: all .3s ease-in-out;
 
                         a {
                             display: flex;
@@ -85,8 +86,29 @@ export const DivComponent = styled.div`
                             color: white;
                         }
 
+                        .wrapper-icons {
+                            position: relative;
+                            transform: scale(.95);
+
+                            .plus-incrementation {
+                                display: flex;
+                                position: absolute;
+                                transform: scale(.7);
+                                color: white;
+                                left: -12px;
+                                top: -12px;
+                                font-weight: 700;
+                            }
+                        }
+
                         a > span:last-child {
                             margin-left: 9px;
+                        }
+
+                        &:hover {
+                            text-shadow: 2px 2px var(--font-color);
+                            transform: scale(1.2);
+                            
                         }
                     }
 
@@ -116,7 +138,7 @@ export const DivComponent = styled.div`
                 height: 150vw;
                 max-width: 800px;
                 max-height: 800px;
-                transform: translate(50%,25%);
+                transform: translate(40%,30%);
             }
 
             
@@ -135,7 +157,7 @@ export const DivComponent = styled.div`
             align-items: center;
             font-size: 12px;
             border-top: solid 1px var(--background-dark);
-            z-index: 1;
+            z-index: 2;
             pointer-events: auto;
 
             .icon-container {

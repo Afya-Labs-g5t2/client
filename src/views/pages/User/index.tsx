@@ -45,7 +45,7 @@ function User(props: UserProps){
           <span>Alterar Senha</span>
         </div>
         <div className="btn-container">
-          <a href="" className="btn">
+          <a href="" className="btn-anchor">
             <span className="btn-txt">Sair</span>
           </a>
         </div>

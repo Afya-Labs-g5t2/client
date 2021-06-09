@@ -27,6 +27,10 @@ export default createGlobalStyle`
     a, u {
         text-decoration: none;
         color: inherit;
+
+        &:hover {
+            color: inherit;
+        }
     }
 
     .material-icons.md-18 { font-size: 18px; }

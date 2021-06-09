@@ -6,16 +6,17 @@ import { useForm } from "react-hook-form";
 import { api, findCep } from '../../../services/api'
 
 const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
+const emailValidationRegex = /\S+@\S+\.\S+/
 
 
 const NovoPaciente: React.FC = () => {
   const [data, setData] = useState()
   const [isLoading, setIsLoading] = useState(false)
   //Refs
-  const logradouroInputRef = useRef<HTMLInputElement | null>(null)
-  const bairroInputRef = useRef(null)
-  const cidadeInputRef = useRef(null)
-  const ufInputRef = useRef(null)
+  // const logradouroInputRef = useRef<HTMLInputElement | null>(null)
+  // const bairroInputRef = useRef(null)
+  // const cidadeInputRef = useRef(null)
+  // const ufInputRef = useRef(null)
 
   //react-hook-form
   const defaultValues = {
