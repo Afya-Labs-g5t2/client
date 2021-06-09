@@ -6,10 +6,23 @@ O objetivo é criar um sistema para um consultório controlar o cadastro de seus
 
 Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **server-side**. Esse repositório é a parte Client do projeto. O **client-side** pode ser encontrado [aqui](https://github.com/Afya-Labs-g5t2/server).
 
-# Projeto
+### Preview
 
 ![afya](https://user-images.githubusercontent.com/43910483/121086311-61e1d780-c7b9-11eb-9cfe-f80c94232033.gif)
 
+---
+
+
+## Resumo
+
+- [Install](#install)
+  - [Adding Zircon as a Maven Dependency](#adding-zircon-as-a-maven-dependency)
+  - [Basic Usage](#basic-usage)
+- [Estruturação das páginas](#estruturação-das-páginas)
+- [Trabalhando no projeto](#trabalhando-no-projeto)
+- [Boas práticas](#boas-práticas)
+
+## Projeto
 
 O projeto foi feito utilizando React.js e Typescript. As principais bibliotecas utilizadas foram:
 
@@ -44,5 +57,11 @@ cd client
   ```bash
   yarn start
   ```
+  
+### Estruturação das páginas
+  
+### Trabalhando no projeto
+
+### Boas práticas
 
 
