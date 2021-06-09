@@ -17,10 +17,10 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
   const [isLoading, setIsLoading] = useState(false)
 
   
-  const mockEspecialista = mockData.especialistas.sort((a, b) => a.name > b.name ? 1 : -1).map(el => <option>{el.name}</option>)
-  const mockPaciente = mockData.pacientes.sort((a, b) => a.name > b.name ? 1 : -1).map(el => <option>{el.name}</option>)
+  const mockEspecialista = mockData.especialistas.sort((a, b) => a.name > b.name ? 1 : -1).map(el => <option key={el.id}>{el.name}</option>)
+  const mockPaciente = mockData.pacientes.sort((a, b) => a.name > b.name ? 1 : -1).map(el => <option key={el.id}>{el.name}</option>)
   const mockEmail = mockData.pacientes.map(el => <option>{el.email}</option>)
-  const mockEspecialidade = mockData.especialidades.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => <option>{el.nome}</option>)
+  const mockEspecialidade = mockData.especialidades.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => <option key={el.id}>{el.nome}</option>)
 
   const defaultValues = {
     "especialidade": "",

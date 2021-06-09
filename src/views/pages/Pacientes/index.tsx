@@ -35,7 +35,7 @@ const Paciente: React.FC = () => {
   const cardPaciente = apiData
     .sort((a: any, b: any) => a.nome > b.nome ? 1 : -1)
     .map((paciente: any) => 
-      <Link to={`/pacientes/${paciente.id}`}>
+      <Link to={`/pacientes/${paciente.id}`} key={paciente.id}>
         <CardPaciente
           key={paciente.id}
           name={paciente.nome} 
