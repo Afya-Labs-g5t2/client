@@ -13,7 +13,7 @@ Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **s
 ---
 
 
-## Resumo
+## Menu
 
 - [Install](#install)
 - [Estruturação das páginas](#estruturação-das-páginas)
