@@ -13,7 +13,7 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
   const mockEspecialista = mockData.especialistas.sort((a, b) => a.name > b.name ? 1 : -1).map(el => <option>{el.name}</option>)
   const mockPaciente = mockData.pacientes.sort((a, b) => a.name > b.name ? 1 : -1).map(el => <option>{el.name}</option>)
   const mockEmail = mockData.pacientes.map(el => <option>{el.email}</option>)
-  const mockEspecialidade = mockData.especialidades.map(el => <option>{el.nome}</option>)
+  const mockEspecialidade = mockData.especialidades.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => <option>{el.nome}</option>)
 
   return(
     <>
@@ -55,6 +55,13 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
                 <select className="form-control" id="exampleFormControlSelect1">
                   <option value="" selected disabled>Selecione o especialista</option>
                   {mockEspecialista}
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleFormControlSelect2">Paciente</label>
+                <select className="form-control" id="exampleFormControlSelect2">
+                  <option value="" selected disabled>Selecione o paciente</option>
+                  {mockPaciente}
                 </select>
               </div>
               <div className="form-group">
