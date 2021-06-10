@@ -16,7 +16,7 @@ Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **s
 ## Menu
 
 - [Install](#install)
-- [Estruturação das páginas](#estruturação-das-páginas)
+- [Estruturação dos arquivos](#estruturação-dos-arquivos)
 - [Trabalhando no projeto](#trabalhando-no-projeto)
 - [Boas práticas](#boas-práticas)
 
@@ -56,7 +56,54 @@ cd client
   yarn start
   ```
   
-### Estruturação das páginas
+### Estruturação dos arquivos
+O repositório tem estas pastas:
+```
+client-main
+.
+├── .yarn
+├── public
+├── src
+│   ├── assets
+│   │   ├── animation
+│   │   ├── GlobalStyles
+│   │   │   └── faces
+│   │   └── js
+│   ├── components
+│   │   ├── Calendar
+│   │   ├── CardPaciente
+│   │   ├── CardProntuario
+│   │   ├── FormSignIn
+│   │   ├── Menu
+│   │   ├── ModalAgendamento
+│   │   └── Navbar
+│   ├── services
+│   │   └── api.ts
+│   │       ├──Agenda
+│   │       ├──AlterarSenha
+│   │       ├──Especialista
+│   │       ├──Home
+│   │       ├──Login
+│   │       ├──NovoPaciente
+│   │       ├──PacienteInfo
+│   │       ├──Prontuario
+│   │       ├──Prontuario
+│   │       └── User
+│   ├── views
+│   │   └── pages
+│   ├── App.tsx
+│   ├── index.tsx
+│   ├── private.routes.tsx
+│   ├── react-app-env.d.ts
+│   └── routes.tsx
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── README.md
+├── tsconfig.json
+└── yarn.lock
+
+```
   
 ### Trabalhando no projeto
 
