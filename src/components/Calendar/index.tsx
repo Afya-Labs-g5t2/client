@@ -8,6 +8,17 @@ function Calendar() {
 
   const [selectedDay, setSelectedDay] = useState<any>(null)
 
+  const birthdays: any = {
+    3: ['Mirko', 'Gianni'],
+    8: ['Elena'],
+    9: ['Irene'],
+    12: ['Paolo', 'Giorgia'],
+    18: ['Claudia'],
+    22: ['Maria', 'Luigi'],
+    25: ['Simone'],
+    26: ['Marta'],
+  };
+
   const WEEKDAYS_SHORT = {
     pt: ['Do', 'Se', 'Te', 'Qa', 'Qi', 'Sx', 'Sa'],
   };
@@ -35,6 +46,34 @@ function Calendar() {
     console.log(typeof(day))
     console.log(typeof(selected))
   }
+
+  function renderDay(day: Date) {
+    const date = day.getDate();
+    const dateStyle = {
+      position: 'absolute',
+      color: 'lightgray',
+      bottom: 0,
+      right: 0,
+      fontSize: 20,
+    } as const;
+    const birthdayStyle = { fontSize: '0.8em', textAlign: 'left' } as const;
+    const cellStyle = {
+      height: 50,
+      width: 50,
+      position: 'relative',
+    } as const;
+    return (
+      <div style={cellStyle}>
+        <div style={dateStyle}>{date}</div>
+        {birthdays[date] &&
+          birthdays[date].map((name: any, i: number) => (
+            <div key={i} style={birthdayStyle}>
+              🎁 {name}
+            </div>
+          ))}
+      </div>
+    );
+  }
     
   return (
       <div className="calendar-container">
@@ -50,6 +89,8 @@ function Calendar() {
                 month={new Date()}
                 selectedDays={selectedDay}
                 onDayClick={handleDayClick}
+                className="Birthdays"
+                renderDay={renderDay}
               />
               <p>
               {selectedDay
