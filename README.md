@@ -56,7 +56,54 @@ cd client
   yarn start
   ```
   
-### Estruturação das páginas
+### Estruturação dos arquivos
+O repositório tem essas pastas:
+```
+client-main
+.
+├── .yarn
+├── public
+├── src
+│   ├── assets
+│   │   ├── animation
+│   │   ├── GlobalStyles
+│   │   │   └── faces
+│   │   └── js
+│   ├── components
+│   │   ├── Calendar
+│   │   ├── CardPaciente
+│   │   ├── CardProntuario
+│   │   ├── FormSignIn
+│   │   ├── Menu
+│   │   ├── ModalAgendamento
+│   │   └── Navbar
+│   ├── services
+│   │   └── api.ts
+│   │       ├──Agenda
+│   │       ├──AlterarSenha
+│   │       ├──Especialista
+│   │       ├──Home
+│   │       ├──Login
+│   │       ├──NovoPaciente
+│   │       ├──PacienteInfo
+│   │       ├──Prontuario
+│   │       ├──Prontuario
+│   │       └── User
+│   ├── views
+│   │   └── pages
+│   ├── App.tsx
+│   ├── index.tsx
+│   ├── private.routes.tsx
+│   ├── react-app-env.d.ts
+│   └── routes.tsx
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── README.md
+├── tsconfig.json
+└── yarn.lock
+
+```
   
 ### Trabalhando no projeto
 
