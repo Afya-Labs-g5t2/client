@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { DivComponent } from './styles'
 import { useForm } from "react-hook-form";
 import { compareAsc, format } from 'date-fns'
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import mockData from '../../mockData'
+import { motion } from 'framer-motion';
 
 
 interface ModalAgendamentoProps {
@@ -21,6 +22,12 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
   const mockPaciente = mockData.pacientes.sort((a, b) => a.name > b.name ? 1 : -1).map(el => <option key={el.id}>{el.name}</option>)
   const mockEmail = mockData.pacientes.map(el => <option>{el.email}</option>)
   const mockEspecialidade = mockData.especialidades.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => <option key={el.id}>{el.nome}</option>)
+  const modalRef = useRef()
+  const fadeTop = {
+    hidden: { opacity: 0, y: -100},
+    visible: { opacity: 1, y: 0}
+  }
+  
 
   const defaultValues = {
     "especialidade": "",
@@ -60,7 +67,7 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
       </div> */}
       <div className="modal" role="dialog">
         <div className="modal-dialog" role="document">
-          <div className="modal-content">
+          <motion.div  variants={fadeTop} initial='hidden' animate='visible' exit='hidden' transition={{ duration: .4 }} className="modal-content">
             <div className="modal-header">
               <h4 className="modal-title">Novo agendamento</h4>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -144,7 +151,7 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
               </div>
             </form>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </DivComponent>
