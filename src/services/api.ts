@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   // baseURL: 'https://super-simple-message-board.herokuapp.com/'
-  baseURL: 'https://desafio-afya.herokuapp.com/'
+  baseURL: 'https://g5t2-api.herokuapp.com/'
   // baseURL: 'https://g5t2-api.herokuapp.com/'
 })
 

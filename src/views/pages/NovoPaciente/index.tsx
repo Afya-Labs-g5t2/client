@@ -46,7 +46,7 @@ const NovoPaciente: React.FC = () => {
 
   const onSubmit = (data: any) => {
     setIsLoading(true)
-    api.post('/pacientes/novo', data)
+    api.post('/pacientes', data)
       .then(
         response => {
           // getData()
@@ -62,10 +62,10 @@ const NovoPaciente: React.FC = () => {
           reset({ ...defaultValues })
         }
       ).catch(err => {
-        toast.error("Oops! Gerou um erro ao cadastrar o pacicente", {
+        toast.error("Oops! Não foi possível cadastrar o paciente", {
           position: "top-right",
           autoClose: 2000,
-          hideProgressBar: false,
+          hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true
