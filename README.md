@@ -57,7 +57,7 @@ cd client
   ```
   
 ### Estruturação dos arquivos
-O repositório tem essas pastas:
+O repositório tem estas pastas:
 ```
 client-main
 .
