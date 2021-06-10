@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import { compareAsc, format } from 'date-fns'
 import { DivComponent } from './styles'
 
 function Calendar() {
@@ -52,7 +53,7 @@ function Calendar() {
               />
               <p>
               {selectedDay
-                ? selectedDay?.toString()
+                ? format(selectedDay, 'yyyy-MM-dd')
                 : 'Please select a day 👻'}
             </p>
           </DivComponent>
