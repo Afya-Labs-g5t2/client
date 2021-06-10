@@ -16,7 +16,7 @@ Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **s
 ## Menu
 
 - [Install](#install)
-- [Estruturação das páginas](#estruturação-dos-arquivos)
+- [Estruturação dos arquivos](#estruturação-dos-arquivos)
 - [Trabalhando no projeto](#trabalhando-no-projeto)
 - [Boas práticas](#boas-práticas)
 
