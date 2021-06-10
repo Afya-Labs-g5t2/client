@@ -25,6 +25,7 @@ const NovoPaciente: React.FC = () => {
     "nome": "",
     "sobrenome": "",
     "email": "",
+    "data_nascimento": "",
     "cpf": "",
     "celular": "",
     "telefone": "",
@@ -47,6 +48,7 @@ const NovoPaciente: React.FC = () => {
   const onSubmit = (data: any) => {
     setIsLoading(true)
     api.post('/pacientes', data)
+    
       .then(
         response => {
           // getData()
@@ -65,13 +67,14 @@ const NovoPaciente: React.FC = () => {
         toast.error("Oops! Não foi possível cadastrar o paciente", {
           position: "top-right",
           autoClose: 2000,
-          hideProgressBar: true,
+          hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true
         })
 
         console.log(err)
+        console.log(data)
       }
       ).finally(() => setIsLoading(false))
   };
@@ -122,6 +125,9 @@ const NovoPaciente: React.FC = () => {
             <label htmlFor="email">Email</label>
             <input type='text' placeholder='Email' {...register('email', { required: 'Digite o email' })} />
             {errors.email && <p>{errors.email.message}</p>}
+            <label htmlFor="data_nascimento">Data de nascimento</label>
+            <input type='text' placeholder='Data de Nascimento' {...register('data_nascimento', { required: 'Digite a data de nascimento' })} />
+            {errors.data_nascimento && <p>{errors.data_nascimento.message}</p>}
             <label htmlFor="cpf">CPF</label>
             <input
               type='text'
