@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Menu from '../../../components/Menu'
-import {DivComponent} from './styles'
+import { DivComponent } from './styles'
 import NavBar from '../../../components/NavBar';
 import { useForm } from "react-hook-form";
 import { api, findCep } from '../../../services/api'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
 const emailValidationRegex = /\S+@\S+\.\S+/
@@ -20,21 +22,21 @@ const NovoPaciente: React.FC = () => {
 
   //react-hook-form
   const defaultValues = {
-      "nome": "",
-      "sobrenome": "",
-      "email": "",
-      "cpf": "",
-      "celular": "",
-      "telefone": "",
-      "cep": "",
-      "adress": "",
-      "numero": "",
-      "bairro": "",
-      "cidade": "",
-      "uf": "",
+    "nome": "",
+    "sobrenome": "",
+    "email": "",
+    "cpf": "",
+    "celular": "",
+    "telefone": "",
+    "cep": "",
+    "adress": "",
+    "numero": "",
+    "bairro": "",
+    "cidade": "",
+    "uf": "",
   };
 
-  const { register, setValue, handleSubmit, reset, formState: { errors  } } = useForm({ defaultValues });
+  const { register, setValue, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
 
   // useEffect(() => {
   //   if (formState.isSubmitSuccessful) {
@@ -45,31 +47,35 @@ const NovoPaciente: React.FC = () => {
   const onSubmit = (data: any) => {
     setIsLoading(true)
     api.post('/pacientes/novo', data)
-    .then(
-      response => {
-        // getData()
-        console.log(data)
-        alert('Tudo certo')
-        reset({ ...defaultValues })
-      }
-    ).catch(
-      (err) => alert(err)
-    ).finally(() => setIsLoading(false))
-  };
-  // const toast = useToast( )
-  // const onSubmit = (data: any) => {
-  //   //console.log(data);
-  //   toast({
-  //     title: "Submitted!",
-  //     status: "success",
-  //     duration: 2000,
-  //     isClosable: true
-  //   });
-  
-  //   setData(data);
-  // };
+      .then(
+        response => {
+          // getData()
+          console.log(data)
+          toast.success('Paciente cadastrado com sucesso!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true
+          })
+          reset({ ...defaultValues })
+        }
+      ).catch(err => {
+        toast.error("Oops! Gerou um erro ao cadastrar o pacicente", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        })
 
-  
+        console.log(err)
+      }
+      ).finally(() => setIsLoading(false))
+  };
+
   async function checkCep(e: any) {
     // console.log(e.target.value);
     const cep = e.target.value
@@ -78,7 +84,7 @@ const NovoPaciente: React.FC = () => {
     const data = await response.json()
 
     !data.erro && autoPopulateAdress(data)
-    
+
   }
 
   function autoPopulateAdress(data: any) {
@@ -92,10 +98,10 @@ const NovoPaciente: React.FC = () => {
   }
 
   return (
-      <DivComponent>
+    <DivComponent>
       <div className="page-container">
         <div className="top-Container">
-        <NavBar />
+          <NavBar />
         </div>
         <div className="content-container">
           <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
@@ -117,15 +123,15 @@ const NovoPaciente: React.FC = () => {
             <input type='text' placeholder='Email' {...register('email', { required: 'Digite o email' })} />
             {errors.email && <p>{errors.email.message}</p>}
             <label htmlFor="cpf">CPF</label>
-            <input 
-              type='text' 
-              placeholder='Digite o CPF (somente numeros)' 
-              {...register('cpf', { 
+            <input
+              type='text'
+              placeholder='Digite o CPF (somente numeros)'
+              {...register('cpf', {
                 required: "Digite um CPF valido",
                 pattern: {
                   value: /^[\d]{10}$/,
                   message: 'Digite apenas 10 digitos',
-                }, 
+                },
               })} />
             {errors.cpf && <p>{errors.cpf.message}</p>}
             <label htmlFor="celular">Celular</label>
@@ -134,17 +140,17 @@ const NovoPaciente: React.FC = () => {
             <label htmlFor="telefone">Telefone</label>
             <input type='text' placeholder='Telefone' {...register('telefone')} />
             <label htmlFor="cep">CEP</label>
-            <input 
-              type='text' 
-              placeholder='Digite o CEP (somente numeros)' 
-              {...register('cep', { 
+            <input
+              type='text'
+              placeholder='Digite o CEP (somente numeros)'
+              {...register('cep', {
                 required: "Digite um CEP valido",
                 pattern: {
                   value: /^[\d]{8}$/,
                   message: 'Digite apenas 8 digitos',
-                }, 
+                },
               })}
-              onBlur={checkCep}  
+              onBlur={checkCep}
             />
             {errors.cep && <p>{errors.cep.message}</p>}
             <label htmlFor="adress">Endereco</label>
@@ -163,7 +169,7 @@ const NovoPaciente: React.FC = () => {
             <input type='text' placeholder='Estado' {...register('uf', { required: 'Preencha com o estado' })} />
             {errors.uf && <p>{errors.uf.message}</p>}
 
-            <input className='btn-form' type='submit' value='Salvar'/>
+            <input className='btn-form' type='submit' value='Salvar' />
             {/* <input
               style={{ display: "block", marginTop: 20 }}
               type="button"
@@ -171,13 +177,14 @@ const NovoPaciente: React.FC = () => {
               value="Custom Reset Field Values & Errors"
             /> */}
           </form>
+          <ToastContainer />
         </div>
         <div className="bot-container">
           <Menu />
         </div>
-          
       </div>
-      </DivComponent>
+      
+    </DivComponent>
   );
 }
 
