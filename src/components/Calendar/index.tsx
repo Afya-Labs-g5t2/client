@@ -9,7 +9,7 @@ function Calendar() {
   const [selectedDay, setSelectedDay] = useState<any>(null)
 
   const birthdays: any = {
-    3: ['Mirko', 'Gianni'],
+    3: ['Mirko', 'Gianni', 'Mirko', 'Gianni', 'Gianni', 'Mirko', 'Gianni'],
     8: ['Elena'],
     9: ['Irene'],
     12: ['Paolo', 'Giorgia'],
@@ -51,16 +51,18 @@ function Calendar() {
     const date = day.getDate();
     const dateStyle = {
       position: 'absolute',
-      color: 'lightgray',
       bottom: 0,
       right: 0,
-      fontSize: 20,
+      fontSize: '1rem',
+      wordWrap: 'break-word',
     } as const;
-    const birthdayStyle = { fontSize: '0.8em', textAlign: 'left' } as const;
+    const birthdayStyle = { fontSize: '0.6em', textAlign: 'left', display: 'flex', flexDirection: 'row', alignItems: 'center' } as const;
     const cellStyle = {
-      height: 50,
-      width: 50,
+      height: '100%',
+      width: '100%',
       position: 'relative',
+      overflow: 'hidden',
+      border: '1px solid lightgray'
     } as const;
     return (
       <div style={cellStyle}>
@@ -68,37 +70,57 @@ function Calendar() {
         {birthdays[date] &&
           birthdays[date].map((name: any, i: number) => (
             <div key={i} style={birthdayStyle}>
-              🎁 {name}
+              <div className="circle-agendamento"></div>
+              {name}
             </div>
           ))}
       </div>
     );
   }
+
+  const cardConsulta =
+    <div className="consulta-paciente-card">
+      <div className="top-section-wrapper">
+        <div className="time-wrapper">
+          <span className="time-value">10:20</span>
+        </div>
+        <div className="especialista-container">
+          <span className="especialista-nome">Renato da Silva</span>
+        </div>
+      </div>
+      <div className="paciente-container">
+        <span>Joao Aparecido</span>
+      </div>
+    </div>
     
   return (
+    <DivComponent>
       <div className="calendar-container">
-          <DivComponent>
-              <h1>Agenda</h1>
-              <DayPicker
-                months={MONTHS['pt']}
-                weekdaysLong={WEEKDAYS_LONG['pt']}
-                weekdaysShort={WEEKDAYS_SHORT['pt']}
-                firstDayOfWeek={FIRST_DAY_OF_WEEK['pt']}
-                labels={LABELS['pt']}
-                showOutsideDays
-                month={new Date()}
-                selectedDays={selectedDay}
-                onDayClick={handleDayClick}
-                className="Birthdays"
-                renderDay={renderDay}
-              />
-              <p>
-              {selectedDay
-                ? format(selectedDay, 'yyyy-MM-dd')
-                : 'Please select a day 👻'}
-            </p>
-          </DivComponent>
+        <DayPicker
+          months={MONTHS['pt']}
+          weekdaysLong={WEEKDAYS_LONG['pt']}
+          weekdaysShort={WEEKDAYS_SHORT['pt']}
+          firstDayOfWeek={FIRST_DAY_OF_WEEK['pt']}
+          labels={LABELS['pt']}
+          showOutsideDays
+          month={new Date()}
+          selectedDays={selectedDay}
+          onDayClick={handleDayClick}
+          className="Birthdays"
+          renderDay={renderDay}
+        />
+        <p>
+        {selectedDay
+          ? format(selectedDay, 'yyyy-MM-dd')
+          : 'Please select a day 👻'}
+        </p>
+        <div className="consultas-selecionadas-container">
+          {cardConsulta}
+          {cardConsulta}
+        </div>
+        
       </div>
+    </DivComponent>
   );
 }
 
