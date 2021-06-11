@@ -83,6 +83,7 @@ const NovoPaciente: React.FC = () => {
     // console.log(e.target.value);
     const cep = e.target.value
     const urlCep = `https://viacep.com.br/ws/${cep}/json/`
+    if (!cep) { return }
     const response = await fetch(urlCep)
     const data = await response.json()
 
