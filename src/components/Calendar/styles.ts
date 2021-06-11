@@ -34,16 +34,22 @@ export const DivComponent = styled.div`
         .consultas-selecionadas-container {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            margin: 0.5rem;
 
             .consulta-paciente-card {
-            background-color: hsla(205, 100%, 87%, 0.88);
-            color: hsla(205, 100%, 25%, 1);
-            font-weight: 700;
-            padding: 0.5rem;
-            margin: 0.5rem;
-            border-radius: 9px;
-            min-width: 22rem;
-            max-width: 27rem;
+                display: flex;
+                flex-direction: column;
+                background-color: hsla(205, 100%, 87%, 0.88);
+                color: hsla(205, 100%, 25%, 1);
+                font-weight: 700;
+                width: 100%;
+                padding: 0.5rem;
+                margin: 0.5rem;
+                border-radius: 9px;
+                
+                min-width: 21rem;
+                max-width: 27rem;
 
             .top-section-wrapper {
                 display: flex;

@@ -89,6 +89,7 @@ function Calendar() {
         </div>
       </div>
       <div className="paciente-container">
+        <span>Paciente: </span>
         <span>Joao Aparecido</span>
       </div>
     </div>
