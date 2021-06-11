@@ -1,4 +1,4 @@
-export default
+const mockData = 
 {
     "pacientes" : [
         {
@@ -168,7 +168,49 @@ export default
             "nome": "pediatria"
 
         }
+    ],
+    "agendamento" : [
+        {
+            "id": 1,
+            "especialista": "Abigail Ballone",
+            "paciente": "Matilde Maria",
+            "data": "2021-06-18",
+            "horario": "10:20",
+
+        },
+        {
+            "id": 2,
+            "especialista": "Aaron Paulo Tavares Delladona",
+            "paciente": "Atila Amaral",
+            "data": "2021-06-18",
+            "horario": "13:40",
+
+        },
+        {
+            "id": 3,
+            "especialista": "Flavio Matias",
+            "paciente": "Matilde Maria",
+            "data": "2021-06-19",
+            "horario": "14:00",
+
+        },
+        {
+            "id": 4,
+            "especialista": "Abdalla Campos Felicio",
+            "paciente": "Matilde Maria",
+            "data": "2021-06-22",
+            "horario": "12:20",
+
+        },
+        {
+            "id": 5,
+            "especialista": "Abigail Ballone",
+            "paciente": "Lisa Junior",
+            "data": "2021-06-18",
+            "horario": "10:20",
+
+        }
     ]
-
-
 }
+
+export default mockData

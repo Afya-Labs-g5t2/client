@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { compareAsc, format } from 'date-fns'
+import { compareAsc, format, parse } from 'date-fns'
 import { DivComponent } from './styles'
+import mockData from '../../mockData'
 
 function Calendar() {
 
   const [selectedDay, setSelectedDay] = useState<any>(null)
 
-  const birthdays: any = {
-    3: ['Mirko', 'Gianni', 'Mirko', 'Gianni', 'Gianni', 'Mirko', 'Gianni'],
+  const agendamento: any = {
+    1: ['Mirko', 'Gianni', 'Mirko', 'Gianni', 'Gianni', 'Mirko', 'Gianni'],
     8: ['Elena'],
     9: ['Irene'],
     12: ['Paolo', 'Giorgia'],
@@ -18,6 +19,10 @@ function Calendar() {
     25: ['Simone'],
     26: ['Marta'],
   };
+
+  // const agendamento2: any = mockData.agendamento.map(el => {
+  //   Number(format(parse(el.data, 'YYYY-MM-DD', new Date()), 'd')) []
+  // })
 
   const WEEKDAYS_SHORT = {
     pt: ['Do', 'Se', 'Te', 'Qa', 'Qi', 'Sx', 'Sa'],
@@ -43,8 +48,6 @@ function Calendar() {
 
     selected ? setSelectedDay(undefined) : setSelectedDay(day)
     
-    console.log(typeof(day))
-    console.log(typeof(selected))
   }
 
   function renderDay(day: Date) {
@@ -54,7 +57,7 @@ function Calendar() {
       bottom: 0,
       right: 0,
       fontSize: '1rem',
-      wordWrap: 'break-word',
+      overflowWrap: 'break-word',
     } as const;
     const birthdayStyle = { fontSize: '0.6em', textAlign: 'left', display: 'flex', flexDirection: 'row', alignItems: 'center' } as const;
     const cellStyle = {
@@ -67,33 +70,36 @@ function Calendar() {
     return (
       <div style={cellStyle}>
         <div style={dateStyle}>{date}</div>
-        {birthdays[date] &&
-          birthdays[date].map((name: any, i: number) => (
+        {agendamento[date] &&
+          agendamento[date].map((name: any, i: number) => (
             <div key={i} style={birthdayStyle}>
               <div className="circle-agendamento"></div>
               {name}
             </div>
           ))}
+        
       </div>
     );
   }
 
-  const cardConsulta =
-    <div className="consulta-paciente-card">
-      <div className="top-section-wrapper">
-        <div className="time-wrapper">
-          <span className="time-value">10:20</span>
+  const cardConsulta = mockData.agendamento.map(el => el.data === (selectedDay && format(selectedDay, 'yyyy-MM-dd')) ?
+      <div className="consulta-paciente-card">
+        <div className="top-section-wrapper">
+          <div className="time-wrapper">
+            <span className="time-value">{el.horario}</span>
+          </div>
+          <div className="especialista-container">
+            <span className="especialista-nome">{el.especialista}</span>
+          </div>
         </div>
-        <div className="especialista-container">
-          <span className="especialista-nome">Renato da Silva</span>
+        <div className="paciente-container">
+          <span>Paciente: </span>
+          <span>{el.paciente}</span>
         </div>
-      </div>
-      <div className="paciente-container">
-        <span>Paciente: </span>
-        <span>Joao Aparecido</span>
-      </div>
-    </div>
-    
+      </div> : 
+      null
+     )
+     
   return (
     <DivComponent>
       <div className="calendar-container">
@@ -116,7 +122,6 @@ function Calendar() {
           : 'Please select a day 👻'}
         </p>
         <div className="consultas-selecionadas-container">
-          {cardConsulta}
           {cardConsulta}
         </div>
         
