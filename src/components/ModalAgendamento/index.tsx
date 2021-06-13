@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { InputHTMLAttributes, useCallback, useRef, useState } from 'react';
 import { DivComponent } from './styles'
 import { useForm } from "react-hook-form";
 import { compareAsc, format } from 'date-fns'
@@ -39,6 +39,7 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
   };
 
   const { register, setValue, handleSubmit, reset, formState: { errors  } } = useForm({ defaultValues });
+  const regexHour= /^(?:\d|[01]\d|2[0-3]):[0-5]\d$/
 
   const onSubmit = (data: any) => {
     console.log('form sent')
@@ -51,6 +52,15 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
     props.setShowModal(prev => !prev)
     props.closeButton(prev => !prev)
   }
+
+const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) =>{
+  let value = e.currentTarget.value;
+  console.log(value)
+  value = value.replace(/\D/g, "")
+  value = value.replace(/^(\d{2})(\d)/ , "$1:$2")
+  e.currentTarget.value = value;
+}, []) 
+  
 
   return(
     <>
@@ -123,20 +133,21 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
                 </div>
                 <div className="time-pick-wrapper">
                   <div className="form-group">
-                      <input
-                        className={`form-control input-time ${errors.initTime ? errors.initTime.message : ''}`}
+                      <input 
+                        onKeyUp={handleKeyupTimeMask} className={`form-control input-time ${errors.initTime ? errors.initTime.message : ''}`}
                         autoComplete="nope"
                         maxLength={5}
-                        {...register('initTime', {required: 'error'})}
+                        {...register('initTime', {required: 'error', pattern:{value:regexHour, message:"Formato da hora errado"}})}
                       />
                     </div>
+
                     <span className="time-separator">às</span>
                     <div className="form-group">
                       <input
-                      className={`form-control input-time ${errors.endTime ? errors.endTime.message : ''}`}
+                      onKeyUp={handleKeyupTimeMask} className={`form-control input-time ${errors.endTime ? errors.endTime.message : ''}`}
                       autoComplete="nope" 
                       maxLength={5}
-                      {...register('endTime', {required: 'error'})}
+                      {...register('endTime', {required: 'error', pattern:{ value:regexHour, message:"Formato da hora errado"}})}
                     /> 
                     </div>
                   </div>
