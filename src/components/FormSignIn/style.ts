@@ -10,6 +10,13 @@ export const FormContent = styled.div`
     display: grid;
     padding-top: 15vh;
     z-index : 1;
+    
+    p {
+        font-size: 12px;
+        color: var(--red);
+        padding-left: 0.4rem;
+        margin-top: -10px;
+    }
   }
 
   input{

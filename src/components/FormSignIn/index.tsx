@@ -2,9 +2,10 @@ import React, { FormEvent, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import { toast } from 'react-toastify';
-import {api} from '../../services/api';
+import { api } from '../../services/api';
 import animationData from '../../assets/animation/19318-loading-circle.json';
 import { FormContent } from './style';
+import { useForm } from "react-hook-form";
 
 interface IUserLogin {
   usuario: string;
@@ -18,29 +19,61 @@ const FormSignIn: React.FC = () => {
   const [formDataContent, setFormDataContent] = useState<IUserLogin>({} as IUserLogin);
   const [isLoad, setIsLoad] = useState<boolean>(false);
 
-  const handleSubmit = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      setIsLoad(true)
+  const defaultValues: IUserLogin = {
+    "usuario": "",
+    "senha": ""
+  };
 
-      // api.post('login', formDataContent).then(
-      //   response => {
-      //     localStorage.setItem('@tokenAfyaApp', response.data.token)
-      //     toast.success('Cadastro realizado com sucesso! Você está sendo redirecionado', {
-      //       onClose: () => history.push('/dash')
-      //     })
-      //   }
-      // ).catch( e => toast.error('Algo deu errado'))
-      //   .finally( () => setIsLoad(false))
+  const { register, setValue, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
 
-      // }, [formDataContent, history]
-    }, []
-  );
+  const onSubmit = handleSubmit(data => {
+    console.log(data)
+
+    setIsLoad(true)
+    //     api.post('/senha', data)
+    //   .then(
+    //     response => {
+    //      redirecionar para a tela de home
+    //      history.push('/')
+    
+    //     }
+    //   ).catch(err => {
+    //     toast.error("Senha ou login incorretos!", {
+    //       position: "top-right",
+    //       autoClose: 2000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true
+    //     })
+    //   }
+    //   ).finally(() => setIsLoading(false))
+
+  });
+
+  // const handleSubmit = useCallback(
+  //   (e: FormEvent<HTMLFormElement>) => {
+  //     e.preventDefault();
+  //     setIsLoad(true)
+
+  //     // api.post('login', formDataContent).then(
+  //     //   response => {
+  //     //     localStorage.setItem('@tokenAfyaApp', response.data.token)
+  //     //     toast.success('Cadastro realizado com sucesso! Você está sendo redirecionado', {
+  //     //       onClose: () => history.push('/dash')
+  //     //     })
+  //     //   }
+  //     // ).catch( e => toast.error('Algo deu errado'))
+  //     //   .finally( () => setIsLoad(false))
+
+  //     // }, [formDataContent, history]
+  //   }, []
+  // );
 
   const animationContent = {
     loop: true,
     autoplay: true,
-    isStopped:!isLoad,
+    isStopped: !isLoad,
     animationData: animationData
   }
 
@@ -51,31 +84,29 @@ const FormSignIn: React.FC = () => {
         {
           isLoad &&
           <div className="loading" >
-            <Lottie 
+            <Lottie
               options={animationContent}
               width={200}
               height={200}
-            /> 
+            />
           </div>
-        } 
-        <form onSubmit={handleSubmit} className={isLoad ? 'loading-on' : ''}>
-          <input type="text" name="name" placeholder="Login" onChange={e => setFormDataContent({ ...formDataContent, usuario: e.target.value })} />
-          <input type="password" name="password" placeholder="Senha" onChange={e => setFormDataContent({ ...formDataContent, senha: e.target.value })} />
+        }
+        <form onSubmit={onSubmit} className={isLoad ? 'loading-on' : ''}>
+          <input type="text" placeholder='Login' {...register('usuario', {
+            required: "Digite o seu login"
+          })} />
+          {errors.usuario && <p>{errors.usuario.message}</p>}
+          <input type='password' placeholder='Senha' {...register('senha', {
+            required: "Digite a sua senha",
+            maxLength: { value: 20, message: "Senha está muito longa" },
+            minLength: { value: 8, message: "Senha está muito curta" }
+          })} />
+          {errors.senha && <p>{errors.senha.message}</p>}
           <input type="submit" value="ENTRAR" />
         </form>
-
       </>
     </FormContent>
-
-
   );
-  // return(
-  //   <div>
-  //     <h1>Form Component Signin</h1>
-  //   </div>
-  // );
-
-
 }
 
 export default FormSignIn;
