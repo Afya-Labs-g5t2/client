@@ -126,7 +126,6 @@ function Calendar() {
 
   function renderDay(day: Date) {
     const date = day.getDate();
-    const dateToMonth = format(day, 'MMMM')
     const dateStyle = {
       position: 'absolute',
       bottom: 0,
@@ -134,7 +133,7 @@ function Calendar() {
       fontSize: '1rem',
       overflowWrap: 'break-word',
     } as const;
-    const birthdayStyle = { fontSize: '0.6em', textAlign: 'left', display: 'flex', flexDirection: 'row', alignItems: 'center' } as const;
+    const agendamentoStyle = { fontSize: '0.6rem', textAlign: 'left', display: 'flex', flexDirection: 'row', alignItems: 'center' } as const;
     const cellStyle = {
       height: '100%',
       width: '100%',
@@ -147,9 +146,9 @@ function Calendar() {
         <div style={dateStyle}>{date}</div>
         {agendamento[date] &&
           agendamento[date].map((name: any, i: number) => (
-            <div key={i} style={birthdayStyle}>
+            <div key={i} style={agendamentoStyle}>
               <div className="circle-agendamento"></div>
-              {name}
+              <span className="especialista-nome" style={{overflowWrap: 'break-word', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{name}</span>
             </div>
           ))}
         

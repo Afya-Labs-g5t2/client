@@ -15,6 +15,8 @@ export const DivComponent = styled.div`
                 padding: 0;
                 width: 4rem;
                 height: 4rem;
+                max-width: 4rem;
+                max-height: 4rem;
 
                 .circle-agendamento {
                     background-color: var(--red);
