@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { compareAsc, format, parse } from 'date-fns'
 import { DivComponent } from './styles'
 import mockData from '../../mockData'
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Calendar() {
 
   const [selectedDay, setSelectedDay] = useState<any>(null)
   const [agendamento, setAgendamento] = useState<any>({})
   const [selectedMonth, setSelectedMonth] = useState<string>(format(new Date(), 'MMMM'))
-
-  
 
   useEffect(() => {
     let daysList: any = uniqueDays()
@@ -94,6 +93,10 @@ function Calendar() {
     return obj
   }
 
+  function handleCardClick(e: any) {
+    console.log(e.target.id)
+  }
+
   
   function Navbar({
     nextMonth,
@@ -157,7 +160,7 @@ function Calendar() {
   }
 
   const cardConsulta = mockData.agendamento.map(el => el.data === (selectedDay && format(selectedDay, 'yyyy-MM-dd')) ?
-      <div key={el.id} className="consulta-paciente-card">
+      <Link to={`agendamentos/${el.id}`} key={el.id} id={`${el.id}`} className="consulta-paciente-card" onClick={handleCardClick}>
         <div className="top-section-wrapper">
           <div className="time-wrapper">
             <span className="time-value">{el.horario}</span>
@@ -170,7 +173,7 @@ function Calendar() {
           <span>Paciente: </span>
           <span>{el.paciente}</span>
         </div>
-      </div> : 
+      </Link> : 
       null
      )
      

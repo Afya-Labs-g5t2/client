@@ -53,13 +53,19 @@ export const DivComponent = styled.div`
                 min-width: 21rem;
                 max-width: 27rem;
 
-            .top-section-wrapper {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                margin-bottom: 0.5rem;
+                cursor: pointer;
+
+                .top-section-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    margin-bottom: 0.5rem;
+                }
+
+                & > * {
+                    pointer-events: none;
+                }
             }
-        }
         }
     }
 `
