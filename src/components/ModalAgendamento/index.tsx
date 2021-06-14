@@ -52,11 +52,6 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
       api.get("profissoes").then(res => {
         setProfissoesList(res.data)
       }).catch(console.error)
-
-      console.log(pacientesList)
-      console.log(especialistaList)
-      console.log(profissoesList)
-
   }, [])
   
   const especialistaListSorted = especialistaList.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => profissoesList.find(x => x.id === el.id_profissao)?.profissao === profissaoSelected && <option key={el.id}>{el.nome}</option>)
