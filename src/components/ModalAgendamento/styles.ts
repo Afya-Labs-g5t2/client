@@ -69,8 +69,8 @@ export const DivComponent = styled.div`
                             align-items: center;
 
                             .time-separator {
-                                padding-left: 10px;
-                                padding-right: 10px;
+                                padding-left: 6px;
+                                padding-right: 6px;
                                 height: 100%;
                             }
                         }
@@ -81,7 +81,17 @@ export const DivComponent = styled.div`
                             border: 1px solid #ced4da;
                             appearance: none;
                             border-radius: .25rem;
+                            max-width: 7.5rem;
+                            font-size: 1rem;
+                            margin-right: 4px;
                         }
+
+                        .default-date-picker::-webkit-calendar-picker-indicator{
+                            margin: 0; 
+                            -webkit-appearance:none;
+                            
+                        }
+                        
                     }
 
                     

@@ -1,173 +1,211 @@
-import React, { useCallback, useRef } from 'react';
-
+import React, { useRef, useState } from 'react';
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+import { compareAsc, format, parse } from 'date-fns'
 import { DivComponent } from './styles'
-
-import TUICalendar from "@toast-ui/react-calendar";
-import { ISchedule, ICalendarInfo } from "tui-calendar";
-
-import "tui-calendar/dist/tui-calendar.css";
-import "tui-date-picker/dist/tui-date-picker.css";
-import "tui-time-picker/dist/tui-time-picker.css";
-
-const start = new Date();
-const end = new Date(new Date().setMinutes(start.getMinutes() + 30));
-const schedules: ISchedule[] = [
-  {
-    calendarId: "1",
-    category: "time",
-    isVisible: true,
-    title: "Study",
-    id: "1",
-    body: "Test",
-    start,
-    end
-  },
-  {
-    calendarId: "2",
-    category: "time",
-    isVisible: true,
-    title: "Meeting",
-    id: "2",
-    body: "Description",
-    start: new Date(new Date().setHours(start.getHours() + 1)),
-    end: new Date(new Date().setHours(start.getHours() + 2))
-  }
-];
-
-const calendars: ICalendarInfo[] = [
-  {
-    id: "1",
-    name: "Joao",
-    color: "#ffffff",
-    bgColor: "#9e5fff",
-    dragBgColor: "#9e5fff",
-    borderColor: "#9e5fff"
-  },
-  {
-    id: "2",
-    name: "Felix",
-    color: "#ffffff",
-    bgColor: "#00a9ff",
-    dragBgColor: "#00a9ff",
-    borderColor: "#00a9ff"
-  }
-];
+import mockData from '../../mockData'
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Calendar() {
-    const cal = useRef<any>(null);
-  
-    const onClickSchedule = useCallback((e) => {
-      const { calendarId, id } = e.schedule;
-      const el = cal.current.calendarInst.getElement(id, calendarId);
-  
-      console.log(e, el.getBoundingClientRect());
-    }, []);
-  
-    const onBeforeCreateSchedule = useCallback((scheduleData) => {
-      console.log(scheduleData);
-  
-      const schedule = {
-        id: String(Math.random()),
-        title: scheduleData.title,
-        isAllDay: scheduleData.isAllDay,
-        start: scheduleData.start,
-        end: scheduleData.end,
-        category: scheduleData.isAllDay ? "allday" : "time",
-        dueDateClass: "",
-        location: scheduleData.location,
-        raw: {
-          class: scheduleData.raw["class"]
-        },
-        state: scheduleData.state
-      };
-  
-      cal.current.calendarInst.createSchedules([schedule]);
-    }, []);
-  
-    const onBeforeDeleteSchedule = useCallback((res) => {
-      console.log(res);
-  
-      const { id, calendarId } = res.schedule;
-  
-      cal.current.calendarInst.deleteSchedule(id, calendarId);
-    }, []);
-  
-    const onBeforeUpdateSchedule = useCallback((e) => {
-      console.log(e);
-  
-      const { schedule, changes } = e;
-  
-      cal.current.calendarInst.updateSchedule(
-        schedule.id,
-        schedule.calendarId,
-        changes
-      );
-    }, []);
-  
-    function _getFormattedTime(time: any) {
-      const date = new Date(time);
-      const h = date.getHours();
-      const m = date.getMinutes();
-  
-      return `${h}:${m}`;
-    }
-  
-    function _getTimeTemplate(schedule: any, isAllDay: any) {
-      var html = [];
-  
-      if (!isAllDay) {
-        html.push("<strong>" + _getFormattedTime(schedule.start) + "</strong> ");
-      }
-      if (schedule.isPrivate) {
-        html.push('<span class="calendar-font-icon ic-lock-b"></span>');
-        html.push(" Private");
-      } else {
-        if (schedule.isReadOnly) {
-          html.push('<span class="calendar-font-icon ic-readonly-b"></span>');
-        } else if (schedule.recurrenceRule) {
-          html.push('<span class="calendar-font-icon ic-repeat-b"></span>');
-        } else if (schedule.attendees.length) {
-          html.push('<span class="calendar-font-icon ic-user-b"></span>');
-        } else if (schedule.location) {
-          html.push('<span class="calendar-font-icon ic-location-b"></span>');
-        }
-        html.push(" " + schedule.title);
-      }
-  
-      return html.join("");
-    }
-  
-    const templates = {
-      time: function (schedule: any) {
-        console.log(schedule);
-        return _getTimeTemplate(schedule, false);
-      }
-    };
+
+  const [selectedDay, setSelectedDay] = useState<any>(null)
+  const [agendamento, setAgendamento] = useState<any>({})
+  const [selectedMonth, setSelectedMonth] = useState<string>(format(new Date(), 'MMMM'))
+
+  useEffect(() => {
+    let daysList: any = uniqueDays()
+    let myObj = createTodayApointmentsObject(daysList)
+    setAgendamento(addApointmentsToDayList(daysList, myObj))
+  }, [selectedDay, selectedMonth])
+
+  // const agendamento2: any = {
+  //   1: ['Mirko', 'Gianni', 'Mirko', 'Gianni', 'Gianni', 'Mirko', 'Gianni'],
+  //   8: ['Elena'],
+  //   9: ['Irene'],
+  //   12: ['Paolo', 'Giorgia'],
+  //   18: ['Claudia'],
+  //   22: ['Maria', 'Luigi'],
+  //   25: ['Simone'],
+  //   26: ['Marta'],
+  // };
+
+  // const agendamento2: any = mockData.agendamento.map(el => {
+  //   Number(format(parse(el.data, 'YYYY-MM-DD', new Date()), 'd')) []
+  // })
+
+  const WEEKDAYS_SHORT = {
+    pt: ['Do', 'Se', 'Te', 'Qa', 'Qi', 'Sx', 'Sa'],
+  };
+
+  const MONTHS  = {
+    pt: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+  };
+
+  const WEEKDAYS_LONG = {
+    pt: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+  };
+
+  const FIRST_DAY_OF_WEEK = {
+    pt: 1,
+  };
+
+  const LABELS = {
+    pt: { nextMonth: 'Próximo mês', previousMonth: 'Mês anterior' },
+  };
+
+  function handleDayClick(day: {}, { selected }: any) {
+
+    selected ? setSelectedDay(undefined) : setSelectedDay(day)
     
+  }
+
+  function uniqueDays() {
+    let daysList: any = []
+    for (let i=0; i < mockData.agendamento.length; i++) {
+      let parseValueToDate = parse(mockData.agendamento[i].data, 'yyyy-MM-dd', new Date())
+      let formatedToMonth = format(parseValueToDate, 'MMMM')
+      if (!daysList.includes(mockData.agendamento[i].data) && formatedToMonth === selectedMonth) {
+        daysList.push(mockData.agendamento[i].data)
+      }
+    }
+		return daysList
+  }
+
+  function createTodayApointmentsObject(myDates: []) {
+    let obj: any = {}
+    for (let i=0; i < myDates.length; i++) {
+      let formatedDate = parse(myDates[i], "yyyy-MM-dd", new Date())
+      let myKey = format((formatedDate), 'd')
+      obj[myKey] = []
+    }
+    return obj
+  }
+
+  function addApointmentsToDayList(myDates: Array<any>, obj: any) {
+    for (let i=0; i < myDates.length; i++) {
+      for (let j =0; j < mockData.agendamento.length; j++) {
+        let formatedDate = parse(myDates[i], "yyyy-MM-dd", new Date())
+        let dayOnlyDate = format((formatedDate), 'd')
+        myDates[i].includes(mockData.agendamento[j].data) && obj[dayOnlyDate].push(mockData.agendamento[j].paciente)
+      }
+    }
+    return obj
+  }
+
+  function handleCardClick(e: any) {
+    console.log(e.target.id)
+  }
+
+  
+  function Navbar({
+    nextMonth,
+    previousMonth,
+    onPreviousClick,
+    onNextClick,
+    className,
+    localeUtils,
+  }: any) {
+    const months = localeUtils.getMonths();
+    const prev = months[previousMonth.getMonth()];
+    const next = months[nextMonth.getMonth()];
+    function handleLeftClick() {
+      setSelectedMonth(prev)
+      onPreviousClick()
+    }
+    function handleRightClick() {
+      setSelectedMonth(next)
+      onNextClick()
+    }
     return (
-        <div className="calendar-container">
-            <DivComponent>
-                <h1>Agenda</h1>
-                <TUICalendar
-                ref={cal}
-                height="400px"
-                view="day"
-                useCreationPopup={true}
-                useDetailPopup={true}
-                template={templates}
-                calendars={calendars}
-                schedules={schedules}
-                onClickSchedule={onClickSchedule}
-                onBeforeCreateSchedule={onBeforeCreateSchedule}
-                onBeforeDeleteSchedule={onBeforeDeleteSchedule}
-                onBeforeUpdateSchedule={onBeforeUpdateSchedule}
-                taskView={false}
-                scheduleView={['time']}
-                // month={{['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}}
-                />
-            </DivComponent>
-        </div>
+      <div className={className}>
+        <span className='DayPicker-NavButton DayPicker-NavButton--prev' role="button" onClick={() => handleLeftClick()}>
+        </span>
+        <span className='DayPicker-NavButton DayPicker-NavButton--next' role="button" onClick={() => handleRightClick()}>
+        </span>
+      </div>
     );
   }
+
+  function renderDay(day: Date) {
+    const date = day.getDate();
+    const dateStyle = {
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
+      fontSize: '1rem',
+      overflowWrap: 'break-word',
+    } as const;
+    const agendamentoStyle = { fontSize: '0.6rem', textAlign: 'left', display: 'flex', flexDirection: 'row', alignItems: 'center' } as const;
+    const cellStyle = {
+      height: '100%',
+      width: '100%',
+      position: 'relative',
+      overflow: 'hidden',
+      border: '1px solid lightgray'
+    } as const;
+    return (
+      <div style={cellStyle}>
+        <div style={dateStyle}>{date}</div>
+        {agendamento[date] &&
+          agendamento[date].map((name: any, i: number) => (
+            <div key={i} style={agendamentoStyle}>
+              <div className="circle-agendamento"></div>
+              <span className="especialista-nome" style={{overflowWrap: 'break-word', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{name}</span>
+            </div>
+          ))}
+        
+      </div>
+    );
+  }
+
+  const cardConsulta = mockData.agendamento.map(el => el.data === (selectedDay && format(selectedDay, 'yyyy-MM-dd')) ?
+      <Link to={`agendamentos/${el.id}`} key={el.id} id={`${el.id}`} className="consulta-paciente-card" onClick={handleCardClick}>
+        <div className="top-section-wrapper">
+          <div className="time-wrapper">
+            <span className="time-value">{el.horario}</span>
+          </div>
+          <div className="especialista-container">
+            <span className="especialista-nome">{el.especialista}</span>
+          </div>
+        </div>
+        <div className="paciente-container">
+          <span>Paciente: </span>
+          <span>{el.paciente}</span>
+        </div>
+      </Link> : 
+      null
+     )
+     
+  return (
+    <DivComponent>
+      <div className="calendar-container">
+        <DayPicker
+          months={MONTHS['pt']}
+          weekdaysLong={WEEKDAYS_LONG['pt']}
+          weekdaysShort={WEEKDAYS_SHORT['pt']}
+          firstDayOfWeek={FIRST_DAY_OF_WEEK['pt']}
+          labels={LABELS['pt']}
+          month={new Date()}
+          selectedDays={selectedDay}
+          showOutsideDays
+          onDayClick={handleDayClick}
+          className="Birthdays"
+          renderDay={renderDay}
+          navbarElement={<Navbar />}
+        />
+        <p>
+        {selectedDay
+          ? format(selectedDay, 'yyyy-MM-dd')
+          : 'Please select a day 👻'}
+        </p>
+        <div className="consultas-selecionadas-container">
+          {cardConsulta}
+        </div>
+        
+      </div>
+    </DivComponent>
+  );
+}
 
 export default Calendar;
