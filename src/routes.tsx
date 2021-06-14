@@ -11,6 +11,7 @@ import Especialista from './views/pages/Especialista';
 import PacienteInfo from './views/pages/PacienteInfo';
 import NovoPaciente from './views/pages/NovoPaciente';
 import AlterarSenha from './views/pages/AlterarSenha';
+import AlterarAgendamento from './views/pages/AlterarAgendamento';
 
 
 
@@ -25,6 +26,7 @@ const Routes: React.FC = () => {
         <Route path="/pacientes/novo" exact component={NovoPaciente}/>
         <Route path="/prontuario" exact component={Prontuario}/>
         <Route path="/pacientes/:id" component={PacienteInfo}/>
+        <Route path="/agendamento/:id" component={AlterarAgendamento}/>
         <Route path="/especialista" component={Especialista}/>
         <Route path="/senha" component={AlterarSenha}/>
         {/* <PrivateRoutes path="/dash" exact component={Dash}/> */}
