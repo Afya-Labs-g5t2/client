@@ -31,7 +31,7 @@ const NovoPaciente: React.FC = () => {
     "celular": "",
     "telefone": "",
     "cep": "",
-    "adress": "",
+    "logradouro": "",
     "numero": "",
     "bairro": "",
     "cidade": "",
@@ -51,12 +51,10 @@ const NovoPaciente: React.FC = () => {
 
   const onSubmit = (data: FormData) => {
     setIsLoading(true)
-    api.post('/pacientes', data)
-    
+    api.post('/enderecos', data)
       .then(
-        response => {
-          // getData()
-          console.log(data)
+        (response: any) => {
+          console.log(response.data.id)
           toast.success('Paciente cadastrado com sucesso!', {
             position: "top-right",
             autoClose: 2000,
@@ -99,7 +97,7 @@ const NovoPaciente: React.FC = () => {
 
     const { logradouro, bairro, localidade, uf } = data
 
-    setValue('adress', logradouro, { shouldValidate: true })
+    setValue('logradouro', logradouro, { shouldValidate: true })
     setValue('bairro', bairro, { shouldValidate: true })
     setValue('cidade', localidade, { shouldValidate: true })
     setValue('uf', uf, { shouldValidate: true })
@@ -251,9 +249,9 @@ const NovoPaciente: React.FC = () => {
               onBlur={checkCep}
             />
             {errors.cep && <p>{errors.cep.message}</p>}
-            <label htmlFor="adress">Endereco</label>
-            <input type='text' placeholder='Endereco' {...register('adress', { required: 'Preencha com o endereco' })} />
-            {errors.adress && <p>{errors.adress.message}</p>}
+            <label htmlFor="logradouro">Endereco</label>
+            <input type='text' placeholder='Endereco' {...register('logradouro', { required: 'Preencha com o endereco' })} />
+            {errors.logradouro && <p>{errors.logradouro.message}</p>}
             <label htmlFor="numero">Numero</label>
             <input type='text' placeholder='Numero' {...register('numero', { required: 'Preencha com o numero' })} />
             {errors.numero && <p>{errors.numero.message}</p>}

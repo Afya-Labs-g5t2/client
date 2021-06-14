@@ -14,7 +14,8 @@ import { api } from '../../../services/api';
 const Paciente: React.FC = () => {
 
   const [showUser, setShowUser] = useState(false)
-  const [apiData, setApiData] = useState<any>([])
+  const [apiData, setApiData] = useState<[]>([])
+  const [searchInputValue, setSearchInputValue] = useState<string | null>(null)
 
   function handleToggle() {
     setShowUser(!showUser)
@@ -34,7 +35,7 @@ const Paciente: React.FC = () => {
 
   const cardPaciente = apiData
     .sort((a: any, b: any) => a.nome > b.nome ? 1 : -1)
-    .map((paciente: any) => 
+    .map((paciente: any) => paciente.nome.includes(searchInputValue) &&
       <Link to={`/pacientes/${paciente.id}`} key={paciente.id}>
         <CardPaciente
           key={paciente.id}
@@ -44,7 +45,8 @@ const Paciente: React.FC = () => {
           id={paciente.id} 
           handleClick={() => handleClick(paciente.id)} 
         />
-      </Link>)                                
+      </Link>
+    )                         
 
   return (
       <DivComponent>
