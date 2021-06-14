@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Menu from '../../../components/Menu'
 import { DivComponent } from './styles'
 import NavBar from '../../../components/NavBar';
 import { useForm } from "react-hook-form";
-import { api, findCep } from '../../../services/api'
+import { api} from '../../../services/api'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useParams } from 'react-router-dom';
@@ -18,7 +18,6 @@ interface agendamentoProps {
 }
 
 const AlterarAgendamento: React.FC = () => {
-  const [data, setData] = useState()
   const [isLoading, setIsLoading] = useState(false)
   const [apiData, setApiData] = useState<agendamentoProps>({} as agendamentoProps)
 
@@ -33,7 +32,7 @@ const AlterarAgendamento: React.FC = () => {
     "endTime": `${apiData.endTime}`,
   };
 
-  const { register, setValue, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
   const onSubmit = (data: any) => {
     setIsLoading(true)
     api.put(`/agendamento/${id}`, data)
@@ -77,8 +76,8 @@ const AlterarAgendamento: React.FC = () => {
         <div className="top-Container">
           <NavBar />
         </div>
-        <div className="modal-header">
-              <h4 className="modal-title">Novo agendamento</h4>
+          <div className="modal-header">
+              <h4 className="modal-title">Alterar agendamento</h4>
             </div>
             <div className="modal-body">
             <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
@@ -147,16 +146,12 @@ const AlterarAgendamento: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              <div className="form-group">
-                <label htmlFor="exampleFormControlTextarea1">Comentarios</label>
-                <textarea className="form-control" id="exampleFormControlTextarea1" rows={3}></textarea>
-              </div>
               <div className="modal-footer">
                 <button type="submit" className="btn btn-primary">Alterar</button>
               </div>
             </form>
             <ToastContainer />
-            </div>
+          </div>
         <div className="bot-container">
           <Menu />
         </div>

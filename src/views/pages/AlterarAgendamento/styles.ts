@@ -1,56 +1,76 @@
 import styled from 'styled-components'
 
 export const DivComponent = styled.div`
-    .content-container{
-        display: flex;
-        justify-content: center;
-        margin-top: 1rem;
-        padding: 0 2rem;
-        
-        form {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            margin-bottom: 160px;
+    .modal-header {
 
-            label {
-                font-weight: 700;
-                justify-content: left;
-                margin-top: 18px;
-                margin-bottom: 6px;
-            }
+        button {
 
-            input {
-                margin: 0;
-                border: none;
-                background-color: var(--background-main);   
-                font-family: 'Inter';
-                line-height: 2;
-                padding: 4px;
-                outline: none;
+            line-height: 1;
+            text-decoration: none;
+            border: none;
+            background: none;
+            transition: transform 0.2s ease-in-out;
 
-            }
-
-            p {
-                font-size: 12px;
-                color: var(--red);
-            }
-
-            .btn-form {
-                margin-top: 16px;
-                background: hsla(110,68%,50%,1);
-                height: 3rem;
-                border-radius: 9px;
-                font-size: 1.25rem;
-                font-weight: 700;
-                color: white;
-                cursor: pointer;
-                transition: 0.3s;
-
-                &:hover {
-                    background: hsla(110,58%,50%,1);
-                }
+            &:hover {
+                transform: scale(1.25)
             }
         }
+    }
+
+    .modal-body {
+        padding: 2rem;
+
+        form {
+
+            .info-wrapper {
+                margin-bottom: 32px;
+            }
+
+            .form-group {
+                margin-bottom: 16px;
+
+                
+            }
+
+            .form-inline {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 16px;
+
+                .form-group {
+                    margin: unset;
+
+                    .input-time {
+                        width: 65px;
+                    }
+                }
+
+                .time-pick-wrapper {
+                    display: flex;
+                    align-items: center;
+
+                    .time-separator {
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        height: 100%;
+                    }
+                }
+
+                .default-date-picker {
+                    display: flex;
+                    height: 38px;
+                    border: 1px solid #ced4da;
+                    appearance: none;
+                    border-radius: .25rem;
+                }
+            }
+
+            
+        }
+        .error {
+                border: 2px solid red !important;
+            }
     }
 `
