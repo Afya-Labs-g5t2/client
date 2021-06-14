@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import PrivateRoutes from './private.routes';
 import Home from './views/pages/Home';
@@ -30,7 +30,6 @@ const Routes: React.FC = () => {
         <Route path="/especialista" component={Especialista}/>
         <Route path="/senha" component={AlterarSenha}/>
         {/* <PrivateRoutes path="/dash" exact component={Dash}/> */}
-        <Redirect from="*" to='/' />
       </Switch>
     </BrowserRouter>
   );
