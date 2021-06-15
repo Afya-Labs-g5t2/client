@@ -92,6 +92,31 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
     console.log(profissaoSelected);
   }
 
+  function blockKeyboardKeys(e: any) {
+    var k;
+    // e.which: explorer, e.keyCode: mozilla
+    if (e && e.which)
+      k = e.which;
+    else
+      k = e.keyCode;
+
+    // No IE não essa função não consegue cancelar tabs, BS, DEL, etc, mas no mozilla sim,
+    // por isso precisamos deixar passar as teclas de edição.
+    // Somente aceita os caracteres 0-9, tab, enter, del e BS
+    if ( ((k<48)||(k>57)) && k !== 8 && k !== 9 && k !== 127 && k !== 13 && !((k>34)&&(k<41)) && k !== 46) {
+          if(e.ctrlKey && (k === 118 ||k === 99)) {
+            e.returnValue = true;
+            return true;
+          }	
+          else {
+            e.preventDefault();
+            e.returnValue = false;
+            return false;
+          }	
+    }
+    return true;
+  }
+
 
 const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) =>{
   let value = e.currentTarget.value;
@@ -173,7 +198,7 @@ const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) 
                 <div className="time-pick-wrapper">
                   <div className="form-group">
                       <input 
-                        onKeyUp={handleKeyupTimeMask} className={`form-control input-time ${errors.initTime ? errors.initTime.message : ''}`}
+                        onKeyUp={handleKeyupTimeMask} onKeyDown={blockKeyboardKeys} className={`form-control input-time ${errors.initTime ? errors.initTime.message : ''}`}
                         autoComplete="nope"
                         maxLength={5}
                         {...register('initTime', {required: 'error'})}
@@ -183,7 +208,7 @@ const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) 
                     <span className="time-separator">às</span>
                     <div className="form-group">
                       <input
-                      onKeyUp={handleKeyupTimeMask} className={`form-control input-time ${errors.endTime ? errors.endTime.message : ''}`}
+                      onKeyUp={handleKeyupTimeMask} onKeyDown={blockKeyboardKeys} className={`form-control input-time ${errors.endTime ? errors.endTime.message : ''}`}
                       autoComplete="nope" 
                       maxLength={5}
                       {...register('endTime', {required: 'error'})}
