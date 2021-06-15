@@ -1,5 +1,5 @@
 import { Route, Redirect } from 'react-router-dom';
-// import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'
 
 const PrivateRoutes: any = ({ component: Component, path: Path, ...rest}: any) => {
 

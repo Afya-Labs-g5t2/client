@@ -28,8 +28,8 @@ const FormSignIn: React.FC = () => {
 
   const onSubmit = handleSubmit(data => {
 
-    setIsLoad(true)
-        api.post('/session', data)
+    setIsLoading(true)
+      api.post('/session', data)
       .then(
         response => {
           localStorage.setItem("@tokenG5T2Afya", response.data.token)
@@ -41,7 +41,8 @@ const FormSignIn: React.FC = () => {
             pauseOnHover: true,
             draggable: true,
             onClose: () => history.push('/')
-          }).catch(err => {
+          })
+        }).catch(err => {
               toast.error("Senha ou login incorretos!", {
               position: "top-right",
               autoClose: 2000,
@@ -53,25 +54,6 @@ const FormSignIn: React.FC = () => {
           }).finally(() => setIsLoading(false))
   });
 
-  // const handleSubmit = useCallback(
-  //   (e: FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
-  //     setIsLoad(true)
-
-  //     // api.post('login', formDataContent).then(
-  //     //   response => {
-  //     //     localStorage.setItem('@tokenAfyaApp', response.data.token)
-  //     //     toast.success('Cadastro realizado com sucesso! Você está sendo redirecionado', {
-  //     //       onClose: () => history.push('/dash')
-  //     //     })
-  //     //   }
-  //     // ).catch( e => toast.error('Algo deu errado'))
-  //     //   .finally( () => setIsLoad(false))
-
-  //     // }, [formDataContent, history]
-  //   }, []
-  // );
-
   const animationContent = {
     loop: true,
     autoplay: true,
@@ -80,7 +62,6 @@ const FormSignIn: React.FC = () => {
   }
 
   return (
-
     <FormContent>
       <>
         {
