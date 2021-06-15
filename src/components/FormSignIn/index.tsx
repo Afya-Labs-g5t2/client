@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Lottie from 'react-lottie';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { api } from '../../services/api';
 import animationData from '../../assets/animation/19318-loading-circle.json';
 import { FormContent } from './style';
@@ -33,10 +33,13 @@ const FormSignIn: React.FC = () => {
     .then(
       response => {
         localStorage.setItem("@tokenG5T2Afya", response.data.token)
-        toast.success('Login realizado com sucesso! Você está sendo redirecionado')
+        toast.success('Login realizado com sucesso!', {
+          autoClose: 2000
+        })
         history.push('/')
       }).catch(err => {
             toast.error("Senha ou login incorretos!")
+            setIsLoading(false)
         }).finally(() => setIsLoading(false))
     
   });

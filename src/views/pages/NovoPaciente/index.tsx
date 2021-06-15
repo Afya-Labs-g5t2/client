@@ -274,7 +274,6 @@ const NovoPaciente: React.FC = () => {
               value="Custom Reset Field Values & Errors"
             /> */}
           </form>
-          <ToastContainer />
         </div>
         <div className="bot-container">
           <Menu />
