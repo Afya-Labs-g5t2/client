@@ -19,16 +19,16 @@ const Routes: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={Home}/>
         <Route path="/login" component={Login}/>
-        <Route path="/agenda" component={Agenda}/>
-        <Route path="/pacientes" exact component={Pacientes}/>
-        <Route path="/pacientes/novo" exact component={NovoPaciente}/>
-        <Route path="/prontuario" exact component={Prontuario}/>
-        <Route path="/pacientes/:id" component={PacienteInfo}/>
-        <Route path="/agendamentos/:id" component={AlterarAgendamento}/>
-        <Route path="/especialista" component={Especialista}/>
-        <Route path="/senha" component={AlterarSenha}/>
+        <PrivateRoutes path="/" exact component={Home}/>
+        <PrivateRoutes path="/agenda" component={Agenda}/>
+        <PrivateRoutes path="/pacientes" exact component={Pacientes}/>
+        <PrivateRoutes path="/pacientes/novo" exact component={NovoPaciente}/>
+        <PrivateRoutes path="/prontuario" exact component={Prontuario}/>
+        <PrivateRoutes path="/pacientes/:id" component={PacienteInfo}/>
+        <PrivateRoutes path="/agendamentos/:id" component={AlterarAgendamento}/>
+        <PrivateRoutes path="/especialista" component={Especialista}/>
+        <PrivateRoutes path="/senha" component={AlterarSenha}/>
         {/* <PrivateRoutes path="/dash" exact component={Dash}/> */}
       </Switch>
     </BrowserRouter>
