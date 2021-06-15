@@ -3,14 +3,14 @@ import jwt from 'jsonwebtoken'
 
 const PrivateRoutes: any = ({ component: Component, path: Path, ...rest}: any) => {
 
-  const isLogin: string | null = localStorage.getItem('@tokenAfyaApp');
+  const isLogin: string | null = localStorage.getItem('@tokenG5T2Afya');
   const isSectionActive: any = () => {
     if ( isLogin === null ){
       return false
     } else {
-      const fullToken: any = isLogin?.split('.')[1]
-      const tokenPayLoad : any = jwt.decode(fullToken)
-      const expSeconds = tokenPayLoad.exp;
+      // const tokenPayLoad: any = isLogin?.split('.')[1]
+      const decodedToken : any = jwt.decode(isLogin)
+      const expSeconds = decodedToken.exp;
       const timeNow = Date.now() / 1000;
   
       return timeNow > expSeconds ? false : true
