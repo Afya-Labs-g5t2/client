@@ -59,7 +59,7 @@ const Paciente: React.FC = () => {
             <div className="search-field">
               <span className="search-icon material-icons" >search</span>
               <input type="text" value={searchInputValue} onChange={(e) => setSearchInputValue(e.target.value)}></input>
-              <span className="clean-icon material-icons">close</span>
+              <span className="clean-icon material-icons" onClick={() => setSearchInputValue('')}>close</span>
             </div>
           </div>  
           <div className="results-container">
