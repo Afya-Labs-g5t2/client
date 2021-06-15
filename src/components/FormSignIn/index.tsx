@@ -14,10 +14,10 @@ interface IUserLogin {
 
 const FormSignIn: React.FC = () => {
 
-  // const history = useHistory()
-
   const [formDataContent, setFormDataContent] = useState<IUserLogin>({} as IUserLogin);
-  const [isLoad, setIsLoad] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const history = useHistory()
 
   const defaultValues: IUserLogin = {
     "usuario": "",
@@ -27,28 +27,30 @@ const FormSignIn: React.FC = () => {
   const { register, setValue, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
 
   const onSubmit = handleSubmit(data => {
-    console.log(data)
 
     setIsLoad(true)
-    //     api.post('/senha', data)
-    //   .then(
-    //     response => {
-    //      redirecionar para a tela de home
-    //      history.push('/')
-    
-    //     }
-    //   ).catch(err => {
-    //     toast.error("Senha ou login incorretos!", {
-    //       position: "top-right",
-    //       autoClose: 2000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true
-    //     })
-    //   }
-    //   ).finally(() => setIsLoading(false))
-
+        api.post('/session', data)
+      .then(
+        response => {
+          localStorage.setItem("@tokenG5T2Afya", response.data.token)
+          toast.success('Login realizado com sucesso! Você está sendo redirecionado', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            onClose: () => history.push('/')
+          }).catch(err => {
+              toast.error("Senha ou login incorretos!", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true
+            })
+          }).finally(() => setIsLoading(false))
   });
 
   // const handleSubmit = useCallback(
@@ -73,7 +75,7 @@ const FormSignIn: React.FC = () => {
   const animationContent = {
     loop: true,
     autoplay: true,
-    isStopped: !isLoad,
+    isStopped: !isLoading,
     animationData: animationData
   }
 
@@ -82,7 +84,7 @@ const FormSignIn: React.FC = () => {
     <FormContent>
       <>
         {
-          isLoad &&
+          isLoading &&
           <div className="loading" >
             <Lottie
               options={animationContent}
@@ -91,7 +93,7 @@ const FormSignIn: React.FC = () => {
             />
           </div>
         }
-        <form onSubmit={onSubmit} className={isLoad ? 'loading-on' : ''}>
+        <form onSubmit={onSubmit} autoComplete="off" className={isLoading ? 'loading-on' : ''}>
           <input type="text" placeholder='Login' {...register('usuario', {
             required: "Digite o seu login"
           })} />
