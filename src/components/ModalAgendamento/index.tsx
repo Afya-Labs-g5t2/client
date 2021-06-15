@@ -45,13 +45,13 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
         setPacientesList(res.data)
       }).catch(console.error)
 
-      api.get("especialistas").then(res => {
-        setEspecialistaList(res.data)
-      }).catch(console.error)
+    api.get("especialistas").then(res => {
+      setEspecialistaList(res.data)
+    }).catch(console.error)
 
-      api.get("profissoes").then(res => {
-        setProfissoesList(res.data)
-      }).catch(console.error)
+    api.get("profissoes").then(res => {
+      setProfissoesList(res.data)
+    }).catch(console.error)
   }, [])
   
   const especialistaListSorted = especialistaList.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => profissoesList.find(x => x.id === el.id_profissao)?.profissao === profissaoSelected && <option key={el.id}>{el.nome}</option>)
