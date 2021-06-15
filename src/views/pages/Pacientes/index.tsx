@@ -41,7 +41,7 @@ const Paciente: React.FC = () => {
           key={paciente.id}
           name={paciente.nome} 
           email={paciente.email}
-          telefone={paciente.tel}
+          telefone={paciente.telefone}
           id={paciente.id} 
           handleClick={() => handleClick(paciente.id)} 
         />
