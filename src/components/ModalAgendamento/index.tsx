@@ -54,7 +54,9 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
     }).catch(console.error)
   }, [])
   
-  const especialistaListSorted = especialistaList.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => profissoesList.find(x => x.id === el.id_profissao)?.profissao === profissaoSelected && <option key={el.id}>{el.nome}</option>)
+  const especialistaListSorted = especialistaList
+                                  .sort((a, b) => a.nome > b.nome ? 1 : -1)
+                                  .map(el => profissoesList.find(x => x.id === el.id_profissao)?.profissao === profissaoSelected && <option key={el.id}>{el.nome}</option>)
   const pacienteListSorted = pacientesList.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => <option key={el.id}>{el.nome}</option>)
   const profissaoListSorted = profissoesList.sort((a, b) => a.profissao > b.profissao ? 1 : -1).map(el => <option key={el.id}>{el.profissao}</option>)
   const modalRef = useRef()
@@ -158,7 +160,7 @@ const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) 
                       {...register('especialidade')}
                       onBlur={handleChange}
                     >
-                      <option value={profissaoSelected} selected disabled>Selecione a especialidade</option>
+                      <option value={profissaoSelected}  disabled>Selecione a especialidade</option>
                       {profissaoListSorted}
                     </select>
                   </div>
@@ -169,7 +171,7 @@ const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) 
                       id="exampleFormControlSelect1"
                       {...register('especialista', {required: 'error'})}
                     >
-                      <option value="" selected disabled>Selecione o especialista</option>
+                      <option value=""  disabled>Selecione o especialista</option>
                       {especialistaListSorted}
                     </select>
                   </div>
