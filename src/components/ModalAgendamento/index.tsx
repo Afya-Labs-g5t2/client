@@ -54,11 +54,14 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
     }).catch(console.error)
   }, [])
   
-  const especialistaListSorted = especialistaList
-                                  .sort((a, b) => a.nome > b.nome ? 1 : -1)
-                                  .map(el => profissoesList.find(x => x.id === el.id_profissao)?.profissao === profissaoSelected && <option key={el.id}>{el.nome}</option>)
-  const pacienteListSorted = pacientesList.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => <option key={el.id}>{el.nome}</option>)
   const profissaoListSorted = profissoesList.sort((a, b) => a.profissao > b.profissao ? 1 : -1).map(el => <option key={el.id}>{el.profissao}</option>)
+  const especialistaListSorted = profissaoSelected === '' ?
+    especialistaList.map(el => <option key={el.id}>{el.nome}</option>)
+    : 
+    especialistaList
+      .sort((a, b) => a.nome > b.nome ? 1 : -1)
+      .map(el => profissoesList.find(x => x.id === el.id_profissao)?.profissao === profissaoSelected && <option key={el.id}>{el.nome}</option>)
+  const pacienteListSorted = pacientesList.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => <option key={el.id}>{el.nome}</option>)
   const modalRef = useRef()
 
   const fadeTop = {
@@ -78,10 +81,17 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
   const { register, getValues, handleSubmit, reset, formState: { errors  } } = useForm({ defaultValues });
   
   const onSubmit = (data: any) => {
+    let incrementData = {
+      "data_agendamento": data.date,
+      "hora_atendimento": data.initTime,
+      "status": "AGENDADO",
+      "id_paciente": 1,
+      "id_especialista": 1
+    }
     console.log('form sent')
-    reset({ ...defaultValues })
+    // reset({ ...defaultValues })
     console.log(data)
-    handleCancel()
+    // handleCancel()
   };
 
   function handleCancel() {
@@ -182,7 +192,7 @@ const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) 
                       id="exampleFormControlSelect2"
                       {...register('paciente', {required: 'error'})}
                     >
-                      <option value="" selected disabled>Selecione o paciente</option>
+                      <option value=""  disabled>Selecione o paciente</option>
                       {pacienteListSorted}
                     </select>
                   </div>
