@@ -14,6 +14,7 @@ export const StyleComponent = styled.div`
     margin:1.5rem;
     text-align: center;
     margin-left: 3.7rem;
+    
 }
 .submit{
     font-size:1.1rem;
@@ -27,6 +28,17 @@ export const StyleComponent = styled.div`
     text-align: center;
     margin-left: 3.7rem;
     margin-top:4rem;
+}
+
+form{
+
+    p {
+        font-size: 12px;
+        color: var(--red);
+        padding-left: 4rem;
+        margin-top: -19px;
+    }
+
 }
 @media only screen and (min-width: 500px) {
     .mid{

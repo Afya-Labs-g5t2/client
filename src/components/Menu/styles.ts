@@ -139,6 +139,7 @@ export const DivComponent = styled.div`
                 max-width: 800px;
                 max-height: 800px;
                 transform: translate(40%,30%);
+                pointer-events: visiblePainted;
             }
 
             

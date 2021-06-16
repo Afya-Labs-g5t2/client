@@ -1,81 +1,86 @@
-import React, { FormEvent, useCallback, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Lottie from 'react-lottie';
-import { toast } from 'react-toastify';
-import {api} from '../../services/api';
+import { toast, ToastContainer } from 'react-toastify';
+import { api } from '../../services/api';
 import animationData from '../../assets/animation/19318-loading-circle.json';
 import { FormContent } from './style';
+import { useForm } from "react-hook-form";
 
 interface IUserLogin {
-  usuario: string;
+  login: string;
   senha: string;
 }
 
 const FormSignIn: React.FC = () => {
 
-  // const history = useHistory()
-
   const [formDataContent, setFormDataContent] = useState<IUserLogin>({} as IUserLogin);
-  const [isLoad, setIsLoad] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleSubmit = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      setIsLoad(true)
+  const history = useHistory()
 
-      // api.post('login', formDataContent).then(
-      //   response => {
-      //     localStorage.setItem('@tokenAfyaApp', response.data.token)
-      //     toast.success('Cadastro realizado com sucesso! Você está sendo redirecionado', {
-      //       onClose: () => history.push('/dash')
-      //     })
-      //   }
-      // ).catch( e => toast.error('Algo deu errado'))
-      //   .finally( () => setIsLoad(false))
+  const defaultValues: IUserLogin = {
+    "login": "",
+    "senha": ""
+  };
 
-      // }, [formDataContent, history]
-    }, []
-  );
+  const { register, setValue, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
+
+  const onSubmit = handleSubmit(data => {
+
+    setIsLoading(true)
+    api.post('/session', data)
+    .then(
+      response => {
+        localStorage.setItem("@tokenG5T2Afya", response.data.token)
+        toast.success('Login realizado com sucesso!', {
+          autoClose: 2000
+        })
+        history.push('/')
+      }).catch(err => {
+            toast.error("Senha ou login incorretos!")
+            setIsLoading(false)
+        }).finally(() => setIsLoading(false))
+    
+  });
 
   const animationContent = {
     loop: true,
     autoplay: true,
-    isStopped:!isLoad,
+    isStopped: !isLoading,
     animationData: animationData
   }
 
   return (
-
     <FormContent>
       <>
         {
-          isLoad &&
+          isLoading &&
           <div className="loading" >
-            <Lottie 
+            <Lottie
               options={animationContent}
               width={200}
               height={200}
-            /> 
+            />
           </div>
-        } 
-        <form onSubmit={handleSubmit} className={isLoad ? 'loading-on' : ''}>
-          <input type="text" name="name" placeholder="Login" onChange={e => setFormDataContent({ ...formDataContent, usuario: e.target.value })} />
-          <input type="password" name="password" placeholder="Senha" onChange={e => setFormDataContent({ ...formDataContent, senha: e.target.value })} />
+        }
+        <form onSubmit={onSubmit} autoComplete="off" className={isLoading ? 'loading-on' : ''}>
+          <input type="text" placeholder='Login' {...register('login', {
+            required: "Digite o seu login"
+          })} />
+          {errors.login && <p>{errors.login.message}</p>}
+          <input type='password' placeholder='Senha' {...register('senha', {
+            required: "Digite a sua senha",
+            maxLength: { value: 20, message: "Senha está muito longa" },
+            minLength: { value: 4, message: "Senha está muito curta" }
+            })}
+          />
+          {errors.senha && <p>{errors.senha.message}</p>}
           <input type="submit" value="ENTRAR" />
         </form>
-
       </>
     </FormContent>
-
-
   );
-  // return(
-  //   <div>
-  //     <h1>Form Component Signin</h1>
-  //   </div>
-  // );
-
-
 }
 
 export default FormSignIn;

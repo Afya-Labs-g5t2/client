@@ -36,6 +36,17 @@ export const DivComponent = styled.div`
             }
         }
 
+        .idade-container {
+            display: flex;
+            justify-content: flex-end;
+
+            & span {
+                padding: 4px;
+                font-size: 1.25rem;
+                font-weight: 700;
+            }
+        }
+
         .quick-info{
             display: flex;
             justify-content: space-between;

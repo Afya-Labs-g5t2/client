@@ -22,6 +22,7 @@ const Agenda: React.FC = () => {
                 <NavBar />
             </div>
             <div className="mid">
+                <Calendar />
             </div>
             <div className="bot">
                 <Menu />    
