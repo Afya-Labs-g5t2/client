@@ -89,7 +89,7 @@ const AlterarAgendamento: React.FC = () => {
                       id="exampleFormControlSelect1"
                       {...register('especialidade')}
                     >
-                      <option value="" selected disabled>Selecione a especialidade</option>
+                      <option value=""  disabled>Selecione a especialidade</option>
                       {'mockEspecialidade'}
                     </select>
                   </div>
@@ -100,7 +100,7 @@ const AlterarAgendamento: React.FC = () => {
                       id="exampleFormControlSelect1"
                       {...register('especialista', {required: 'error'})}
                     >
-                      <option value="" selected disabled>Selecione o especialista</option>
+                      <option value=""  disabled>Selecione o especialista</option>
                       {'mockEspecialista'}
                     </select>
                   </div>
@@ -111,7 +111,7 @@ const AlterarAgendamento: React.FC = () => {
                       id="exampleFormControlSelect2"
                       {...register('paciente', {required: 'error'})}
                     >
-                      <option value="" selected disabled>Selecione o paciente</option>
+                      <option value=""  disabled>Selecione o paciente</option>
                       {'mockPaciente'}
                     </select>
                   </div>
@@ -150,7 +150,6 @@ const AlterarAgendamento: React.FC = () => {
                 <button type="submit" className="btn btn-primary">Alterar</button>
               </div>
             </form>
-            <ToastContainer />
           </div>
         <div className="bot-container">
           <Menu />

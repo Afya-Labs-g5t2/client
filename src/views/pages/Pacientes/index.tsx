@@ -15,7 +15,7 @@ const Paciente: React.FC = () => {
 
   const [showUser, setShowUser] = useState(false)
   const [apiData, setApiData] = useState<[]>([])
-  const [searchInputValue, setSearchInputValue] = useState<string | null>(null)
+  const [searchInputValue, setSearchInputValue] = useState<string>('')
 
   function handleToggle() {
     setShowUser(!showUser)
@@ -35,13 +35,13 @@ const Paciente: React.FC = () => {
 
   const cardPaciente = apiData
     .sort((a: any, b: any) => a.nome > b.nome ? 1 : -1)
-    .map((paciente: any) => paciente.nome.includes(searchInputValue) &&
+    .map((paciente: any) => paciente.nome.toLowerCase().includes(searchInputValue.toLowerCase()) &&
       <Link to={`/pacientes/${paciente.id}`} key={paciente.id}>
         <CardPaciente
           key={paciente.id}
           name={paciente.nome} 
           email={paciente.email}
-          telefone={paciente.tel}
+          telefone={paciente.telefone}
           id={paciente.id} 
           handleClick={() => handleClick(paciente.id)} 
         />
@@ -57,9 +57,9 @@ const Paciente: React.FC = () => {
         <div className="content-container">
           <div className="search-container">
             <div className="search-field">
-              <span className="search-icon material-icons" onClick={() => console.log(apiData)}>search</span>
-              <input type="text"></input>
-              <span className="clean-icon material-icons">close</span>
+              <span className="search-icon material-icons" >search</span>
+              <input type="text" value={searchInputValue} onChange={(e) => setSearchInputValue(e.target.value)}></input>
+              <span className="clean-icon material-icons" onClick={() => setSearchInputValue('')}>close</span>
             </div>
           </div>  
           <div className="results-container">

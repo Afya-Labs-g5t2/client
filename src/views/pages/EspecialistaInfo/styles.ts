@@ -2,20 +2,20 @@ import styled from 'styled-components'
 
 export const DivComponent = styled.div`
     
-.paciente-container {
+.especialista-container {
     height: calc(100vh - 3.5rem - 3.5rem);
     margin: 0 16px;
     padding-bottom: 90px; // margin pro centeudo do final ficar acima do botao
     overflow: scroll;
 
-    .paciente-cover {
+    .especialista-cover {
         background: var(--background-cover);
         padding: 12px;
         border-radius: 6px;
         margin-top: 1rem;
         color: white;
 
-        .paciente-main {
+        .especialista-main {
             display: flex;
             align-items: center;
             margin-bottom: 24px;
@@ -33,17 +33,6 @@ export const DivComponent = styled.div`
                 font-size: 1.25rem;
                 font-weight: 700;
                 margin-left: 12px;
-            }
-        }
-
-        .idade-container {
-            display: flex;
-            justify-content: flex-end;
-
-            & span {
-                padding: 4px;
-                font-size: 1.25rem;
-                font-weight: 700;
             }
         }
 
@@ -88,7 +77,7 @@ export const DivComponent = styled.div`
 
     .info-container {
 
-        .dados-paciente-container {
+        .dados-especialista-container {
             margin-top: 1rem;
 
             .title-wrapper {

@@ -45,16 +45,18 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
         setPacientesList(res.data)
       }).catch(console.error)
 
-      api.get("especialistas").then(res => {
-        setEspecialistaList(res.data)
-      }).catch(console.error)
+    api.get("especialistas").then(res => {
+      setEspecialistaList(res.data)
+    }).catch(console.error)
 
-      api.get("profissoes").then(res => {
-        setProfissoesList(res.data)
-      }).catch(console.error)
+    api.get("profissoes").then(res => {
+      setProfissoesList(res.data)
+    }).catch(console.error)
   }, [])
   
-  const especialistaListSorted = especialistaList.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => profissoesList.find(x => x.id === el.id_profissao)?.profissao === profissaoSelected && <option key={el.id}>{el.nome}</option>)
+  const especialistaListSorted = especialistaList
+                                  .sort((a, b) => a.nome > b.nome ? 1 : -1)
+                                  .map(el => profissoesList.find(x => x.id === el.id_profissao)?.profissao === profissaoSelected && <option key={el.id}>{el.nome}</option>)
   const pacienteListSorted = pacientesList.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => <option key={el.id}>{el.nome}</option>)
   const profissaoListSorted = profissoesList.sort((a, b) => a.profissao > b.profissao ? 1 : -1).map(el => <option key={el.id}>{el.profissao}</option>)
   const modalRef = useRef()
@@ -90,6 +92,31 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
   function handleChange(){
     setProfissaoSelected(getValues('especialidade'))
     console.log(profissaoSelected);
+  }
+
+  function blockKeyboardKeys(e: any) {
+    var k;
+    // e.which: explorer, e.keyCode: mozilla
+    if (e && e.which)
+      k = e.which;
+    else
+      k = e.keyCode;
+
+    // No IE não essa função não consegue cancelar tabs, BS, DEL, etc, mas no mozilla sim,
+    // por isso precisamos deixar passar as teclas de edição.
+    // Somente aceita os caracteres 0-9, tab, enter, del e BS
+    if ( ((k<48)||(k>57)) && k !== 8 && k !== 9 && k !== 127 && k !== 13 && !((k>34)&&(k<41)) && k !== 46) {
+          if(e.ctrlKey && (k === 118 ||k === 99)) {
+            e.returnValue = true;
+            return true;
+          }	
+          else {
+            e.preventDefault();
+            e.returnValue = false;
+            return false;
+          }	
+    }
+    return true;
   }
 
 
@@ -133,7 +160,7 @@ const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) 
                       {...register('especialidade')}
                       onBlur={handleChange}
                     >
-                      <option value={profissaoSelected} selected disabled>Selecione a especialidade</option>
+                      <option value={profissaoSelected}  disabled>Selecione a especialidade</option>
                       {profissaoListSorted}
                     </select>
                   </div>
@@ -144,7 +171,7 @@ const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) 
                       id="exampleFormControlSelect1"
                       {...register('especialista', {required: 'error'})}
                     >
-                      <option value="" selected disabled>Selecione o especialista</option>
+                      <option value=""  disabled>Selecione o especialista</option>
                       {especialistaListSorted}
                     </select>
                   </div>
@@ -173,7 +200,7 @@ const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) 
                 <div className="time-pick-wrapper">
                   <div className="form-group">
                       <input 
-                        onKeyUp={handleKeyupTimeMask} className={`form-control input-time ${errors.initTime ? errors.initTime.message : ''}`}
+                        onKeyUp={handleKeyupTimeMask} onKeyDown={blockKeyboardKeys} className={`form-control input-time ${errors.initTime ? errors.initTime.message : ''}`}
                         autoComplete="nope"
                         maxLength={5}
                         {...register('initTime', {required: 'error'})}
@@ -183,7 +210,7 @@ const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) 
                     <span className="time-separator">às</span>
                     <div className="form-group">
                       <input
-                      onKeyUp={handleKeyupTimeMask} className={`form-control input-time ${errors.endTime ? errors.endTime.message : ''}`}
+                      onKeyUp={handleKeyupTimeMask} onKeyDown={blockKeyboardKeys} className={`form-control input-time ${errors.endTime ? errors.endTime.message : ''}`}
                       autoComplete="nope" 
                       maxLength={5}
                       {...register('endTime', {required: 'error'})}

@@ -3,15 +3,15 @@ import Menu from '../../../components/Menu'
 import { DivComponent } from './styles'
 import NavBar from '../../../components/NavBar';
 import { useForm } from "react-hook-form";
-import { api } from '../../../services/api'
+import { api, findCep } from '../../../services/api'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-// const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
-// const emailValidationRegex = /\S+@\S+\.\S+/
+const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
+const emailValidationRegex = /\S+@\S+\.\S+/
 
 
-const NovoPaciente: React.FC = () => {
+const NovoEspecialista: React.FC = () => {
   const [data, setData] = useState()
   const [isLoading, setIsLoading] = useState(false)
   //Refs
@@ -24,24 +24,20 @@ const NovoPaciente: React.FC = () => {
   const defaultValues = {
     "nome": "",
     "sobrenome": "",
-    "tipo_sangue": "",
     "email": "",
     "data_nascimento": "",
     "cpf": "",
     "celular": "",
     "telefone": "",
     "cep": "",
-    "logradouro": "",
+    "adress": "",
     "numero": "",
     "bairro": "",
     "cidade": "",
     "uf": "",
   };
 
-  const bloodTypes = ['A+','A-','B+','B-','AB+','AB-','O+','O-']
-  const bloodTypesTag = bloodTypes.map((item, i) => <option key={i}>{item}</option>)
-
-  const { register, setValue, getValues, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues, mode: "onBlur" });
+  const { register, setValue, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
 
   // useEffect(() => {
   //   if (formState.isSubmitSuccessful) {
@@ -49,14 +45,15 @@ const NovoPaciente: React.FC = () => {
   //   }
   // }, [formState, submittedData, reset]);
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: any) => {
     setIsLoading(true)
-    api.post('/pacientes', data)
+    api.post('/especialistas', data)
+    
       .then(
         response => {
           // getData()
           console.log(data)
-          toast.success('Paciente cadastrado com sucesso!', {
+          toast.success('especialista cadastrado com sucesso!', {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -67,7 +64,7 @@ const NovoPaciente: React.FC = () => {
           reset({ ...defaultValues })
         }
       ).catch(err => {
-        toast.error("Oops! Não foi possível cadastrar o paciente", {
+        toast.error("Oops! Não foi possível cadastrar o especialista", {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -86,7 +83,6 @@ const NovoPaciente: React.FC = () => {
     // console.log(e.target.value);
     const cep = e.target.value
     const urlCep = `https://viacep.com.br/ws/${cep}/json/`
-    if (!cep) { return }
     const response = await fetch(urlCep)
     const data = await response.json()
 
@@ -98,65 +94,10 @@ const NovoPaciente: React.FC = () => {
 
     const { logradouro, bairro, localidade, uf } = data
 
-    setValue('logradouro', logradouro, { shouldValidate: true })
+    setValue('adress', logradouro, { shouldValidate: true })
     setValue('bairro', bairro, { shouldValidate: true })
     setValue('cidade', localidade, { shouldValidate: true })
     setValue('uf', uf, { shouldValidate: true })
-  }
-
-  function blockKeyboardKeys(e: any) {
-    var k;
-    // e.which: explorer, e.keyCode: mozilla
-    if (e && e.which)
-      k = e.which;
-    else
-      k = e.keyCode;
-          
-    // No IE não essa função não consegue cancelar tabs, BS, DEL, etc, mas no mozilla sim,
-    // por isso precisamos deixar passar as teclas de edição.
-    // Somente aceita os caracteres 0-9, tab, enter, del e BS
-    if ( ((k<48)||(k>57)) && k !== 8 && k !== 9 && k !== 127 && k !== 13 && !((k>34)&&(k<41)) && k !== 46) {
-          if(e.ctrlKey && (k === 118 ||k === 99)) {
-            e.returnValue = true;
-            return true;
-          }	
-          else {
-            e.preventDefault();
-            e.returnValue = false;
-            return false;
-          }	
-    }
-    return true;
-  }
-
-  function createCPFMask(strValue: any) {
-    let strTemp = strValue
-
-    strTemp = strValue.replaceAll(".", "");
-    strTemp = strValue.replaceAll("-", "");
-
-    if (strTemp.length > 9) {
-      strTemp = `${strTemp.substr(0, 3)}.${strTemp.substr(3, 3)}.${strTemp.substr(6, 3)}-${strTemp.substr(9, 2)}`
-    }
-    else if (strTemp.length > 6) {
-      strTemp = `${strTemp.substr(0, 3)}.${strTemp.substr(3, 3)}.${strTemp.substr(6, 3)}`
-    }
-    else if (strTemp.length > 3) {
-      strTemp = `${strTemp.substr(0, 3)}.${strTemp.substr(3, 3)}`
-    }
-
-
-    setValue('cpf', strTemp, { shouldValidate: true })
-  }
-
-  function removeCPFMask(){
-    let strValue = getValues('cpf')
-    let strTemp = strValue
-
-    strTemp = strValue.replaceAll(".", "");
-    strTemp = strTemp.replaceAll("-", "");
-
-    setValue('cpf', strTemp, { shouldValidate: false })
   }
 
   return (
@@ -181,27 +122,11 @@ const NovoPaciente: React.FC = () => {
                 pattern: passwordValidationRegex
               })} />
               {errors.password && <p>{errors.password.message}</p>} */}
-            <label htmlFor="tipo_sangue">Tipo sanguíneo</label>
-            <select className={`form-control`} style={{backgroundColor: 'var(--background-main)'}} {...register('tipo_sangue')} >
-              <option value="" selected >Selecione o tipo sanguíneo</option>
-              {bloodTypesTag}
-            </select>
-
             <label htmlFor="email">Email</label>
-            <input
-              type='text'
-              placeholder='Email'
-              {...register('email', { 
-                required: 'Digite o email',
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: 'Digite um email valido',
-                },
-                })} 
-            />
+            <input type='text' placeholder='Email' {...register('email', { required: 'Digite o email' })} />
             {errors.email && <p>{errors.email.message}</p>}
             <label htmlFor="data_nascimento">Data de nascimento</label>
-            <input type='date' placeholder='Data de Nascimento' {...register('data_nascimento', { required: 'Digite a data de nascimento' })} />
+            <input type='text' placeholder='Data de Nascimento' {...register('data_nascimento', { required: 'Digite a data de nascimento' })} />
             {errors.data_nascimento && <p>{errors.data_nascimento.message}</p>}
             <label htmlFor="cpf">CPF</label>
             <input
@@ -209,30 +134,14 @@ const NovoPaciente: React.FC = () => {
               placeholder='Digite o CPF (somente numeros)'
               {...register('cpf', {
                 required: "Digite um CPF valido",
-                maxLength: 14,
                 pattern: {
-                  value: /^([0-9]{3}[.]){2}([0-9]{3}[-])?([0-9]){2}$/, // /^[0-9]{11}$/
-                  message: 'Digite apenas 11 digitos',
+                  value: /^[\d]{10}$/,
+                  message: 'Digite apenas 10 digitos',
                 },
-              })}
-              onKeyDown={blockKeyboardKeys}
-              onFocus={removeCPFMask}
-              onBlur={() => createCPFMask(getValues('cpf'))}
-            />
+              })} />
             {errors.cpf && <p>{errors.cpf.message}</p>}
             <label htmlFor="celular">Celular</label>
-            <input
-              type='text' 
-              placeholder='Celular' 
-              {...register('celular', { 
-                required: 'Digite o numero de celular',
-                pattern: {
-                  value: /^[0-9]{9,13}$/,
-                  message: 'Digite um nomero valido',
-                },
-              })} 
-              onKeyDown={blockKeyboardKeys}
-            />
+            <input type='text' placeholder='Celular' {...register('celular', { required: 'Digite o numero de celular' })} />
             {errors.celular && <p>{errors.celular.message}</p>}
             <label htmlFor="telefone">Telefone</label>
             <input type='text' placeholder='Telefone' {...register('telefone')} />
@@ -250,9 +159,9 @@ const NovoPaciente: React.FC = () => {
               onBlur={checkCep}
             />
             {errors.cep && <p>{errors.cep.message}</p>}
-            <label htmlFor="logradouro">Endereco</label>
-            <input type='text' placeholder='Endereco' {...register('logradouro', { required: 'Preencha com o endereco' })} />
-            {errors.logradouro && <p>{errors.logradouro.message}</p>}
+            <label htmlFor="adress">Endereco</label>
+            <input type='text' placeholder='Endereco' {...register('adress', { required: 'Preencha com o endereco' })} />
+            {errors.adress && <p>{errors.adress.message}</p>}
             <label htmlFor="numero">Numero</label>
             <input type='text' placeholder='Numero' {...register('numero', { required: 'Preencha com o numero' })} />
             {errors.numero && <p>{errors.numero.message}</p>}
@@ -274,6 +183,7 @@ const NovoPaciente: React.FC = () => {
               value="Custom Reset Field Values & Errors"
             /> */}
           </form>
+          <ToastContainer />
         </div>
         <div className="bot-container">
           <Menu />
@@ -284,4 +194,4 @@ const NovoPaciente: React.FC = () => {
   );
 }
 
-export default NovoPaciente;
+export default NovoEspecialista;

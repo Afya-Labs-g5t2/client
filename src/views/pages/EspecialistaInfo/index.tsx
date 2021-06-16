@@ -5,7 +5,6 @@ import NavBar from '../../../components/NavBar';
 import { useParams  } from 'react-router';
 import { api } from '../../../services/api';
 import { Link } from 'react-router-dom';
-import {differenceInYears, parse} from 'date-fns'
 
 interface AddressProps {
   cep: number,
@@ -19,22 +18,20 @@ interface AddressProps {
 interface IUserRegister{
   cpf: string
   nome: string,
-  telefone: string,
+  tel: string,
   celular: string,
-  data_nascimento: string,
+  data_nasc: string,
   email: string,
   tipo_sangue: string,
-  endereco_paciente: AddressProps,
+  endereco_especialista: AddressProps,
 }
 
-const PacienteInfo: React.FC = () => {
+const EspecialistaInfo: React.FC = () => {
   const [apiData, setApiData] = useState<IUserRegister>({} as IUserRegister)
   let { id } = useParams<any>()
 
-  const idadeNow = differenceInYears(new Date(), parse(apiData.data_nascimento, 'yyyy-MM-dd', new Date()))?.toLocaleString()
-
   useEffect(() => {
-    api.get(`pacientes/${id}`)
+    api.get(`especialistas/${id}`)
       .then(res => {
         setApiData(res.data)
       })
@@ -48,17 +45,13 @@ const PacienteInfo: React.FC = () => {
         <NavBar />
         </div>
         <div className="content-container">
-          <div className="paciente-container">
-            <div className="paciente-cover">
-              <div className="paciente-main">
+          <div className="especialista-container">
+            <div className="especialista-cover">
+              <div className="especialista-main">
                 <div className="photo-container"></div>
                 <div className="name-container">
                   <span className="name">{apiData.nome}</span>
                 </div>
-              </div>
-              <div className="idade-container">
-                <span className="idade-label">Idade</span>
-                <span className="idade-label">{idadeNow}</span>
               </div>
               <div className="quick-info" >
                 <Link to="/prontuario" className="acessar-prontuario">
@@ -75,7 +68,7 @@ const PacienteInfo: React.FC = () => {
               </div>
             </div>
             <div className="info-container">
-              <div className="dados-paciente-container">
+              <div className="dados-especialista-container">
                 <div className="title-wrapper">
                   <div className="dados-title">
                     <span className="title-value">Dados</span>
@@ -85,25 +78,25 @@ const PacienteInfo: React.FC = () => {
                   </div>
                 </div>
                 <div className="dados-container">
-                  <div className="paciente-nome-completo">
+                  <div className="especialista-nome-completo">
                     <span className="nome-completo-label">nome completo</span>
                     <span className="nome-completo-value">{apiData.nome}</span>
                   </div>
-                  <div className="paciente-email">
+                  <div className="especialista-email">
                     <span className="email-label">e-mail</span>
                     <span className="email-value">{apiData.email}</span>
                   </div>
-                  <div className="paciente-cpf">
+                  <div className="especialista-cpf">
                     <span className="cpf-label">CPF</span>
                     <span className="cpf-value">{apiData.cpf}</span>
                   </div>
-                  <div className="paciente-celular">
+                  <div className="especialista-celular">
                     <span className="celular-label">celular</span>
                     <span className="celular-value">{apiData.celular}</span>
                   </div>
-                  <div className="paciente-tel">
+                  <div className="especialista-tel">
                     <span className="tel-label">telefone</span>
-                    <span className="tel-value">{apiData.telefone}</span>
+                    <span className="tel-value">{apiData.tel}</span>
                   </div>
                 </div>
               </div>
@@ -119,30 +112,30 @@ const PacienteInfo: React.FC = () => {
                 <div className="adress-fields">
                   <div className="cep-field">
                     <span className="cep-label">CEP</span>
-                    <span className="cep-value">{apiData.endereco_paciente?.cep}</span>
+                    <span className="cep-value">0479500</span>
                   </div>
                   <div className="rua-wrapper">
                     <div className="logradouro-field">
                       <span className="logradouro-label">Rua</span>
-                      <span className="logradouro-value">{apiData.endereco_paciente?.logradouro}</span>
+                      <span className="logradouro-value">{apiData.endereco_especialista?.logradouro}</span>
                     </div>
                     <div className="numero-field">
                       <span className="numero-label">Numero</span>
-                      <span className="numero-value">{apiData.endereco_paciente?.numero}</span>
+                      <span className="numero-value">800</span>
                     </div>
                   </div>
                   <div className="bairro-field">
                       <span className="bairro-label">Bairro</span>
-                      <span className="bairro-value">{apiData.endereco_paciente?.bairro}</span>
+                      <span className="bairro-value">Vila Palmeiras</span>
                   </div>
                   <div className="cidade-wrapper">
                     <div className="cidade-field">
                         <span className="cidade-label">Cidade</span>
-                        <span className="cidade-value">{apiData.endereco_paciente?.cidade}</span>
+                        <span className="cidade-value">Sao Paulo</span>
                     </div>
                     <div className="estado-field">
                         <span className="estado-label">UF</span>
-                        <span className="estado-value">{apiData.endereco_paciente?.uf}</span>
+                        <span className="estado-value">SP</span>
                     </div>
                   </div>
                 </div>
@@ -159,4 +152,4 @@ const PacienteInfo: React.FC = () => {
   );
 }
 
-export default PacienteInfo;
+export default EspecialistaInfo;

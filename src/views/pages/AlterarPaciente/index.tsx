@@ -6,14 +6,32 @@ import { useForm } from "react-hook-form";
 import { api } from '../../../services/api'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useHistory, useParams } from 'react-router-dom';
 
-// const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
-// const emailValidationRegex = /\S+@\S+\.\S+/
+interface AddressProps {
+  cep: number,
+  logradouro: string,
+  numero: number,
+  bairro: string,
+  cidade: string,
+  uf: string,
+}
 
+interface IUserRegister{
+  cpf: string
+  nome: string,
+  tel: string,
+  celular: string,
+  data_nasc: string,
+  email: string,
+  tipo_sangue: string,
+  endereco_paciente: AddressProps,
+}
 
 const NovoPaciente: React.FC = () => {
-  const [data, setData] = useState()
+  const [apiData, setApiData] = useState<IUserRegister>({} as IUserRegister)
   const [isLoading, setIsLoading] = useState(false)
+  let { id } = useParams<any>()
   //Refs
   // const logradouroInputRef = useRef<HTMLInputElement | null>(null)
   // const bairroInputRef = useRef(null)
@@ -22,26 +40,27 @@ const NovoPaciente: React.FC = () => {
 
   //react-hook-form
   const defaultValues = {
-    "nome": "",
-    "sobrenome": "",
-    "tipo_sangue": "",
-    "email": "",
-    "data_nascimento": "",
-    "cpf": "",
-    "celular": "",
-    "telefone": "",
-    "cep": "",
-    "logradouro": "",
-    "numero": "",
-    "bairro": "",
-    "cidade": "",
-    "uf": "",
+    "nome": apiData.nome,
+    "sobrenome": apiData.nome,
+    "tipo_sangue": apiData.tipo_sangue,
+    "email": apiData.email,
+    "data_nascimento": apiData.data_nasc,
+    "cpf": apiData.cpf,
+    "celular": apiData.celular,
+    "tel": apiData.tel,
+    "cep": apiData.endereco_paciente.cep,
+    "logradouro": apiData.endereco_paciente.logradouro,
+    "numero": apiData.endereco_paciente.numero,
+    "bairro": apiData.endereco_paciente.bairro,
+    "cidade": apiData.endereco_paciente.cidade,
+    "uf": apiData.endereco_paciente.uf,
   };
 
   const bloodTypes = ['A+','A-','B+','B-','AB+','AB-','O+','O-']
   const bloodTypesTag = bloodTypes.map((item, i) => <option key={i}>{item}</option>)
 
-  const { register, setValue, getValues, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues, mode: "onBlur" });
+  const { register, setValue, getValues, handleSubmit, formState: { errors } } = useForm({ defaultValues, mode: "onBlur" });
+  const history = useHistory()
 
   // useEffect(() => {
   //   if (formState.isSubmitSuccessful) {
@@ -51,23 +70,22 @@ const NovoPaciente: React.FC = () => {
 
   const onSubmit = (data: FormData) => {
     setIsLoading(true)
-    api.post('/pacientes', data)
+    api.put(`/pacientes/${id}`, data)
       .then(
         response => {
-          // getData()
           console.log(data)
-          toast.success('Paciente cadastrado com sucesso!', {
+          toast.success('Dados alterados!', {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
-            draggable: true
+            draggable: true,
+            onClose: history.goBack
           })
-          reset({ ...defaultValues })
         }
       ).catch(err => {
-        toast.error("Oops! Não foi possível cadastrar o paciente", {
+        toast.error("Oops! Não foi possível alterar paciente", {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -75,12 +93,17 @@ const NovoPaciente: React.FC = () => {
           pauseOnHover: true,
           draggable: true
         })
-
-        console.log(err)
-        console.log(data)
       }
       ).finally(() => setIsLoading(false))
   };
+
+  useEffect(() => {
+    api.get(`pacientes/${id}`)
+      .then(res => {
+        setApiData(res.data)
+      })
+      .catch(console.error)
+  }, [])
 
   async function checkCep(e: any) {
     // console.log(e.target.value);
@@ -234,8 +257,8 @@ const NovoPaciente: React.FC = () => {
               onKeyDown={blockKeyboardKeys}
             />
             {errors.celular && <p>{errors.celular.message}</p>}
-            <label htmlFor="telefone">Telefone</label>
-            <input type='text' placeholder='Telefone' {...register('telefone')} />
+            <label htmlFor="tel">Telefone</label>
+            <input type='text' placeholder='Telefone' {...register('tel')} />
             <label htmlFor="cep">CEP</label>
             <input
               type='text'

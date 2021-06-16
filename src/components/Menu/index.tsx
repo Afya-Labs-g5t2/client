@@ -27,13 +27,13 @@ function Menu() {
                 </Link>
               </li>
               <li className="items">
-                <Link to={`/pacientes/novo`} className="item-btn">  
+                <Link to={`/pacientes/novo`} className="item-btn" onClick={handleClick}>  
                   <span className={`material-icons`}>person_add</span>
                   <span>Novo paciente</span>
                 </Link>
               </li>
               <li className="items">
-                <Link to={`/especialistas/novo`} className="item-btn">  
+                <Link to={`/especialistas/novo`} className="item-btn" onClick={handleClick}>  
                   <div className="wrapper-icons">
                     <span className={`material-icons plus-incrementation`}>add</span>
                     <span className={`material-icons`}>work</span>
