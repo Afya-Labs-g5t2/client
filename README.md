@@ -1,3 +1,6 @@
+![image](https://user-images.githubusercontent.com/43910483/122138140-8161ab80-ce1c-11eb-8017-e23437faecb2.png)
+
+
 # Desafio Afya labs
 
 Esse projeto faz parte do treinamento do [Gama Academy](https://www.gama.academy/) e [Afya](https://afya.com.br/).
