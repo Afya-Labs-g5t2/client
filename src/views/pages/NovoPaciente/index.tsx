@@ -183,7 +183,7 @@ const NovoPaciente: React.FC = () => {
               {errors.password && <p>{errors.password.message}</p>} */}
             <label htmlFor="tipo_sangue">Tipo sanguíneo</label>
             <select className={`form-control`} style={{backgroundColor: 'var(--background-main)'}} {...register('tipo_sangue')} >
-              <option value="" selected >Selecione o tipo sanguíneo</option>
+              <option value="" >Selecione o tipo sanguíneo</option>
               {bloodTypesTag}
             </select>
 
@@ -220,6 +220,7 @@ const NovoPaciente: React.FC = () => {
               onBlur={() => createCPFMask(getValues('cpf'))}
             />
             {errors.cpf && <p>{errors.cpf.message}</p>}
+            {/* /^[(]\d{2}[)][9]\d{4}-?\d{4}$/ */}
             <label htmlFor="celular">Celular</label>
             <input
               type='text' 
@@ -235,7 +236,8 @@ const NovoPaciente: React.FC = () => {
             />
             {errors.celular && <p>{errors.celular.message}</p>}
             <label htmlFor="telefone">Telefone</label>
-            <input type='text' placeholder='Telefone' {...register('telefone')} />
+            {/* /^[(]\d{2}[)]\d{4}-?\d{4}$/ */}
+            <input type='text' placeholder='Telefone' {...register('telefone')} /> 
             <label htmlFor="cep">CEP</label>
             <input
               type='text'

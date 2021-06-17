@@ -6,18 +6,47 @@ import { DivComponent } from './styles'
 import mockData from '../../mockData'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { api } from '../../services/api';
+
+interface atendimentosProps {
+  data_agendamento: string,
+  data_atendimento: string,
+  hora_atendimento: string,
+  id: number,
+  id_especialista: number,
+  id_paciente: number,
+  status: string,
+  valor: number
+}
 
 function Calendar() {
 
+  const [apiData, setApiData] = useState<[atendimentosProps] | []>([])
   const [selectedDay, setSelectedDay] = useState<any>(null)
+  const [dataSent, setDataSent] = useState<boolean>(false)
   const [agendamento, setAgendamento] = useState<any>({})
   const [selectedMonth, setSelectedMonth] = useState<string>(format(new Date(), 'MMMM'))
 
+  // useEffect(() => {
+  //   api.get("atendimentos")
+  //     .then(res => {
+  //       setApiData(res.data)
+  //     })
+  //     .catch(console.error)
+  // }, [])
+
   useEffect(() => {
-    let daysList: any = uniqueDays()
-    let myObj = createTodayApointmentsObject(daysList)
-    setAgendamento(addApointmentsToDayList(daysList, myObj))
-  }, [selectedDay, selectedMonth])
+    api.get('atendimentos')
+      .then(res => {
+        setApiData(res.data)
+        setDataSent(true)
+        let daysList: any = uniqueDays()
+        let myObj = createTodayApointmentsObject(daysList)
+        setAgendamento(addApointmentsToDayList(daysList, myObj))
+      })
+      .catch(console.error)
+    
+  }, [selectedDay, selectedMonth, dataSent])
 
   // const agendamento2: any = {
   //   1: ['Mirko', 'Gianni', 'Mirko', 'Gianni', 'Gianni', 'Mirko', 'Gianni'],
@@ -55,18 +84,16 @@ function Calendar() {
   };
 
   function handleDayClick(day: {}, { selected }: any) {
-
     selected ? setSelectedDay(undefined) : setSelectedDay(day)
-    
   }
 
   function uniqueDays() {
     let daysList: any = []
-    for (let i=0; i < mockData.agendamento.length; i++) {
-      let parseValueToDate = parse(mockData.agendamento[i].data, 'yyyy-MM-dd', new Date())
+    for (let i=0; i < apiData.length; i++) {
+      let parseValueToDate = parse(apiData[i].data_atendimento, 'yyyy-MM-dd', new Date())
       let formatedToMonth = format(parseValueToDate, 'MMMM')
-      if (!daysList.includes(mockData.agendamento[i].data) && formatedToMonth === selectedMonth) {
-        daysList.push(mockData.agendamento[i].data)
+      if (!daysList.includes(apiData[i].data_atendimento) && formatedToMonth === selectedMonth) {
+        daysList.push(apiData[i].data_atendimento)
       }
     }
 		return daysList
@@ -84,10 +111,10 @@ function Calendar() {
 
   function addApointmentsToDayList(myDates: Array<any>, obj: any) {
     for (let i=0; i < myDates.length; i++) {
-      for (let j =0; j < mockData.agendamento.length; j++) {
+      for (let j =0; j < apiData.length; j++) {
         let formatedDate = parse(myDates[i], "yyyy-MM-dd", new Date())
         let dayOnlyDate = format((formatedDate), 'd')
-        myDates[i].includes(mockData.agendamento[j].data) && obj[dayOnlyDate].push(mockData.agendamento[j].paciente)
+        myDates[i].includes(apiData[j].data_atendimento) && obj[dayOnlyDate].push(apiData[j].id_especialista)
       }
     }
     return obj
@@ -196,8 +223,8 @@ function Calendar() {
         />
         <p>
         {selectedDay
-          ? format(selectedDay, 'yyyy-MM-dd')
-          : 'Please select a day 👻'}
+          ? 'Agendamentos do dia'
+          : 'Nenhum agendamento'}
         </p>
         <div className="consultas-selecionadas-container">
           {cardConsulta}
