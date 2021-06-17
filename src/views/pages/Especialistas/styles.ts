@@ -65,6 +65,13 @@ export const DivComponent = styled.div`
        }
    }
 
+   .card-paciente-container {
+        
+        &:hover {
+            background: hsla(162, 73%, 46%, .5);
+        }
+   }
+
    @media only screen and (min-width: 500px) {
         .page-container {
             position: relative;
