@@ -7,7 +7,7 @@ Esse projeto faz parte do treinamento do [Gama Academy](https://www.gama.academy
 
 O objetivo é criar um sistema para um consultório controlar o cadastro de seus clientes, atendimentos e prontuário dos pacientes.
 
-Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **server-side**. Esse repositório é a parte Client do projeto. O **client-side** pode ser encontrado [aqui](https://github.com/Afya-Labs-g5t2/server).
+Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **server-side**. Esse repositório é a parte Client do projeto. O **server-side** pode ser encontrado [aqui](https://github.com/Afya-Labs-g5t2/server).
 
 ### Preview
 
