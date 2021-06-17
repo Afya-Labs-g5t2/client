@@ -15,6 +15,46 @@ export const DivComponent = styled.div`
            position: relative;
            overflow: scroll;
 
+           form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 160px;
+           
+                label {
+                    font-weight: 700;
+                    justify-content: left;
+                    margin: 18px auto;
+                }
+
+                input {
+                    margin: 0 auto;
+                    border: none;
+                    background-color: var(--background-main);   
+                    font-family: 'Inter';
+                    line-height: 2;
+                    padding: 4px;
+                    outline: none;
+
+                }
+           }
+
+           .btn-form {
+                margin-top: 16px;
+                background: hsla(110,68%,50%,1);
+                height: 3rem;
+                border-radius: 9px;
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: white;
+                cursor: pointer;
+                transition: 0.3s;
+
+                &:hover {
+                    background: hsla(110,58%,50%,1);
+                }
+            }
+
            .header-medical-container{
                 margin: 1rem 0;
                 display: flex;
