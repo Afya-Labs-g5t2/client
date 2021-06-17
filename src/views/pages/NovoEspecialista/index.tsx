@@ -25,8 +25,7 @@ const NovoEspecialista: React.FC = () => {
     "nome": "",
     "sobrenome": "",
     "email": "",
-    "data_nascimento": "",
-    "cpf": "",
+    "registro": "",
     "celular": "",
     "telefone": "",
     "cep": "",
@@ -48,11 +47,8 @@ const NovoEspecialista: React.FC = () => {
   const onSubmit = (data: any) => {
     setIsLoading(true)
     api.post('/especialistas', data)
-    
       .then(
         response => {
-          // getData()
-          console.log(data)
           toast.success('especialista cadastrado com sucesso!', {
             position: "top-right",
             autoClose: 2000,
@@ -72,15 +68,11 @@ const NovoEspecialista: React.FC = () => {
           pauseOnHover: true,
           draggable: true
         })
-
-        console.log(err)
-        console.log(data)
       }
       ).finally(() => setIsLoading(false))
   };
 
   async function checkCep(e: any) {
-    // console.log(e.target.value);
     const cep = e.target.value
     const urlCep = `https://viacep.com.br/ws/${cep}/json/`
     const response = await fetch(urlCep)
@@ -114,32 +106,21 @@ const NovoEspecialista: React.FC = () => {
             <label htmlFor="sobrenome">Sobrenome</label>
             <input type='text' placeholder='Sobrenome' {...register('sobrenome', { required: 'Digite o sobrenome' })} />
             {errors.sobrenome && <p>{errors.sobrenome.message}</p>}
-            {/* <input 
-              type='password' 
-              placeholder='Digite a senha' 
-              {...register('password', { 
-                required: "Digite a senha",
-                pattern: passwordValidationRegex
-              })} />
-              {errors.password && <p>{errors.password.message}</p>} */}
             <label htmlFor="email">Email</label>
             <input type='text' placeholder='Email' {...register('email', { required: 'Digite o email' })} />
             {errors.email && <p>{errors.email.message}</p>}
-            <label htmlFor="data_nascimento">Data de nascimento</label>
-            <input type='text' placeholder='Data de Nascimento' {...register('data_nascimento', { required: 'Digite a data de nascimento' })} />
-            {errors.data_nascimento && <p>{errors.data_nascimento.message}</p>}
-            <label htmlFor="cpf">CPF</label>
+            <label htmlFor="registro">Registro</label>
             <input
               type='text'
-              placeholder='Digite o CPF (somente numeros)'
-              {...register('cpf', {
-                required: "Digite um CPF valido",
+              placeholder='Digite o Registro'
+              {...register('registro', {
+                required: "Digite um Registro valido",
                 pattern: {
-                  value: /^[\d]{10}$/,
-                  message: 'Digite apenas 10 digitos',
+                  value: /^[\d]{6}-[A-Z]{2}$/,
+                  message: 'Digite 6 digitos seguidos pelo UF',
                 },
               })} />
-            {errors.cpf && <p>{errors.cpf.message}</p>}
+            {errors.registro && <p>{errors.registro.message}</p>}
             <label htmlFor="celular">Celular</label>
             <input type='text' placeholder='Celular' {...register('celular', { required: 'Digite o numero de celular' })} />
             {errors.celular && <p>{errors.celular.message}</p>}
