@@ -124,7 +124,8 @@ client-main
 
 ### 🤓 Boas práticas
 
-- Criação de um novo Componente deve seguir a seguinte estrutura na renderização: 
+- Criação de um novo Componente deve seguir a seguinte estrutura na renderização:
+
 ![image](https://user-images.githubusercontent.com/8262141/122313846-585d1b80-ceed-11eb-83c3-9c95f0c4d5b0.png)
 
 - Para realizar correções ou criação de novas features, deve-se criar uma nova branch informando a funcionalidade e a ação. Ex:
