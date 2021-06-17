@@ -15,15 +15,19 @@ interface AddressProps {
   uf: string,
 }
 
+interface ProfissaoProps {
+  profissao: string
+}
+
 interface IUserRegister{
-  cpf: string
+  registro: string
   nome: string,
-  tel: string,
+  telefone: string,
   celular: string,
-  data_nasc: string,
   email: string,
   tipo_sangue: string,
-  endereco_especialista: AddressProps,
+  endereco: AddressProps,
+  profissao: ProfissaoProps
 }
 
 const EspecialistaInfo: React.FC = () => {
@@ -54,17 +58,7 @@ const EspecialistaInfo: React.FC = () => {
                 </div>
               </div>
               <div className="quick-info" >
-                <Link to="/prontuario" className="acessar-prontuario">
-                  <span className="prontuario-text">Prontuario</span>
-                </Link>
-                <div className="quick-sangue">
-                  <span className="sangue-label">Tipo sanguíneo</span>
-                  <div className="sangue-value">
-                    {/* <span className="sangue-letters">{apiData.tipo_sangue.toString().slice(0,-1)}</span>
-                    <span className="sangue-sinal">{apiData.tipo_sangue.toString().slice(-1,)}</span> */}
-                    <span className="sangue-letters">{apiData.tipo_sangue}</span>
-                  </div>
-                </div>
+                  <span className="profissao-text">{apiData.profissao?.profissao}</span>
               </div>
             </div>
             <div className="info-container">
@@ -87,8 +81,8 @@ const EspecialistaInfo: React.FC = () => {
                     <span className="email-value">{apiData.email}</span>
                   </div>
                   <div className="especialista-cpf">
-                    <span className="cpf-label">CPF</span>
-                    <span className="cpf-value">{apiData.cpf}</span>
+                    <span className="cpf-label">Registro</span>
+                    <span className="cpf-value">{apiData.registro}</span>
                   </div>
                   <div className="especialista-celular">
                     <span className="celular-label">celular</span>
@@ -96,7 +90,7 @@ const EspecialistaInfo: React.FC = () => {
                   </div>
                   <div className="especialista-tel">
                     <span className="tel-label">telefone</span>
-                    <span className="tel-value">{apiData.tel}</span>
+                    <span className="tel-value">{apiData.telefone}</span>
                   </div>
                 </div>
               </div>
@@ -117,25 +111,25 @@ const EspecialistaInfo: React.FC = () => {
                   <div className="rua-wrapper">
                     <div className="logradouro-field">
                       <span className="logradouro-label">Rua</span>
-                      <span className="logradouro-value">{apiData.endereco_especialista?.logradouro}</span>
+                      <span className="logradouro-value">{apiData.endereco?.logradouro}</span>
                     </div>
                     <div className="numero-field">
                       <span className="numero-label">Numero</span>
-                      <span className="numero-value">800</span>
+                      <span className="numero-value">{apiData.endereco?.numero}</span>
                     </div>
                   </div>
                   <div className="bairro-field">
                       <span className="bairro-label">Bairro</span>
-                      <span className="bairro-value">Vila Palmeiras</span>
+                      <span className="bairro-value">{apiData.endereco?.bairro}</span>
                   </div>
                   <div className="cidade-wrapper">
                     <div className="cidade-field">
                         <span className="cidade-label">Cidade</span>
-                        <span className="cidade-value">Sao Paulo</span>
+                        <span className="cidade-value">{apiData.endereco?.cidade}</span>
                     </div>
                     <div className="estado-field">
                         <span className="estado-label">UF</span>
-                        <span className="estado-value">SP</span>
+                        <span className="estado-value">{apiData.endereco?.uf}</span>
                     </div>
                   </div>
                 </div>
