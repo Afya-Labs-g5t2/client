@@ -8,6 +8,14 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../../services/api';
 
+interface EspecialistaProps {
+  nome: string
+}
+
+interface PacienteProps {
+  nome: string
+}
+
 interface atendimentosProps {
   data_agendamento: string,
   data_atendimento: string,
@@ -16,7 +24,9 @@ interface atendimentosProps {
   id_especialista: number,
   id_paciente: number,
   status: string,
-  valor: number
+  valor: number,
+  paciente: PacienteProps,
+  especialista: EspecialistaProps
 }
 
 function Calendar() {
@@ -114,7 +124,7 @@ function Calendar() {
       for (let j =0; j < apiData.length; j++) {
         let formatedDate = parse(myDates[i], "yyyy-MM-dd", new Date())
         let dayOnlyDate = format((formatedDate), 'd')
-        myDates[i].includes(apiData[j].data_atendimento) && obj[dayOnlyDate].push(apiData[j].id_especialista)
+        myDates[i].includes(apiData[j].data_atendimento) && obj[dayOnlyDate].push(apiData[j].especialista?.nome)
       }
     }
     return obj
@@ -181,24 +191,23 @@ function Calendar() {
               <span className="especialista-nome" style={{overflowWrap: 'break-word', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{name}</span>
             </div>
           ))}
-        
       </div>
-    );
+    )
   }
 
-  const cardConsulta = mockData.agendamento.map(el => el.data === (selectedDay && format(selectedDay, 'yyyy-MM-dd')) ?
+  const cardConsulta = apiData.map((el: atendimentosProps) => el.data_atendimento === (selectedDay && format(selectedDay, 'yyyy-MM-dd')) ?
       <Link to={`agendamentos/${el.id}`} key={el.id} id={`${el.id}`} className="consulta-paciente-card" onClick={handleCardClick}>
         <div className="top-section-wrapper">
           <div className="time-wrapper">
-            <span className="time-value">{el.horario}</span>
+            <span className="time-value">{el.hora_atendimento}</span>
           </div>
           <div className="especialista-container">
-            <span className="especialista-nome">{el.especialista}</span>
+            <span className="especialista-nome">{el.especialista?.nome}</span>
           </div>
         </div>
         <div className="paciente-container">
           <span>Paciente: </span>
-          <span>{el.paciente}</span>
+          <span>{el.paciente?.nome}</span>
         </div>
       </Link> : 
       null
