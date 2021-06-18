@@ -26,7 +26,7 @@ const Home: React.FC = () => {
           <User close={handleToggle} showComponent={showUser} />
           <header className="container">
             <section className="sessao-top">
-              <div className="texto_home">
+              <div className="texto-home">
                 <h1>Clinica</h1>
                 <h2>Medtechnew</h2>
               </div>
@@ -37,16 +37,16 @@ const Home: React.FC = () => {
             <main className="principal">
               <div className="line"></div>
               <div className="titulo"><h4>Agenda de hoje</h4></div>
-              <div>
+              <section>
                 {mockData.agendamento.map(function (data: any) {
                   return (
                     <Link to={`agendamentos/${data.id}`} key={data.id} id={`${data.id}`} onClick={handleCardClick}>
                       <div className="card">
-                        <ul>
-                          <li>
-                            <p>{data.horario}</p>
-                            <p>{data.paciente}</p>
-                            <p>Dr.{data.especialista}</p>
+                        <ul className="card-ul">
+                          <li className="card-li">
+                            <p className="card-p">{data.horario}</p>
+                            <p className="card-p">{data.paciente}</p>
+                            <p className="card-p">Dr.{data.especialista}</p>
                           </li>
                         </ul>
                       </div>
@@ -54,7 +54,7 @@ const Home: React.FC = () => {
                   )
                 })
                 }
-              </div>
+              </section>
             </main>
           </header>
         </div>
