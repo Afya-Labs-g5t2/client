@@ -26,7 +26,7 @@ const Routes: React.FC = () => {
         <PrivateRoutes path="/agenda" component={Agenda}/>
         <PrivateRoutes path="/pacientes" exact component={Pacientes}/>
         <PrivateRoutes path="/pacientes/novo" exact component={NovoPaciente}/>
-        <PrivateRoutes path="/prontuario" exact component={Prontuario}/>
+        <PrivateRoutes path="/prontuarios/:id"  component={Prontuario}/>
         <PrivateRoutes path="/pacientes/:id" component={PacienteInfo}/>
         <PrivateRoutes path="/atendimentos/:id" component={AlterarAgendamento}/>
         <PrivateRoutes path="/especialistas" exact component={Especialistas}/>
