@@ -3,13 +3,13 @@ import Menu from '../../../components/Menu'
 import { DivComponent } from './styles'
 import NavBar from '../../../components/NavBar';
 import { useForm } from "react-hook-form";
-import { api, findCep } from '../../../services/api'
+import { api  } from '../../../services/api'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
 const emailValidationRegex = /\S+@\S+\.\S+/
-
+//findCep
 
 const NovoEspecialista: React.FC = () => {
   const [data, setData] = useState()
