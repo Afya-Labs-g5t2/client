@@ -148,7 +148,7 @@ const AlterarAgendamento: React.FC = () => {
                       id="exampleFormControlSelect2"
                       {...register('paciente', {required: 'error'})}
                     >
-                      <option value=""  disabled>Selecione o paciente</option>
+                      <option value={apiData.paciente?.nome}  disabled>Selecione o paciente</option>
                       {pacienteListSorted}
                     </select>
                   </div>
@@ -200,7 +200,7 @@ const AlterarAgendamento: React.FC = () => {
             </form>
             <div className="consulta-start-container">
               <div className="consulta-start-wrapper">
-                <Link to={`/pacientes/${apiData.paciente?.id}`}>
+                <Link to={`/prontuarios/${apiData.paciente?.id}`}>
                 <span className="consulta-start-value">Iniciar consulta</span>
                 </Link>
               </div>

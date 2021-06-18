@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { api } from '../../../services/api'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useHistory } from 'react-router-dom';
 
 // const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
 // const emailValidationRegex = /\S+@\S+\.\S+/
@@ -14,6 +15,8 @@ import 'react-toastify/dist/ReactToastify.css'
 const NovoPaciente: React.FC = () => {
   const [data, setData] = useState()
   const [isLoading, setIsLoading] = useState(false)
+
+  let history = useHistory()
   //Refs
   // const logradouroInputRef = useRef<HTMLInputElement | null>(null)
   // const bairroInputRef = useRef(null)
@@ -51,7 +54,7 @@ const NovoPaciente: React.FC = () => {
 
   const onSubmit = (data: FormData) => {
     setIsLoading(true)
-    api.post('/pacientes', data)
+    api.post('/enderecos', {...data, nome: `${getValues('nome')} ${getValues('sobrenome')}`})
       .then(
         response => {
           // getData()
@@ -75,11 +78,11 @@ const NovoPaciente: React.FC = () => {
           pauseOnHover: true,
           draggable: true
         })
-
-        console.log(err)
-        console.log(data)
       }
-      ).finally(() => setIsLoading(false))
+      ).finally(() => {
+        setIsLoading(false)
+        history.goBack()
+      })
   };
 
   async function checkCep(e: any) {

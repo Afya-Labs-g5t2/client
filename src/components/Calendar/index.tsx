@@ -229,7 +229,7 @@ function Calendar() {
           labels={LABELS['pt']}
           month={new Date()}
           selectedDays={selectedDay}
-          showOutsideDays
+          // showOutsideDays
           onDayClick={handleDayClick}
           className="Birthdays"
           renderDay={renderDay}

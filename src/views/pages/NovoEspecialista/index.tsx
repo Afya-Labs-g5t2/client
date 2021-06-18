@@ -7,9 +7,6 @@ import { api } from '../../../services/api'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
-const emailValidationRegex = /\S+@\S+\.\S+/
-
 interface ProfissoesProps{
   "id":number,
   "profissao":string
@@ -38,6 +35,7 @@ const NovoEspecialista: React.FC = () => {
     "cidade": "",
     "uf": "",
     "profissao": "",
+    "id_profissao": "",
   };
 
   const { register, setValue, getValues, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
@@ -52,26 +50,15 @@ const NovoEspecialista: React.FC = () => {
 
   const onSubmit = (data: FormData) => {
     setIsLoading(true)
-
-    let idProfissao = null
-    let idEndereco = null
-
+    let newData
     if (getValues('especialidade') === 'Outra') {
-      setProfissaoSelected(getValues('profissao'))
-      api.post('/profissoes', {"profissao": profissaoSelected})
-        .then(res => {
-          idProfissao = res.data.id
-        })
+      newData = {...data, id_profissao: getValues('id_profissao')}
     } else {
-      idProfissao = profissoesList.find(el => el.profissao === profissaoSelected)?.id || null
+      const idProfissao: any = profissoesList.find(item => item.profissao === profissaoSelected)?.id
+      newData = {...data, id_profissao: idProfissao}
+      // data.set('id_profissao', idProfissao || "")
     }
-
-    // api.post('/enderecos', data)
-    //   .then(res => {
-    //     idEndereco = res.data.id
-    //   })
-    
-    api.post('/especialistas', {...data, id_profissao: idProfissao})
+    api.post('/enderecos', {...newData, nome: `${getValues('nome')} ${getValues('sobrenome')}`})
       .then(
         response => {
           toast.success('especialista cadastrado com sucesso!', {
@@ -105,6 +92,14 @@ const NovoEspecialista: React.FC = () => {
 
     !data.erro && autoPopulateAdress(data)
 
+  }
+
+  async function addNewProfissao() {
+    const newProfissao = getValues('profissao')
+    const response = await api.post('/profissoes', {"profissao": newProfissao})
+    const data = await response.data.id
+
+    setValue('id_profissao', data, { shouldValidate: false })
   }
 
   function autoPopulateAdress(data: any) {
@@ -147,7 +142,7 @@ const NovoEspecialista: React.FC = () => {
             </select>
             {getValues('especialidade') === 'Outra' &&
               <>
-                <input type='text' placeholder='Nova especialidade' {...register('profissao', { required: 'Digite a nova especialidade' })} />
+                <input type='text' placeholder='Nova especialidade' {...register('profissao', { required: 'Digite a nova especialidade' })} onBlur={addNewProfissao}/>
                 {errors.profissao && <p>{errors.profissao.message}</p>}
               </>
             }
