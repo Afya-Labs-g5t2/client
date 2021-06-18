@@ -61,7 +61,7 @@ const PacienteInfo: React.FC = () => {
                 <span className="idade-label">{idadeNow}</span>
               </div>
               <div className="quick-info" >
-                <Link to="/prontuario" className="acessar-prontuario">
+                <Link to={`/prontuarios/${id}`} className="acessar-prontuario">
                   <span className="prontuario-text">Prontuario</span>
                 </Link>
                 <div className="quick-sangue">
