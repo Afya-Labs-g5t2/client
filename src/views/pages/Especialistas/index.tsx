@@ -11,7 +11,7 @@ import { api } from '../../../services/api';
 
 // import { Container } from './styles';
 
-const Especialista: React.FC = () => {
+const Especialistas: React.FC = () => {
 
   const [showUser, setShowUser] = useState(false)
   const [apiData, setApiData] = useState<any>([])
@@ -22,6 +22,8 @@ const Especialista: React.FC = () => {
 
   function handleClick(id: number) {
     console.log(id)
+    console.log(apiData)
+    
   }
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const Especialista: React.FC = () => {
           key={especialista.id}
           name={especialista.nome} 
           email={especialista.email}
-          telefone={especialista.tel}
+          telefone={especialista.telefone}
           id={especialista.id} 
           handleClick={() => handleClick(especialista.id)} 
         />
@@ -73,4 +75,4 @@ const Especialista: React.FC = () => {
   );
 }
 
-export default Especialista;
+export default Especialistas;

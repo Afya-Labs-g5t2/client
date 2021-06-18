@@ -1,14 +1,12 @@
 import React, { InputHTMLAttributes, useCallback, useRef, useState, useEffect } from 'react';
 import { DivComponent } from './styles'
 import { useForm } from "react-hook-form";
-import { compareAsc, format } from 'date-fns'
-import DayPickerInput from 'react-day-picker/DayPickerInput';
+import { format } from 'date-fns'
 import 'react-day-picker/lib/style.css';
 import mockData from '../../mockData'
 import { motion } from 'framer-motion';
 import {api} from "../../services/api"
-import { func } from 'prop-types';
-import { number } from 'yargs';
+import { toast } from 'react-toastify';
 
 
 interface ModalAgendamentoProps {
@@ -78,18 +76,48 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
     "endTime": "",
   };
 
-  const { register, getValues, handleSubmit, reset, formState: { errors  } } = useForm({ defaultValues });
+  const { register, getValues, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
   
   const onSubmit = (data: any) => {
-    let incrementData = {
+    // let incrementData = {
+    const especialistaId = especialistaList.find(el => el.nome === data.especialista)?.id
+    const pacienteId = pacientesList.find(el => el.nome === data.paciente)?.id
+    // }
+    data = {...data,
       "data_agendamento": data.date,
+      "data_atendimento": data.date,
       "hora_atendimento": data.initTime,
       "status": "AGENDADO",
-      "id_paciente": 1,
-      "id_especialista": 1
+      "id_paciente": pacienteId,
+      "id_especialista": especialistaId,
+      "valor": 0
     }
     console.log('form sent')
-    // reset({ ...defaultValues })
+    api.post('/atendimentos', data)
+      .then(
+        response => {
+          toast.success('Paciente cadastrado com sucesso!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            onClose: handleClose
+          })
+          // reset({ ...defaultValues })
+        }
+      ).catch(err => {
+        toast.error("Oops! Não foi possível cadastrar o paciente", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        })
+      }
+      )
     console.log(data)
     // handleCancel()
   };
@@ -99,9 +127,13 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
     props.closeButton(prev => !prev)
   }
   
-  function handleChange(){
+  function handleChange() {
     setProfissaoSelected(getValues('especialidade'))
-    console.log(profissaoSelected);
+  }
+
+  function handleClose() {
+    reset({ ...defaultValues })
+    handleCancel()
   }
 
   function blockKeyboardKeys(e: any) {

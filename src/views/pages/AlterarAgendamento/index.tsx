@@ -4,38 +4,75 @@ import { DivComponent } from './styles'
 import NavBar from '../../../components/NavBar';
 import { useForm } from "react-hook-form";
 import { api} from '../../../services/api'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
+interface EspecialistaProps {
+  nome: string
+}
+
+interface PacienteProps {
+  id: number,
+  nome: string
+}
 
 interface agendamentoProps {
-  especialidade: string,
-  especialista: string,
-  paciente: string,
-  date: string,
-  initTime: string,
-  endTime: string,
+  id: number,
+  data_atendimento: string,
+  hora_atendimento: string,
+  status: string,
+  paciente: PacienteProps,
+  especialista: EspecialistaProps,
+}
+
+interface Pacientes{
+  id: number,
+  nome: string
+}
+
+interface Especialistas{
+  id: number,
+  id_profissao:number,
+  nome:string
 }
 
 const AlterarAgendamento: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [apiData, setApiData] = useState<agendamentoProps>({} as agendamentoProps)
-
+  const [pacientesList, setPacientesList] = useState<[Pacientes] | []>([]);
+  const [especialistaList, setEspecialistaList] = useState<[Especialistas] | []>([])
   let { id } = useParams<any>()
 
   const defaultValues = {
-    "especialidade": `${apiData.especialidade}`,
-    "especialista": `${apiData.especialista}`,
-    "paciente": `${apiData.paciente}`,
-    "date": `${apiData.date}`,
-    "initTime": `${apiData.initTime}`,
-    "endTime": `${apiData.endTime}`,
+    "id": apiData.id,
+    "especialista": apiData.especialista?.nome,
+    "paciente": apiData.paciente?.nome,
+    "data_atendimento": apiData?.data_atendimento,
+    "hora_atendimento": apiData?.hora_atendimento,
+    "endTime": "",
+    "status": ""
   };
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
+  const especialistaListSorted = especialistaList
+                                  .sort((a, b) => a.nome > b.nome ? 1 : -1)
+                                  .map((el: Especialistas) => el.nome === apiData.especialista?.nome ? 
+                                  <option selected={true} key={el.id}>{el.nome}</option>
+                                  :
+                                  <option key={el.id}>{el.nome}</option>
+                                  )
+  const pacienteListSorted = pacientesList
+                              .sort((a, b) => a.nome > b.nome ? 1 : -1)
+                              .map((el: Pacientes) => el.nome === apiData.paciente?.nome ?
+                              <option selected={true} key={el.id}>{el.nome}</option>
+                              :
+                              <option key={el.id}>{el.nome}</option>
+                              )
+
+  const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm({ defaultValues });
   const onSubmit = (data: any) => {
     setIsLoading(true)
-    api.put(`/agendamento/${id}`, data)
+    api.put(`/atendimentos/${id}`, data)
       .then(
         response => {
           toast.success('Agendamento alterado!', {
@@ -62,13 +99,24 @@ const AlterarAgendamento: React.FC = () => {
   };
 
   useEffect(() => {
-    api.get(`/agendamento/${id}`)
+    api.get("pacientes").then(res => {
+      setPacientesList(res.data)
+    }).catch(console.error)
+
+    api.get("especialistas").then(res => {
+      setEspecialistaList(res.data)
+    }).catch(console.error)
+
+    api.get(`/atendimentos/${id}`)
       .then(res => {
         setApiData(res.data)
       })
       .catch(console.error)
   }, [])
 
+  setValue('data_atendimento',apiData.data_atendimento)
+  setValue('hora_atendimento',apiData.hora_atendimento)
+  setValue('status',apiData.status)
 
   return (
     <DivComponent>
@@ -82,17 +130,6 @@ const AlterarAgendamento: React.FC = () => {
             <div className="modal-body">
             <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
               <div className="info-wrapper">
-                <div className="form-group">
-                    <label htmlFor="exampleFormControlSelect1">Filtrar por especialidade</label>
-                    <select
-                      className={`form-control`} 
-                      id="exampleFormControlSelect1"
-                      {...register('especialidade')}
-                    >
-                      <option value=""  disabled>Selecione a especialidade</option>
-                      {'mockEspecialidade'}
-                    </select>
-                  </div>
                   <div className="form-group">
                     <label htmlFor="exampleFormControlSelect1">Especialista</label>
                     <select
@@ -100,8 +137,8 @@ const AlterarAgendamento: React.FC = () => {
                       id="exampleFormControlSelect1"
                       {...register('especialista', {required: 'error'})}
                     >
-                      <option value=""  disabled>Selecione o especialista</option>
-                      {'mockEspecialista'}
+                      <option value={apiData.especialista?.nome}  disabled>Selecione o especialista</option>
+                      {especialistaListSorted}
                     </select>
                   </div>
                   <div className="form-group">
@@ -111,17 +148,17 @@ const AlterarAgendamento: React.FC = () => {
                       id="exampleFormControlSelect2"
                       {...register('paciente', {required: 'error'})}
                     >
-                      <option value=""  disabled>Selecione o paciente</option>
-                      {'mockPaciente'}
+                      <option value={apiData.paciente?.nome}  disabled>Selecione o paciente</option>
+                      {pacienteListSorted}
                     </select>
                   </div>
               </div>
               <div className="form-inline">
                 <div className="form-group">
                   <input
-                    className={`default-date-picker ${errors.date ? errors.date.message : ''}`}
+                    className={`default-date-picker ${errors.data_atendimento ? errors.data_atendimento.message : ''}`}
                     type="date"
-                    {...register('date', {
+                    {...register('data_atendimento', {
                       required: 'error'
                     })}
                     />
@@ -129,10 +166,10 @@ const AlterarAgendamento: React.FC = () => {
                 <div className="time-pick-wrapper">
                   <div className="form-group">
                       <input
-                        className={`form-control input-time ${errors.initTime ? errors.initTime.message : ''}`}
+                        className={`form-control input-time ${errors.hora_atendimento ? errors.hora_atendimento.message : ''}`}
                         autoComplete="nope"
                         maxLength={5}
-                        {...register('initTime', {required: 'error'})}
+                        {...register('hora_atendimento', {required: 'error'})}
                       />
                     </div>
                     <span className="time-separator">às</span>
@@ -147,9 +184,27 @@ const AlterarAgendamento: React.FC = () => {
                   </div>
                 </div>
               <div className="modal-footer">
+                <div className="form-group">
+                  <select
+                    className={`form-control ${errors.status ? errors.status.message : ''}`}
+                    id="exampleFormControlSelect2"
+                    {...register('status', {required: 'error'})}
+                  >
+                    <option value=""  disabled>Selecione o status</option>
+                    {<option>AGENDADO</option>}
+                    {<option>CANCELADO</option>}
+                  </select>
+                </div>
                 <button type="submit" className="btn btn-primary">Alterar</button>
               </div>
             </form>
+            <div className="consulta-start-container">
+              <div className="consulta-start-wrapper">
+                <Link to={`/prontuarios/${apiData.paciente?.id}`}>
+                <span className="consulta-start-value">Iniciar consulta</span>
+                </Link>
+              </div>
+            </div>
           </div>
         <div className="bot-container">
           <Menu />

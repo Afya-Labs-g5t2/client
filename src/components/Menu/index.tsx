@@ -77,10 +77,10 @@ function Menu() {
             </Link>
           </div>
           <div className="icon-container especialista-btn">
-          <Link to={`/especialista`} className="icon-btn">
+          <Link to={`/especialistas`} className="icon-btn">
               <div className="icon-wrapper">
-                <span className={`material-icons ${window.location.pathname.includes('especialista') && 'red'}`}>work</span>
-                <span className='btn-label' style={{color: `${window.location.pathname.includes('especialista') && 'var(--red)'}`}}>especialista</span>
+                <span className={`material-icons ${window.location.pathname.includes('especialistas') && 'red'}`}>work</span>
+                <span className='btn-label' style={{color: `${window.location.pathname.includes('especialistas') && 'var(--red)'}`}}>especialistas</span>
               </div>
             </Link>
           </div>

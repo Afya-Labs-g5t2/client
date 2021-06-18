@@ -69,8 +69,42 @@ export const DivComponent = styled.div`
 
             
         }
+
+        .modal-footer {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            .form-group {
+                margin: 0;
+            }
+        }
+
         .error {
                 border: 2px solid red !important;
             }
+    }
+
+    .consulta-start-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .consulta-start-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            background: hsla(108, 68%, 50%, .8);
+            height: 3rem;
+            width: 60%;
+            border-radius: 9px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 3rem;
+            cursor: pointer;
+        }
     }
 `

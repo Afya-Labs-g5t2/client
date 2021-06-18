@@ -206,6 +206,6 @@ export const DivComponent = styled.div`
                 } 
             }
         }
-    }
-   }
+    } 
+}
 `

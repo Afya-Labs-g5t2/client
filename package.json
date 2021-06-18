@@ -40,6 +40,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "author": "g5t2team",
+  "license": "MIT",
   "eslintConfig": {
     "extends": [
       "react-app",

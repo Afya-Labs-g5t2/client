@@ -16,7 +16,7 @@ export const DivComponent = styled.div`
         cursor: pointer;
 
         &:hover {
-            background: var(--background-main-shadow);
+            /* background: var(--background-main-shadow); */
         }
 
         .info-container {
