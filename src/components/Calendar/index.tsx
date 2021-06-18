@@ -33,7 +33,7 @@ function Calendar() {
 
   const [apiData, setApiData] = useState<[atendimentosProps] | []>([])
   const [selectedDay, setSelectedDay] = useState<any>(null)
-  const [dataSent, setDataSent] = useState<boolean>(false)
+  const [isdataSent, setIsDataSent] = useState<boolean>(false)
   const [agendamento, setAgendamento] = useState<any>({})
   const [selectedMonth, setSelectedMonth] = useState<string>(format(new Date(), 'MMMM'))
 
@@ -47,16 +47,16 @@ function Calendar() {
 
   useEffect(() => {
     api.get('atendimentos')
-      .then(res => {
-        setApiData(res.data)
-        setDataSent(true)
+      .then(res => { 
+        setApiData(res.data.filter((item: atendimentosProps) => item.status === 'AGENDADO'))
+        setIsDataSent(true)
         let daysList: any = uniqueDays()
         let myObj = createTodayApointmentsObject(daysList)
         setAgendamento(addApointmentsToDayList(daysList, myObj))
       })
       .catch(console.error)
     
-  }, [selectedDay, selectedMonth, dataSent])
+  }, [selectedDay, selectedMonth, isdataSent])
 
   // const agendamento2: any = {
   //   1: ['Mirko', 'Gianni', 'Mirko', 'Gianni', 'Gianni', 'Mirko', 'Gianni'],
@@ -72,6 +72,8 @@ function Calendar() {
   // const agendamento2: any = mockData.agendamento.map(el => {
   //   Number(format(parse(el.data, 'YYYY-MM-DD', new Date()), 'd')) []
   // })
+
+  const apiDatAasc = apiData.sort((a, b) => a > b ? 1 : -1)
 
   const WEEKDAYS_SHORT = {
     pt: ['Do', 'Se', 'Te', 'Qa', 'Qi', 'Sx', 'Sa'],
@@ -146,6 +148,7 @@ function Calendar() {
     const months = localeUtils.getMonths();
     const prev = months[previousMonth.getMonth()];
     const next = months[nextMonth.getMonth()];
+
     function handleLeftClick() {
       setSelectedMonth(prev)
       onPreviousClick()
@@ -195,8 +198,10 @@ function Calendar() {
     )
   }
 
-  const cardConsulta = apiData.map((el: atendimentosProps) => el.data_atendimento === (selectedDay && format(selectedDay, 'yyyy-MM-dd')) ?
-      <Link to={`agendamentos/${el.id}`} key={el.id} id={`${el.id}`} className="consulta-paciente-card" onClick={handleCardClick}>
+  
+
+  const cardConsulta = apiDatAasc.map((el: atendimentosProps) => el.data_atendimento === (selectedDay && format(selectedDay, 'yyyy-MM-dd')) ?
+      <Link to={`atendimentos/${el.id}`} key={el.id} id={`${el.id}`} className="consulta-paciente-card" onClick={handleCardClick}>
         <div className="top-section-wrapper">
           <div className="time-wrapper">
             <span className="time-value">{el.hora_atendimento}</span>

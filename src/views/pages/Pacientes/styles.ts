@@ -68,7 +68,7 @@ export const DivComponent = styled.div`
    .card-paciente-container {
 
         &:hover {
-            background: hsla(190, 90%, 50%, .5);
+            background: hsla(193, 25%, 85%, 0.96);
         }
     }
 

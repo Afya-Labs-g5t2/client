@@ -10,43 +10,68 @@ import 'react-toastify/dist/ReactToastify.css'
 const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
 const emailValidationRegex = /\S+@\S+\.\S+/
 
+interface ProfissoesProps{
+  "id":number,
+  "profissao":string
+}
+
 
 const NovoEspecialista: React.FC = () => {
   const [data, setData] = useState()
   const [isLoading, setIsLoading] = useState(false)
-  //Refs
-  // const logradouroInputRef = useRef<HTMLInputElement | null>(null)
-  // const bairroInputRef = useRef(null)
-  // const cidadeInputRef = useRef(null)
-  // const ufInputRef = useRef(null)
+  const [profissoesList, setProfissoesList] = useState<[ProfissoesProps] | []>([])
+  const [profissaoSelected, setProfissaoSelected] = useState<string>("")
 
   //react-hook-form
   const defaultValues = {
     "nome": "",
     "sobrenome": "",
     "email": "",
+    "especialidade": "",
     "registro": "",
     "celular": "",
     "telefone": "",
     "cep": "",
-    "adress": "",
+    "logradouro": "",
     "numero": "",
     "bairro": "",
     "cidade": "",
     "uf": "",
+    "profissao": "",
   };
 
-  const { register, setValue, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
+  const { register, setValue, getValues, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
 
-  // useEffect(() => {
-  //   if (formState.isSubmitSuccessful) {
-  //     reset({ defaultValues });
-  //   }
-  // }, [formState, submittedData, reset]);
+  useEffect(() => {
+    api.get("profissoes").then(res => {
+      setProfissoesList(res.data)
+    }).catch(console.error)
+  }, []);
 
-  const onSubmit = (data: any) => {
+  const profissaoListSorted = profissoesList.sort((a, b) => a.profissao > b.profissao ? 1 : -1).map((el: any) => <option key={el.id}>{el.profissao}</option>)
+
+  const onSubmit = (data: FormData) => {
     setIsLoading(true)
-    api.post('/especialistas', data)
+
+    let idProfissao = null
+    let idEndereco = null
+
+    if (getValues('especialidade') === 'Outra') {
+      setProfissaoSelected(getValues('profissao'))
+      api.post('/profissoes', {"profissao": profissaoSelected})
+        .then(res => {
+          idProfissao = res.data.id
+        })
+    } else {
+      idProfissao = profissoesList.find(el => el.profissao === profissaoSelected)?.id || null
+    }
+
+    // api.post('/enderecos', data)
+    //   .then(res => {
+    //     idEndereco = res.data.id
+    //   })
+    
+    api.post('/especialistas', {...data, id_profissao: idProfissao})
       .then(
         response => {
           toast.success('especialista cadastrado com sucesso!', {
@@ -86,10 +111,14 @@ const NovoEspecialista: React.FC = () => {
 
     const { logradouro, bairro, localidade, uf } = data
 
-    setValue('adress', logradouro, { shouldValidate: true })
+    setValue('logradouro', logradouro, { shouldValidate: true })
     setValue('bairro', bairro, { shouldValidate: true })
     setValue('cidade', localidade, { shouldValidate: true })
     setValue('uf', uf, { shouldValidate: true })
+  }
+
+  function handleChange() {
+    setProfissaoSelected(getValues('especialidade'))
   }
 
   return (
@@ -106,6 +135,25 @@ const NovoEspecialista: React.FC = () => {
             <label htmlFor="sobrenome">Sobrenome</label>
             <input type='text' placeholder='Sobrenome' {...register('sobrenome', { required: 'Digite o sobrenome' })} />
             {errors.sobrenome && <p>{errors.sobrenome.message}</p>}
+            <label htmlFor="especialidade">Especialidade</label>
+            <select
+              className={`form-control`} 
+              {...register('especialidade')}
+              onBlur={handleChange}
+            >
+              <option value={profissaoSelected}  disabled>Selecione a especialidade</option>
+              {profissaoListSorted}
+              <option>Outra</option>
+            </select>
+            {getValues('especialidade') === 'Outra' &&
+              <>
+                <input type='text' placeholder='Nova especialidade' {...register('profissao', { required: 'Digite a nova especialidade' })} />
+                {errors.profissao && <p>{errors.profissao.message}</p>}
+              </>
+            }
+            {/* <label htmlFor="especialidade">Especialidade</label>
+            <input type='text' placeholder='especialidade' {...register('profissao', { required: 'Digite a especialidade' })} />
+            {errors.profissao && <p>{errors.profissao.message}</p>} */}
             <label htmlFor="email">Email</label>
             <input type='text' placeholder='Email' {...register('email', { required: 'Digite o email' })} />
             {errors.email && <p>{errors.email.message}</p>}
@@ -140,9 +188,9 @@ const NovoEspecialista: React.FC = () => {
               onBlur={checkCep}
             />
             {errors.cep && <p>{errors.cep.message}</p>}
-            <label htmlFor="adress">Endereco</label>
-            <input type='text' placeholder='Endereco' {...register('adress', { required: 'Preencha com o endereco' })} />
-            {errors.adress && <p>{errors.adress.message}</p>}
+            <label htmlFor="logradouro">Endereco</label>
+            <input type='text' placeholder='Endereco' {...register('logradouro', { required: 'Preencha com o endereco' })} />
+            {errors.logradouro && <p>{errors.logradouro.message}</p>}
             <label htmlFor="numero">Numero</label>
             <input type='text' placeholder='Numero' {...register('numero', { required: 'Preencha com o numero' })} />
             {errors.numero && <p>{errors.numero.message}</p>}
