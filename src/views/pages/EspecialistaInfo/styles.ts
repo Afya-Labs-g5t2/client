@@ -169,4 +169,19 @@ export const DivComponent = styled.div`
         }
     }
    }
+   
+   @media only screen and (min-width: 700px) {
+        .content-container {
+            display: block;
+            margin-top: 0;
+            height: 100%;
+            overflow: scroll;
+            padding-bottom: 2rem;
+
+            .especialista-container {
+                padding-bottom: unset;
+                overflow: unset;
+            }
+        }
+    }
 `

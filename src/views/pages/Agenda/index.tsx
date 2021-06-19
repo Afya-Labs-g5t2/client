@@ -5,26 +5,21 @@ import NavBar from '../../../components/NavBar'
 import ModalAgendamento from '../../../components/ModalAgendamento'
 
 import { DivComponent } from './styles'
+import Loading from '../../../components/Loading';
 
 const Agenda: React.FC = () => {
     const [showModal, setShowModal] = useState(false)
-
     
     return (
         <DivComponent >
-        <div className="agenda-container">
-            {/* {showModal ?
-            <ModalAgendamento showModal={showModal} setShowModal={setShowModal} />
-            :
-            null
-            } */}
-            <div className="top">
+        <div className="agenda-container page-container">
+            <div className="top top-container">
                 <NavBar />
             </div>
-            <div className="mid">
+            <div className="mid content-container">
                 <Calendar />
             </div>
-            <div className="bot">
+            <div className="bot bot-container">
                 <Menu />    
             </div>
         </div>

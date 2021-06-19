@@ -6,12 +6,19 @@ export const DivComponent = styled.div`
         justify-content: center;
         margin-top: 1rem;
         padding: 0 2rem;
-        
+
+        .form-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
         form {
             display: flex;
             flex-direction: column;
             width: 100%;
             margin-bottom: 160px;
+            max-width: 600px;
 
             label {
                 font-weight: 700;
@@ -52,5 +59,20 @@ export const DivComponent = styled.div`
                 }
             }
         }
+    }
+
+    @media only screen and (min-width: 700px) {
+        .page-container {
+            overflow: unset;
+
+            .content-container {
+                display: block;
+                margin-top: 0;
+                height: 100%;
+                overflow: scroll;
+                padding-bottom: 5rem;
+            }
+        }
+        
     }
 `

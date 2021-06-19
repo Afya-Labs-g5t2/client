@@ -7,6 +7,7 @@ import { api } from '../../../services/api'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useParams } from 'react-router-dom';
+import Loading from '../../../components/Loading';
 
 interface ProfissoesProps{
   "id":number,
@@ -67,6 +68,7 @@ const NovoEspecialista: React.FC = () => {
   const { register, setValue, getValues, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
 
   useEffect(() => {
+    setIsLoading(true)
     api.get("profissoes").then(res => {
       setProfissoesList(res.data)
     }).catch(console.error)
@@ -74,7 +76,8 @@ const NovoEspecialista: React.FC = () => {
     api.get(`especialistas/${id}`).then(res => {
       const especialistaInfo = res.data
       populateEspecialistaFields(especialistaInfo)
-    })
+    }).catch(console.error)
+      .finally(() => setIsLoading(false))
   }, []);
 
   const profissaoListSorted = profissoesList.sort((a, b) => a.profissao > b.profissao ? 1 : -1).map((el: any) => <option key={el.id}>{el.profissao}</option>)
@@ -167,10 +170,13 @@ const NovoEspecialista: React.FC = () => {
   return (
     <DivComponent>
       <div className="page-container">
-        <div className="top-Container">
+        <div className="top-container">
           <NavBar />
         </div>
+        {isLoading ? <Loading />
+        :
         <div className="content-container">
+          <div className="form-wrapper">
           <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="nome">Nome</label>
             <input className="input-form" type='text' placeholder='Nome' {...register('nome', { required: 'Digite o primeiro nome' })} />
@@ -255,8 +261,10 @@ const NovoEspecialista: React.FC = () => {
               value="Custom Reset Field Values & Errors"
             /> */}
           </form>
+          </div>
           <ToastContainer />
         </div>
+        }
         <div className="bot-container">
           <Menu />
         </div>

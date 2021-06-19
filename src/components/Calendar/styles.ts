@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const DivComponent = styled.div`
     .calendar-container {
         width: 100%;
+        max-width: 28rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -66,6 +67,12 @@ export const DivComponent = styled.div`
                     pointer-events: none;
                 }
             }
+        }
+    }
+
+    @media only screen and (min-width: 700px) {
+        .calendar-container {
+            all: unset;
         }
     }
 `

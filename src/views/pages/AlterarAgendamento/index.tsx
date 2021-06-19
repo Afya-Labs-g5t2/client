@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { api} from '../../../services/api'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 interface EspecialistaProps {
   nome: string
@@ -43,6 +43,7 @@ const AlterarAgendamento: React.FC = () => {
   const [pacientesList, setPacientesList] = useState<[Pacientes] | []>([]);
   const [especialistaList, setEspecialistaList] = useState<[Especialistas] | []>([])
   let { id } = useParams<any>()
+  let history = useHistory()
 
   const defaultValues = {
     "id": apiData.id,
@@ -95,7 +96,10 @@ const AlterarAgendamento: React.FC = () => {
           draggable: true
         })
       }
-      ).finally(() => setIsLoading(false))
+      ).finally(() => {
+        setIsLoading(false)
+        history.goBack()
+      })
   };
 
   useEffect(() => {
@@ -109,21 +113,28 @@ const AlterarAgendamento: React.FC = () => {
 
     api.get(`/atendimentos/${id}`)
       .then(res => {
+        const agendamentoData = res.data
         setApiData(res.data)
+        fillFormData(agendamentoData)
       })
       .catch(console.error)
+
+    
   }, [])
 
-  setValue('data_atendimento',apiData.data_atendimento)
-  setValue('hora_atendimento',apiData.hora_atendimento)
-  setValue('status',apiData.status)
+  function fillFormData(data: agendamentoProps) {
+    setValue('data_atendimento',data.data_atendimento)
+    setValue('hora_atendimento',data.hora_atendimento)
+    setValue('status',data.status)
+  }
 
   return (
     <DivComponent>
       <div className="page-container">
-        <div className="top-Container">
+        <div className="top-container">
           <NavBar />
         </div>
+        <div className="content-container">
           <div className="modal-header">
               <h4 className="modal-title">Alterar agendamento</h4>
             </div>
@@ -206,6 +217,7 @@ const AlterarAgendamento: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
         <div className="bot-container">
           <Menu />
         </div>

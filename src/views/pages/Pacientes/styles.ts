@@ -5,7 +5,6 @@ export const DivComponent = styled.div`
    .page-container {
        position: relative;
        height: 100%;
-       overflow: hide;
        
        .content-container {
            display: flex;
@@ -72,11 +71,18 @@ export const DivComponent = styled.div`
         }
     }
 
-   @media only screen and (min-width: 500px) {
+    @media only screen and (min-width: 700px) {
         .page-container {
-            position: relative;
-            margin-left: auto;
-            width: calc(100% - 90px);
+            overflow: unset;
+
+            .content-container {
+                display: block;
+                margin-top: 0;
+                height: 100%;
+                overflow: scroll;
+                padding-bottom: 5rem;
+            }
         }
+        
     }
 `

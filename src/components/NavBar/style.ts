@@ -27,4 +27,17 @@ export const NavBarContent = styled.nav`
       margin: 0 12px
     }
   }
+
+  @media only screen and (min-width: 700px) {
+    .nav-container {
+      background: transparent;
+    }
+  }
+
+  @media only screen and (min-width: 1350px) {
+        .nav-container  {
+            /* margin-left: 1.25rem;
+            margin-right: 5rem; */
+        }
+    }
 `

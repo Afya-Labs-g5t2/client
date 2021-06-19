@@ -5,6 +5,7 @@ import NavBar from '../../../components/NavBar';
 import { useParams  } from 'react-router';
 import { api } from '../../../services/api';
 import { Link } from 'react-router-dom';
+import Loading from '../../../components/Loading';
 
 interface AddressProps {
   cep: number,
@@ -32,22 +33,27 @@ interface IUserRegister{
 
 const EspecialistaInfo: React.FC = () => {
   const [apiData, setApiData] = useState<IUserRegister>({} as IUserRegister)
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   let { id } = useParams<any>()
 
   useEffect(() => {
+    setIsLoading(true)
     api.get(`especialistas/${id}`)
       .then(res => {
         setApiData(res.data)
       })
       .catch(console.error)
+      .finally(() => setIsLoading(false))
   }, [])
 
   return (
       <DivComponent>
       <div className="page-container">
-        <div className="top-Container">
+        <div className="top-container">
         <NavBar />
         </div>
+        {isLoading ? <Loading /> 
+        :
         <div className="content-container">
           <div className="especialista-container">
             <div className="especialista-cover">
@@ -139,6 +145,7 @@ const EspecialistaInfo: React.FC = () => {
             </div>
           </div> 
         </div>
+        }
         <div className="bot-container">
           <Menu />
         </div>

@@ -20,14 +20,13 @@ function User(props: UserProps){
 
   return (
     
-    <div className="container-wrapper">
     <SectionComponent> 
       <div className={`container${props.showComponent ? ' show-component' : ''}`}>
         <div className="top-section">
           <span>Perfil</span>
-          <a href="#" className="icon" onClick={props.close}>
+          <div className="icon" onClick={props.close}>
            <span className="material-icons md-36" >close</span>
-          </a>
+          </div>
         </div>
         <div className="info-section">
           <div className="photo-container"></div>
@@ -39,20 +38,18 @@ function User(props: UserProps){
           </div>
         </div>
         <div className="action-section">
-          <a href="" className="icon">
+          <div className="icon">
             <span className="material-icons">vpn_key</span>
-          </a> 
+          </div> 
           <span>Alterar Senha</span>
         </div>
-        <div className="btn-container">
-          <a href="" className="btn-anchor">
+        <div className="btn-container btn">
+          <a href="/" className="btn-anchor" onClick={() => localStorage.removeItem('@tokenG5T2Afya')}>
             <span className="btn-txt">Sair</span>
           </a>
         </div>
       </div>
-      </SectionComponent>
-    </div>
-    
+      </SectionComponent>    
   );
 }
 

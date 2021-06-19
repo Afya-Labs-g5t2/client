@@ -3,7 +3,13 @@ import Menu from '../../../components/Menu'
 import { DivComponent } from './styles'
 import NavBar from '../../../components/NavBar';
 import { useForm } from "react-hook-form";
+<<<<<<< HEAD
 import { api } from '../../../services/api'
+||||||| merged common ancestors
+import { api,findCep  } from '../../../services/api'
+=======
+import { api  } from '../../../services/api'
+>>>>>>> main
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -103,10 +109,11 @@ const NovoEspecialista: React.FC = () => {
   return (
     <DivComponent>
       <div className="page-container">
-        <div className="top-Container">
+        <div className="top-container">
           <NavBar />
         </div>
         <div className="content-container">
+          <div className="form-wrapper">
           <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="nome">Nome</label>
             <input className="input-form" type='text' placeholder='Nome' {...register('nome', { required: 'Digite o primeiro nome' })} />
@@ -183,6 +190,7 @@ const NovoEspecialista: React.FC = () => {
               value="Custom Reset Field Values & Errors"
             /> */}
           </form>
+          </div>
           <ToastContainer />
         </div>
         <div className="bot-container">

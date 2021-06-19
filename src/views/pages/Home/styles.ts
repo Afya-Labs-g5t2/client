@@ -5,10 +5,11 @@ export const HomeStyle = styled.div`
 .page-container {
      height: 100%;
     .content-container {
-        height: calc(100vh - 39px - 3.5rem); // expaco que sobra entre o menu de baixo e o nav
+        height: 100vh;
         display: block;
         position: relative;
-        overflow: hidden;
+        padding-bottom: 120px; // margin pro centeudo do final ficar acima do botao
+        overflow: scroll;
         .container{
             background:E5E5E5;
             padding:1rem;
@@ -76,7 +77,26 @@ export const HomeStyle = styled.div`
                         }  
             }  
     } 
-}                                       
+}      
+
+    @media only screen and (min-width: 700px) {
+        .page-container {
+            overflow: unset;
+            
+
+            .content-container {
+                display: block;
+                margin-top: 0;
+                overflow: scroll;
+
+                .container-wrapper {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+        
+    }
 
 `
 
