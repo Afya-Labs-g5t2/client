@@ -7,7 +7,7 @@ import Login from './views/pages/Login';
 import Agenda from './views/pages/Agenda';
 import Prontuario from './views/pages/Prontuario'
 import Pacientes from './views/pages/Pacientes';
-import Especialista from './views/pages/Especialista';
+import Especialistas from './views/pages/Especialistas';
 import NovoEspecialista from './views/pages/NovoEspecialista';
 import EspecialistaInfo from './views/pages/EspecialistaInfo';
 import PacienteInfo from './views/pages/PacienteInfo';
@@ -26,12 +26,12 @@ const Routes: React.FC = () => {
         <PrivateRoutes path="/agenda" component={Agenda}/>
         <PrivateRoutes path="/pacientes" exact component={Pacientes}/>
         <PrivateRoutes path="/pacientes/novo" exact component={NovoPaciente}/>
-        <PrivateRoutes path="/prontuario" exact component={Prontuario}/>
+        <PrivateRoutes path="/prontuarios/:id"  component={Prontuario}/>
         <PrivateRoutes path="/pacientes/:id" component={PacienteInfo}/>
-        <PrivateRoutes path="/agendamentos/:id" component={AlterarAgendamento}/>
-        <PrivateRoutes path="/especialista" exact component={Especialista}/>
-        <PrivateRoutes path="/especialista/novo" exact component={NovoEspecialista}/>
-        <PrivateRoutes path="/especialista/:id" component={EspecialistaInfo}/>
+        <PrivateRoutes path="/atendimentos/:id" component={AlterarAgendamento}/>
+        <PrivateRoutes path="/especialistas" exact component={Especialistas}/>
+        <PrivateRoutes path="/especialistas/novo" exact component={NovoEspecialista}/>
+        <PrivateRoutes path="/especialistas/:id" component={EspecialistaInfo}/>
         <PrivateRoutes path="/senha" component={AlterarSenha}/>
         {/* <PrivateRoutes path="/dash" exact component={Dash}/> */}
       </Switch>

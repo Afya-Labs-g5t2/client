@@ -1,14 +1,12 @@
 import React, { InputHTMLAttributes, useCallback, useRef, useState, useEffect } from 'react';
 import { DivComponent } from './styles'
 import { useForm } from "react-hook-form";
-import { compareAsc, format } from 'date-fns'
-import DayPickerInput from 'react-day-picker/DayPickerInput';
+import { format } from 'date-fns'
 import 'react-day-picker/lib/style.css';
 import mockData from '../../mockData'
 import { motion } from 'framer-motion';
 import {api} from "../../services/api"
-import { func } from 'prop-types';
-import { number } from 'yargs';
+import { toast } from 'react-toastify';
 
 
 interface ModalAgendamentoProps {
@@ -54,11 +52,14 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
     }).catch(console.error)
   }, [])
   
-  const especialistaListSorted = especialistaList
-                                  .sort((a, b) => a.nome > b.nome ? 1 : -1)
-                                  .map(el => profissoesList.find(x => x.id === el.id_profissao)?.profissao === profissaoSelected && <option key={el.id}>{el.nome}</option>)
-  const pacienteListSorted = pacientesList.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => <option key={el.id}>{el.nome}</option>)
   const profissaoListSorted = profissoesList.sort((a, b) => a.profissao > b.profissao ? 1 : -1).map(el => <option key={el.id}>{el.profissao}</option>)
+  const especialistaListSorted = profissaoSelected === '' ?
+    especialistaList.map(el => <option key={el.id}>{el.nome}</option>)
+    : 
+    especialistaList
+      .sort((a, b) => a.nome > b.nome ? 1 : -1)
+      .map(el => profissoesList.find(x => x.id === el.id_profissao)?.profissao === profissaoSelected && <option key={el.id}>{el.nome}</option>)
+  const pacienteListSorted = pacientesList.sort((a, b) => a.nome > b.nome ? 1 : -1).map(el => <option key={el.id}>{el.nome}</option>)
   const modalRef = useRef()
 
   const fadeTop = {
@@ -75,13 +76,50 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
     "endTime": "",
   };
 
-  const { register, getValues, handleSubmit, reset, formState: { errors  } } = useForm({ defaultValues });
+  const { register, getValues, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues });
   
   const onSubmit = (data: any) => {
+    // let incrementData = {
+    const especialistaId = especialistaList.find(el => el.nome === data.especialista)?.id
+    const pacienteId = pacientesList.find(el => el.nome === data.paciente)?.id
+    // }
+    data = {...data,
+      "data_agendamento": data.date,
+      "data_atendimento": data.date,
+      "hora_atendimento": data.initTime,
+      "status": "AGENDADO",
+      "id_paciente": pacienteId,
+      "id_especialista": especialistaId,
+      "valor": 0
+    }
     console.log('form sent')
-    reset({ ...defaultValues })
+    api.post('/atendimentos', data)
+      .then(
+        response => {
+          toast.success('Paciente cadastrado com sucesso!', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            onClose: handleClose
+          })
+          // reset({ ...defaultValues })
+        }
+      ).catch(err => {
+        toast.error("Oops! Não foi possível cadastrar o paciente", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        })
+      }
+      )
     console.log(data)
-    handleCancel()
+    // handleCancel()
   };
 
   function handleCancel() {
@@ -89,9 +127,13 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
     props.closeButton(prev => !prev)
   }
   
-  function handleChange(){
+  function handleChange() {
     setProfissaoSelected(getValues('especialidade'))
-    console.log(profissaoSelected);
+  }
+
+  function handleClose() {
+    reset({ ...defaultValues })
+    handleCancel()
   }
 
   function blockKeyboardKeys(e: any) {
@@ -182,7 +224,7 @@ const handleKeyupTimeMask = useCallback(( e: React.FormEvent<HTMLInputElement>) 
                       id="exampleFormControlSelect2"
                       {...register('paciente', {required: 'error'})}
                     >
-                      <option value="" selected disabled>Selecione o paciente</option>
+                      <option value=""  disabled>Selecione o paciente</option>
                       {pacienteListSorted}
                     </select>
                   </div>

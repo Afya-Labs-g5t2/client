@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { api } from '../../../services/api'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useHistory } from 'react-router-dom';
 
 // const passwordValidationRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
 // const emailValidationRegex = /\S+@\S+\.\S+/
@@ -14,6 +15,8 @@ import 'react-toastify/dist/ReactToastify.css'
 const NovoPaciente: React.FC = () => {
   const [data, setData] = useState()
   const [isLoading, setIsLoading] = useState(false)
+
+  let history = useHistory()
   //Refs
   // const logradouroInputRef = useRef<HTMLInputElement | null>(null)
   // const bairroInputRef = useRef(null)
@@ -51,7 +54,7 @@ const NovoPaciente: React.FC = () => {
 
   const onSubmit = (data: FormData) => {
     setIsLoading(true)
-    api.post('/pacientes', data)
+    api.post('/enderecos', {...data, nome: `${getValues('nome')} ${getValues('sobrenome')}`})
       .then(
         response => {
           // getData()
@@ -75,11 +78,11 @@ const NovoPaciente: React.FC = () => {
           pauseOnHover: true,
           draggable: true
         })
-
-        console.log(err)
-        console.log(data)
       }
-      ).finally(() => setIsLoading(false))
+      ).finally(() => {
+        setIsLoading(false)
+        history.goBack()
+      })
   };
 
   async function checkCep(e: any) {
@@ -183,7 +186,7 @@ const NovoPaciente: React.FC = () => {
               {errors.password && <p>{errors.password.message}</p>} */}
             <label htmlFor="tipo_sangue">Tipo sanguíneo</label>
             <select className={`form-control`} style={{backgroundColor: 'var(--background-main)'}} {...register('tipo_sangue')} >
-              <option value="" selected >Selecione o tipo sanguíneo</option>
+              <option value="" >Selecione o tipo sanguíneo</option>
               {bloodTypesTag}
             </select>
 
@@ -220,6 +223,7 @@ const NovoPaciente: React.FC = () => {
               onBlur={() => createCPFMask(getValues('cpf'))}
             />
             {errors.cpf && <p>{errors.cpf.message}</p>}
+            {/* /^[(]\d{2}[)][9]\d{4}-?\d{4}$/ */}
             <label htmlFor="celular">Celular</label>
             <input
               type='text' 
@@ -235,7 +239,8 @@ const NovoPaciente: React.FC = () => {
             />
             {errors.celular && <p>{errors.celular.message}</p>}
             <label htmlFor="telefone">Telefone</label>
-            <input type='text' placeholder='Telefone' {...register('telefone')} />
+            {/* /^[(]\d{2}[)]\d{4}-?\d{4}$/ */}
+            <input type='text' placeholder='Telefone' {...register('telefone')} /> 
             <label htmlFor="cep">CEP</label>
             <input
               type='text'

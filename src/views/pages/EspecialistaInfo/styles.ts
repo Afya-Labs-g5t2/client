@@ -41,36 +41,8 @@ export const DivComponent = styled.div`
             justify-content: space-between;
             align-items: center;
 
-            .acessar-prontuario {
-                background-color: var(--background-main);
-                padding: 6px;
-                border-radius: 6px;
-                font-weight: 700;
-                color: var(--font-color);
-            }
-
-            .quick-sangue {
-                display: flex;
-                flex-direction: row;
-                position: relative;
-                bottom: 0;
-
-                .sangue-label {
-                    align-self: flex-end;
-                }
-
-                .sangue-value {
-                    margin-left: 12px;
-                    font-weight: 700;
-                    font-size: 1.25rem;
-                    color: hsla(239, 70%, 74%, 1);
-                    align-self: flex-end;
-                }
-
-                .sangue-sinal {
-                    position: relative;
-                    bottom: .3125rem; // 25% da altura da fonte
-                }
+            .profissao-text {
+                
             }
         }
     }
