@@ -107,4 +107,11 @@ export const DivComponent = styled.div`
             cursor: pointer;
         }
     }
+
+    @media only screen and (min-width: 700px) {
+        .content-container {
+            height: 100%;
+            overflow: scroll;
+        }
+    }
 `

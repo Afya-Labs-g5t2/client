@@ -204,10 +204,11 @@ const NovoPaciente: React.FC = () => {
   return (
     <DivComponent>
       <div className="page-container">
-        <div className="top-Container">
+        <div className="top-container">
           <NavBar />
         </div>
         <div className="content-container">
+          <div className="form-wrapper">
           <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="nome">Nome</label>
             <input className="input-form" type='text' placeholder='Nome' {...register('nome', { required: 'Digite o primeiro nome' })} />
@@ -310,6 +311,7 @@ const NovoPaciente: React.FC = () => {
 
             <input className='btn-form' type='submit' value='Salvar' />
           </form>
+          </div>
         </div>
         <div className="bot-container">
           <Menu />

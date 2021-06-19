@@ -5,11 +5,11 @@ import Routes from './routes';
 
 function App() {
   return (
-    <>
-    <GlobalStyles/>
-    <Routes/>
-    <ToastContainer />
-    </>
+    <div className="app-container">
+      <GlobalStyles/>
+      <Routes/>
+      <ToastContainer />
+    </div>
   );
 }
 
