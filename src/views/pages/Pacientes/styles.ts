@@ -5,7 +5,6 @@ export const DivComponent = styled.div`
    .page-container {
        position: relative;
        height: 100%;
-       overflow: hide;
        
        .content-container {
            display: flex;

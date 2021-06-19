@@ -33,6 +33,8 @@ const FormSignIn: React.FC = () => {
     .then(
       response => {
         localStorage.setItem("@tokenG5T2Afya", response.data.token)
+        localStorage.setItem("@loginAfya", response.data.login)
+        localStorage.setItem("@idUserAfya", response.data.id)
         toast.success('Login realizado com sucesso!', {
           autoClose: 2000
         })

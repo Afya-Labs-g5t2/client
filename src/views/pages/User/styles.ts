@@ -12,7 +12,7 @@ export const SectionComponent = styled.section`
         border: 1px solid;
         z-index: 9;
         transition: transform .3s;
-        transform: translateX(100%);
+        transform: translateX(120%);
 
         .top-section {
             display: flex;
