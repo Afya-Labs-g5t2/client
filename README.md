@@ -92,18 +92,24 @@ client-main
 │   │   └── Navbar
 │   ├── services
 │   │   └── api.ts
-│   │       ├──Agenda
-│   │       ├──AlterarSenha
-│   │       ├──Especialista
-│   │       ├──Home
-│   │       ├──Login
-│   │       ├──NovoPaciente
-│   │       ├──PacienteInfo
-│   │       ├──Prontuario
-│   │       ├──Prontuario
-│   │       └── User
+│   │       
 │   ├── views
 │   │   └── pages
+|   |       ├──Agenda
+│   │       ├──AlterarAgendamento
+│   │       ├──AlterarEspecialista
+│   │       ├──AlterarPaciente
+│   │       ├──AlterarSenha
+│   │       ├──EspecialistaInfo
+│   │       ├──Especialistas
+│   │       ├──Home
+│   │       ├──Login
+│   │       ├──NovoEspecialista
+│   │       ├──NovoPaciente
+│   │       ├──PacienteInfo
+│   │       ├──Pacientes
+│   │       ├──Prontuario
+│   │       └── User
 │   ├── App.tsx
 │   ├── index.tsx
 │   ├── private.routes.tsx
@@ -114,6 +120,7 @@ client-main
 ├── package-lock.json
 ├── README.md
 ├── tsconfig.json
+|── vercel.json
 └── yarn.lock
 
 ```
