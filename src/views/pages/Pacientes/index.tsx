@@ -8,6 +8,7 @@ import CardPaciente from '../../../components/CardPaciente'
 import mockData from '../../../mockData';
 import { Link } from 'react-router-dom';
 import { api } from '../../../services/api';
+import Loading from '../../../components/Loading';
 
 // import { Container } from './styles';
 
@@ -16,6 +17,7 @@ const Paciente: React.FC = () => {
   const [showUser, setShowUser] = useState(false)
   const [apiData, setApiData] = useState<[]>([])
   const [searchInputValue, setSearchInputValue] = useState<string>('')
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   function handleToggle() {
     setShowUser(!showUser)
@@ -26,11 +28,13 @@ const Paciente: React.FC = () => {
   }
 
   useEffect(() => {
+    setIsLoading(true)
     api.get("pacientes")
       .then(res => {
         setApiData(res.data)
       })
       .catch(console.error)
+      .finally(() => setIsLoading(false))
   }, [])
 
   const cardPaciente = apiData
@@ -54,18 +58,20 @@ const Paciente: React.FC = () => {
         <div className="top-container">
         <NavBar />
         </div>
-        <div className="content-container">
-          <div className="search-container">
-            <div className="search-field">
-              <span className="search-icon material-icons" >search</span>
-              <input type="text" value={searchInputValue} onChange={(e) => setSearchInputValue(e.target.value)}></input>
-              <span className="clean-icon material-icons" onClick={() => setSearchInputValue('')}>close</span>
-            </div>
-          </div>  
-          <div className="results-container">
-            {cardPaciente}
-          </div>  
-        </div>
+        {isLoading ? <Loading /> :
+          <div className="content-container">
+            <div className="search-container">
+              <div className="search-field">
+                <span className="search-icon material-icons" >search</span>
+                <input type="text" value={searchInputValue} onChange={(e) => setSearchInputValue(e.target.value)}></input>
+                <span className="clean-icon material-icons" onClick={() => setSearchInputValue('')}>close</span>
+              </div>
+            </div>  
+            <div className="results-container">
+              {cardPaciente}
+            </div>  
+          </div>
+        }
         <div className="bot-container">
           <Menu />
         </div>

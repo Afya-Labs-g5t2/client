@@ -6,6 +6,7 @@ import { useParams  } from 'react-router';
 import { api } from '../../../services/api';
 import { Link } from 'react-router-dom';
 import {differenceInYears, parse} from 'date-fns'
+import Loading from '../../../components/Loading';
 
 interface AddressProps {
   cep: number,
@@ -29,16 +30,19 @@ interface IUserRegister{
 
 const PacienteInfo: React.FC = () => {
   const [apiData, setApiData] = useState<IUserRegister>({} as IUserRegister)
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   let { id } = useParams<any>()
 
   const idadeNow = differenceInYears(new Date(), parse(apiData.data_nascimento, 'yyyy-MM-dd', new Date()))?.toLocaleString()
 
   useEffect(() => {
+    setIsLoading(true)
     api.get(`pacientes/${id}`)
       .then(res => {
         setApiData(res.data)
       })
       .catch(console.error)
+      .finally(() => setIsLoading(false))
   }, [])
 
   return (
@@ -47,7 +51,9 @@ const PacienteInfo: React.FC = () => {
         <div className="top-container">
         <NavBar />
         </div>
-        <div className="content-container">
+        {isLoading ? <Loading />
+        :
+          <div className="content-container">
           <div className="paciente-container">
             <div className="paciente-cover">
               <div className="paciente-main">
@@ -152,6 +158,8 @@ const PacienteInfo: React.FC = () => {
             </div>
           </div> 
         </div>
+        }
+        
         <div className="bot-container">
           <Menu />
         </div>

@@ -6,6 +6,7 @@ import { api } from '../../services/api';
 import animationData from '../../assets/animation/19318-loading-circle.json';
 import { FormContent } from './style';
 import { useForm } from "react-hook-form";
+import Loading from "../Loading"
 
 interface IUserLogin {
   login: string;
@@ -35,36 +36,26 @@ const FormSignIn: React.FC = () => {
         localStorage.setItem("@tokenG5T2Afya", response.data.token)
         localStorage.setItem("@loginAfya", response.data.login)
         localStorage.setItem("@idUserAfya", response.data.id)
+        localStorage.setItem("@usernameAfya", response.data.nome)
         toast.success('Login realizado com sucesso!', {
           autoClose: 2000
         })
         history.push('/')
       }).catch(err => {
             toast.error("Senha ou login incorretos!")
-            setIsLoading(false)
-        }).finally(() => setIsLoading(false))
-    
+        }).finally(() => {
+          setIsLoading(false)
+          history.go(0)
+        })
   });
 
-  const animationContent = {
-    loop: true,
-    autoplay: true,
-    isStopped: !isLoading,
-    animationData: animationData
-  }
 
   return (
     <FormContent>
       <>
         {
           isLoading &&
-          <div className="loading" >
-            <Lottie
-              options={animationContent}
-              width={200}
-              height={200}
-            />
-          </div>
+          <Loading />
         }
         <form onSubmit={onSubmit} autoComplete="off" className={isLoading ? 'loading-on' : ''}>
           <input type="text" placeholder='Login' {...register('login', {
