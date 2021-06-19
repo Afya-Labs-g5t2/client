@@ -96,7 +96,7 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
     api.post('/atendimentos', data)
       .then(
         response => {
-          toast.success('Paciente cadastrado com sucesso!', {
+          toast.success('Consulta cadastrado com sucesso!', {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -108,7 +108,7 @@ function ModalAgendamento(props: ModalAgendamentoProps) {
           // reset({ ...defaultValues })
         }
       ).catch(err => {
-        toast.error("Oops! Não foi possível cadastrar o paciente", {
+        toast.error("Oops! Não foi possível cadastrar a consulta", {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,

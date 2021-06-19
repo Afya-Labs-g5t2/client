@@ -5,10 +5,10 @@ import NavBar from '../../../components/NavBar'
 import ModalAgendamento from '../../../components/ModalAgendamento'
 
 import { DivComponent } from './styles'
+import Loading from '../../../components/Loading';
 
 const Agenda: React.FC = () => {
     const [showModal, setShowModal] = useState(false)
-
     
     return (
         <DivComponent >

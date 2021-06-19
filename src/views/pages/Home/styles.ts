@@ -77,7 +77,26 @@ export const HomeStyle = styled.div`
                         }  
             }  
     } 
-}                                       
+}      
+
+    @media only screen and (min-width: 700px) {
+        .page-container {
+            overflow: unset;
+            
+
+            .content-container {
+                display: block;
+                margin-top: 0;
+                overflow: scroll;
+
+                .container-wrapper {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+        
+    }
 
 `
 

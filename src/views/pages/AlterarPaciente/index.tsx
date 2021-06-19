@@ -7,6 +7,7 @@ import { api } from '../../../services/api'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useHistory, useParams } from 'react-router-dom';
+import Loading from '../../../components/Loading';
 
 interface AddressProps {
   cep: number,
@@ -94,6 +95,7 @@ const NovoPaciente: React.FC = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true)
     api.get(`pacientes/${id}`)
       .then(res => {
         setApiData(res.data)
@@ -102,6 +104,7 @@ const NovoPaciente: React.FC = () => {
         populatePacienteFields(pacienteInfo)
       })
       .catch(console.error)
+      .finally(() => setIsLoading(false))
   }, [])
 
   async function checkCep(e: any) {
@@ -207,112 +210,116 @@ const NovoPaciente: React.FC = () => {
         <div className="top-container">
           <NavBar />
         </div>
-        <div className="content-container">
-          <div className="form-wrapper">
-          <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="nome">Nome</label>
-            <input className="input-form" type='text' placeholder='Nome' {...register('nome', { required: 'Digite o primeiro nome' })} />
-            {errors.nome && <p>{errors.nome.message}</p>}
-            <label htmlFor="sobrenome">Sobrenome</label>
-            <input type='text' placeholder='Sobrenome' {...register('sobrenome', { required: 'Digite o sobrenome' })} />
-            {errors.sobrenome && <p>{errors.sobrenome.message}</p>}
-            {/* <input 
-              type='password' 
-              placeholder='Digite a senha' 
-              {...register('password', { 
-                required: "Digite a senha",
-                pattern: passwordValidationRegex
-              })} />
-              {errors.password && <p>{errors.password.message}</p>} */}
-            <label htmlFor="tipo_sangue">Tipo sanguíneo</label>
-            <select className={`form-control`} style={{backgroundColor: 'var(--background-main)'}} {...register('tipo_sangue')} >
-              <option value="" >Selecione o tipo sanguíneo</option>
-              {bloodTypesTag}
-            </select>
+        {isLoading ? <Loading />
+        :
+          <div className="content-container">
+            <div className="form-wrapper">
+            <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+              <label htmlFor="nome">Nome</label>
+              <input className="input-form" type='text' placeholder='Nome' {...register('nome', { required: 'Digite o primeiro nome' })} />
+              {errors.nome && <p>{errors.nome.message}</p>}
+              <label htmlFor="sobrenome">Sobrenome</label>
+              <input type='text' placeholder='Sobrenome' {...register('sobrenome', { required: 'Digite o sobrenome' })} />
+              {errors.sobrenome && <p>{errors.sobrenome.message}</p>}
+              {/* <input 
+                type='password' 
+                placeholder='Digite a senha' 
+                {...register('password', { 
+                  required: "Digite a senha",
+                  pattern: passwordValidationRegex
+                })} />
+                {errors.password && <p>{errors.password.message}</p>} */}
+              <label htmlFor="tipo_sangue">Tipo sanguíneo</label>
+              <select className={`form-control`} style={{backgroundColor: 'var(--background-main)'}} {...register('tipo_sangue')} >
+                <option value="" >Selecione o tipo sanguíneo</option>
+                {bloodTypesTag}
+              </select>
 
-            <label htmlFor="email">Email</label>
-            <input
-              type='text'
-              placeholder='Email'
-              {...register('email', { 
-                required: 'Digite o email',
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: 'Digite um email valido',
-                },
+              <label htmlFor="email">Email</label>
+              <input
+                type='text'
+                placeholder='Email'
+                {...register('email', { 
+                  required: 'Digite o email',
+                  pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: 'Digite um email valido',
+                  },
+                  })} 
+              />
+              {errors.email && <p>{errors.email.message}</p>}
+              <label htmlFor="data_nascimento">Data de nascimento</label>
+              <input type='date' placeholder='Data de Nascimento' {...register('data_nascimento', { required: 'Digite a data de nascimento' })} />
+              {errors.data_nascimento && <p>{errors.data_nascimento.message}</p>}
+              <label htmlFor="cpf">CPF</label>
+              <input
+                type='text'
+                placeholder='Digite o CPF (somente numeros)'
+                {...register('cpf', {
+                  required: "Digite um CPF valido",
+                  maxLength: 14,
+                  pattern: {
+                    value: /^([0-9]{3}[.]){2}([0-9]{3}[-])?([0-9]){2}$/, // /^[0-9]{11}$/
+                    message: 'Digite apenas 11 digitos',
+                  },
+                })}
+                onKeyDown={blockKeyboardKeys}
+                onFocus={removeCPFMask}
+                onBlur={() => createCPFMask(getValues('cpf'))}
+              />
+              {errors.cpf && <p>{errors.cpf.message}</p>}
+              <label htmlFor="celular">Celular</label>
+              <input
+                type='text' 
+                placeholder='Celular' 
+                {...register('celular', { 
+                  required: 'Digite o numero de celular',
+                  pattern: {
+                    value: /^[0-9]{9,13}$/,
+                    message: 'Digite um nomero valido',
+                  },
                 })} 
-            />
-            {errors.email && <p>{errors.email.message}</p>}
-            <label htmlFor="data_nascimento">Data de nascimento</label>
-            <input type='date' placeholder='Data de Nascimento' {...register('data_nascimento', { required: 'Digite a data de nascimento' })} />
-            {errors.data_nascimento && <p>{errors.data_nascimento.message}</p>}
-            <label htmlFor="cpf">CPF</label>
-            <input
-              type='text'
-              placeholder='Digite o CPF (somente numeros)'
-              {...register('cpf', {
-                required: "Digite um CPF valido",
-                maxLength: 14,
-                pattern: {
-                  value: /^([0-9]{3}[.]){2}([0-9]{3}[-])?([0-9]){2}$/, // /^[0-9]{11}$/
-                  message: 'Digite apenas 11 digitos',
-                },
-              })}
-              onKeyDown={blockKeyboardKeys}
-              onFocus={removeCPFMask}
-              onBlur={() => createCPFMask(getValues('cpf'))}
-            />
-            {errors.cpf && <p>{errors.cpf.message}</p>}
-            <label htmlFor="celular">Celular</label>
-            <input
-              type='text' 
-              placeholder='Celular' 
-              {...register('celular', { 
-                required: 'Digite o numero de celular',
-                pattern: {
-                  value: /^[0-9]{9,13}$/,
-                  message: 'Digite um nomero valido',
-                },
-              })} 
-              onKeyDown={blockKeyboardKeys}
-            />
-            {errors.celular && <p>{errors.celular.message}</p>}
-            <label htmlFor="telefone">Telefone</label>
-            <input type='text' placeholder='Telefone' {...register('telefone')} />
-            <label htmlFor="cep">CEP</label>
-            <input
-              type='text'
-              placeholder='Digite o CEP (somente numeros)'
-              {...register('cep', {
-                required: "Digite um CEP valido",
-                pattern: {
-                  value: /^[\d]{8}$/,
-                  message: 'Digite apenas 8 digitos',
-                },
-              })}
-              onBlur={checkCep}
-            />
-            {errors.cep && <p>{errors.cep.message}</p>}
-            <label htmlFor="logradouro">Endereco</label>
-            <input type='text' placeholder='Endereco' {...register('logradouro', { required: 'Preencha com o endereco' })} />
-            {errors.logradouro && <p>{errors.logradouro.message}</p>}
-            <label htmlFor="numero">Numero</label>
-            <input type='text' placeholder='Numero' {...register('numero', { required: 'Preencha com o numero' })} />
-            {errors.numero && <p>{errors.numero.message}</p>}
-            <label htmlFor="bairro">Bairro</label>
-            <input type='text' placeholder='Bairro' {...register('bairro', { required: 'Preencha com o bairro' })} />
-            {errors.bairro && <p>{errors.bairro.message}</p>}
-            <label htmlFor="cidade">Cidade</label>
-            <input type='text' placeholder='Cidade' {...register('cidade', { required: 'Preencha com a cidade' })} />
-            {errors.cidade && <p>{errors.cidade.message}</p>}
-            <label htmlFor="uf">UF</label>
-            <input type='text' placeholder='Estado' {...register('uf', { required: 'Preencha com o estado' })} />
-            {errors.uf && <p>{errors.uf.message}</p>}
+                onKeyDown={blockKeyboardKeys}
+              />
+              {errors.celular && <p>{errors.celular.message}</p>}
+              <label htmlFor="telefone">Telefone</label>
+              <input type='text' placeholder='Telefone' {...register('telefone')} />
+              <label htmlFor="cep">CEP</label>
+              <input
+                type='text'
+                placeholder='Digite o CEP (somente numeros)'
+                {...register('cep', {
+                  required: "Digite um CEP valido",
+                  pattern: {
+                    value: /^[\d]{8}$/,
+                    message: 'Digite apenas 8 digitos',
+                  },
+                })}
+                onBlur={checkCep}
+              />
+              {errors.cep && <p>{errors.cep.message}</p>}
+              <label htmlFor="logradouro">Endereco</label>
+              <input type='text' placeholder='Endereco' {...register('logradouro', { required: 'Preencha com o endereco' })} />
+              {errors.logradouro && <p>{errors.logradouro.message}</p>}
+              <label htmlFor="numero">Numero</label>
+              <input type='text' placeholder='Numero' {...register('numero', { required: 'Preencha com o numero' })} />
+              {errors.numero && <p>{errors.numero.message}</p>}
+              <label htmlFor="bairro">Bairro</label>
+              <input type='text' placeholder='Bairro' {...register('bairro', { required: 'Preencha com o bairro' })} />
+              {errors.bairro && <p>{errors.bairro.message}</p>}
+              <label htmlFor="cidade">Cidade</label>
+              <input type='text' placeholder='Cidade' {...register('cidade', { required: 'Preencha com a cidade' })} />
+              {errors.cidade && <p>{errors.cidade.message}</p>}
+              <label htmlFor="uf">UF</label>
+              <input type='text' placeholder='Estado' {...register('uf', { required: 'Preencha com o estado' })} />
+              {errors.uf && <p>{errors.uf.message}</p>}
 
-            <input className='btn-form' type='submit' value='Salvar' />
-          </form>
+              <input className='btn-form' type='submit' value='Salvar' />
+            </form>
+            </div>
           </div>
-        </div>
+        }
+        
         <div className="bot-container">
           <Menu />
         </div>

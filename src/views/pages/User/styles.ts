@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const SectionComponent = styled.section`
     .container {
-        background: pink;
+        background: var(--background-main);
         height: 100vh;
         width: 85vw;
         position: absolute;
@@ -28,6 +28,7 @@ export const SectionComponent = styled.section`
             .icon {
                 margin-right: 16px;
                 margin-top: 6px;
+                cursor: pointer;
             }
         }
 
@@ -68,7 +69,7 @@ export const SectionComponent = styled.section`
             justify-content: center;
             margin-top: 1.5rem;
 
-            .btn {
+            .btn-anchor {
                 display: flex;
                 width: 10rem;
                 height: 2.125rem;
@@ -76,6 +77,7 @@ export const SectionComponent = styled.section`
                 background: var(--red);
                 align-items: center;
                 justify-content: center;
+                cursor: pointer;
                 
                 .btn-txt {
                     font-size: 1.125rem;
@@ -92,7 +94,7 @@ export const SectionComponent = styled.section`
 
     @media only screen and (min-width: 500px) {
         .container {
-            position: relative;
+            position: absolute;
             padding-top: unset;
             width: 100%;
         }

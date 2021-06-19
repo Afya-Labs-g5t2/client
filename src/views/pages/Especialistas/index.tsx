@@ -8,6 +8,7 @@ import CardPaciente from '../../../components/CardPaciente'
 import mockData from '../../../mockData';
 import { Link } from 'react-router-dom';
 import { api } from '../../../services/api';
+import Loading from '../../../components/Loading';
 
 // import { Container } from './styles';
 
@@ -15,6 +16,7 @@ const Especialistas: React.FC = () => {
 
   const [showUser, setShowUser] = useState(false)
   const [apiData, setApiData] = useState<any>([])
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   function handleToggle() {
     setShowUser(!showUser)
@@ -27,11 +29,13 @@ const Especialistas: React.FC = () => {
   }
 
   useEffect(() => {
+    setIsLoading(true)
     api.get("especialistas")
       .then(res => {
         setApiData(res.data)
       })
       .catch(console.error)
+      .finally(() => setIsLoading(false))
   }, [])
 
   const cardPaciente = apiData
@@ -54,18 +58,21 @@ const Especialistas: React.FC = () => {
         <div className="top-container">
         <NavBar />
         </div>
-        <div className="content-container">
-          <div className="search-container">
-            <div className="search-field">
-              <span className="search-icon material-icons" onClick={() => console.log(apiData)}>search</span>
-              <input type="text"></input>
-              <span className="clean-icon material-icons">close</span>
-            </div>
-          </div>  
-          <div className="results-container">
-            {cardPaciente}
-          </div>  
-        </div>
+        {isLoading ? <Loading />
+        :
+          <div className="content-container">
+            <div className="search-container">
+              <div className="search-field">
+                <span className="search-icon material-icons" onClick={() => console.log(apiData)}>search</span>
+                <input type="text"></input>
+                <span className="clean-icon material-icons">close</span>
+              </div>
+            </div>  
+            <div className="results-container">
+              {cardPaciente}
+            </div>  
+          </div>
+        }
         <div className="bot-container">
           <Menu />
         </div>
