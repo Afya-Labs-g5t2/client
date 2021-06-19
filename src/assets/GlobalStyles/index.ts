@@ -66,6 +66,7 @@ export default createGlobalStyle`
                 grid-column: 2;
                 max-width: 1300px;
                 width: 100%;
+                height: 100vh;
                 padding: 0 3rem;
                 border-right: solid 1px var(--background-dark);
                 scrollbar-width: none;

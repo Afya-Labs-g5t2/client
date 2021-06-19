@@ -203,7 +203,7 @@ export const DivComponent = styled.div`
 
         .bottom-section-wrapper {
             all: unset;
-            position: relative;
+            position: absolute;
             display: flex;
             font-weight: 700;
             font-size: 1rem;
@@ -219,14 +219,50 @@ export const DivComponent = styled.div`
             z-index: 2; */
 
             .create-options-container {
-            display: none;
+                position: absolute;
+                bottom: -5rem;
+                right: 0;
+                pointer-events: none;
+                    
+                .icon-create-container {
+                    width: 100%;
+                }
+
+                .options-background {
+                    position: fixed;
+                    left: 0;
+                    bottom: 0;
+                    width: 0;
+                    height: 0;
+                    background: var(--red);
+                    border-radius: 999px;
+                    transition: .3s ease-in-out;
+                        
+                }
+
+                .show-options-background {
+                    width: 150vw;
+                    height: 150vw;
+                    max-width: 800px;
+                    max-height: 800px;
+                    transform: translate(-40%,30%);
+                    pointer-events: visiblePainted;
+                }
+
+                .options-wrapper {
+                    display:flex;
+                    position: relative;
+                    left: 6rem;
+                    bottom: 3rem;
+                    justify-content: flex-end;
+                }
             }
 
             .menu-container {
                 all: unset;
                 display: flex;
                 flex-direction: column;
-                height: 100vh;
+                height: 80vh;
                 min-width: 0;
                 width: 100%;
                 /* display: flex;
