@@ -119,24 +119,27 @@ client-main
 ```
 ### 🖥️ Trabalhando no projeto
 
+- Sempre que realizar um push do código, é preciso realizar um Pull Request comparando a sua Branch com a Branch Dev, pedir um colega de equipe fazer a Review do Pull Request e por fim realizar o Merge na Branch dev.
 
-
-
+- Toda Segunda-feira é realizado o merge de produção. É realizado o merge da Branch dev para a main.
+- Para realizar correções ou criação de novas features, deve-se criar uma nova branch informando a funcionalidade e a ação. Ex:
+ ```
+ Feature/fix-home-page
+ Feature/create-button-medical-records
+ ```
 ### 🤓 Boas práticas
 
 - Criação de um novo Componente deve seguir a seguinte estrutura na renderização:
 
 ![image](https://user-images.githubusercontent.com/8262141/122313846-585d1b80-ceed-11eb-83c3-9c95f0c4d5b0.png)
 
-- Para realizar correções ou criação de novas features, deve-se criar uma nova branch informando a funcionalidade e a ação. Ex:
- ```
- fix-home-page
- create-button-medical-records
- ```
-- Sempre que for realizar um push do código, é preciso realizar um Pull Request comparando a sua Branch com a Branch Dev, pedir um review do Pull Request para um colega da equipe e realizar o Merge na branch dev.
+- As pastas do projeto deve ter o nome no formato CamelCase, os arquivos devem ter os nomes em minúsculo e possuir um arquivo index.tsx e um styles.ts. Exemplo: 
 
-- Toda segunda-feira é realizado o merge de produção. É realizado o merge da branch dev para a nain.
-
+```
+── ExemploPasta
+    ├── index.tsx
+    ├── styles.ts
+```
 ### 👩‍💻👨‍💻 Equipe
 
 Nossa equipe de desenvolvedores que construiu a aplicação.
