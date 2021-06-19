@@ -18,22 +18,21 @@ export const HomeStyle = styled.div`
                 width:100%;
                 margin-top: 2rem;
                 justify-content:space-between;
-                .texto_home{ 
-                    font-size: 2.5rem;
-                    text-align: left;
-                    top:3rem;
-                    .texto-home h2{
-                        font-weight: bold;
-                        color:#13132B;
-                        font-size: 1.2rem; 
-                                 }
-                         }
-                                    .icon{
-                                    background:#fff;
-                                    font-size: 2rem;
-                                        } 
-
-                                        }
+                    .texto_home{ 
+                        font-size: 2.5rem;
+                        text-align: left;
+                        top:3rem;
+                        .texto-home h2{
+                            font-weight: bold;
+                            color:#13132B;
+                            font-size: 1.2rem; 
+                                    }
+                            }
+                             .icon{
+                                 background:#fff;
+                                 font-size: 2rem;
+                                  } 
+                                         }
                                         .principal{ 
                                             display: block;
                                             width: 100%;
@@ -62,7 +61,7 @@ export const HomeStyle = styled.div`
                                                                     justify-content: space-around;
                                                                     list-style: none;
                                                                         .card-li{ 
-                                                                                display: flex;
+                                                                            display: flex;
                                                                                 
                                                                                 .card-p{
                                                                                     font-size: 0.9rem;
@@ -78,7 +77,6 @@ export const HomeStyle = styled.div`
             }  
     } 
 }                                       
-
 
 `
 
