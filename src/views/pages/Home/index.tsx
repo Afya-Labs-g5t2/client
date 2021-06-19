@@ -1,57 +1,68 @@
-
 import React, { useState } from 'react';
 import User from '../User'
 import Menu from '../../../components/Menu'
-import { AiOutlineCalendar } from "react-icons/ai";
-import { IoPersonAddOutline } from "react-icons/io5";
-import { BiUserPin } from "react-icons/bi";
-import { RiWalletLine } from "react-icons/ri";
+import { IoMenu } from "react-icons/io5";
 import { HomeStyle } from './styles';
+import { Link } from 'react-router-dom';
+import mockData from '../../../mockData'
 
 
 const Home: React.FC = () => {
 
-  const saudacao="Olá,";
-  const nome="Juliana Jirkowski";
-
-  const [showUser, setShowUser] = useState(false)
-
+  const [showUser, setShowUser] = useState(false);
   function handleToggle() {
     setShowUser(!showUser)
   }
-  
-    return (
-      <HomeStyle>
-        <div className="page-container">
-          <div className="top-container">
-            <h1 onClick={handleToggle}>Home</h1>
-          </div>
-          <div className="content-container">   
-            <User close={handleToggle} showComponent={showUser}/>
-            <header className="container">      
-              <nav className="nav">
-                <div className="texto_home">
-                <h3>{saudacao}</h3>
-                  <h2>{nome}</h2>
-                </div>
-                <div>
-                  <img className="image" src="https://static1.purebreak.com.br/articles/3/87/16/3/@/328369-filme-mulher-maravilha-1984-confira-o-300x254-1.jpeg" alt="" />
-                </div>
-              </nav>
+  function handleCardClick(event: any) {
+    console.log(event.target.id)
+  }
 
-              <main className="principal">
-                <a href="#"><button><AiOutlineCalendar /> CONSULTAR AGENDA</button></a>
-                <a href="#"><button><IoPersonAddOutline /> CADASTRO PACIENTE</button></a>
-                <a href="#"><button><BiUserPin /> CONSULTAR PRONTUÁRIO</button></a>
-                <a href="#"> <button><RiWalletLine /> NOVO PRONTUÁRIO</button></a>
-              </main>
-            </header>
-          </div>
-          <div className="bot-container">
-            <Menu />
-          </div>
+  return (
+
+    <HomeStyle>
+      <div className="page-container">
+
+        <div className="content-container">
+          <User close={handleToggle} showComponent={showUser} />
+          <header className="container">
+            <section className="sessao-top">
+              <div className="texto-home">
+                <h1>Clinica</h1>
+                <h2>Medtechnew</h2>
+              </div>
+              <div>
+                <p onClick={handleToggle} className="icon"><IoMenu /></p>
+              </div>
+            </section>
+            <main className="principal">
+              <div className="line"></div>
+              <div className="titulo"><h4>Agenda de hoje</h4></div>
+              <section>
+                {mockData.agendamento.map(function (data: any) {
+                  return (
+                    <Link to={`agendamentos/${data.id}`} key={data.id} id={`${data.id}`} onClick={handleCardClick}>
+                      <div className="card">
+                        <ul className="card-ul">
+                          <li className="card-li">
+                            <p className="card-p">{data.horario}</p>
+                            <p className="card-p">{data.paciente}</p>
+                            <p className="card-p">Dr.{data.especialista}</p>
+                          </li>
+                        </ul>
+                      </div>
+                    </Link>
+                  )
+                })
+                }
+              </section>
+            </main>
+          </header>
         </div>
-      </HomeStyle>
-    );
+        <div className="bot-container">
+          <Menu />
+        </div>
+      </div>
+    </HomeStyle>
+  );
 }
 export default Home;
