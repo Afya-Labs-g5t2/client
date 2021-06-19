@@ -39,23 +39,5 @@ form{
         margin-top: -19px;
     }
 
-}
-@media only screen and (min-width: 500px) {
-    .mid{
-    margin-top:5.7rem;
-}
-.mid input{
-    
-    width: 27%;
-    height: 7vh;
-    margin:1.5rem;
-    margin-left: 30rem;
-}
-.submit{
-    width: 27%;
-    height: 7vh;
-    text-align: center;
-    margin-left: 30rem;
-}
 }  
 ` 

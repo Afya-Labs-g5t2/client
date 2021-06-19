@@ -72,11 +72,11 @@ export const DivComponent = styled.div`
         }
    }
 
-   @media only screen and (min-width: 500px) {
-        .page-container {
-            position: relative;
-            margin-left: auto;
-            width: calc(100% - 90px);
+   @media only screen and (min-width: 700px) {
+        .content-container {
+            
+
+            
         }
     }
 `

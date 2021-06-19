@@ -199,31 +199,89 @@ export const DivComponent = styled.div`
         } */
     }
 
-    @media only screen and (min-width: 500px) {
-            .bottom-section-wrapper {
-                all: unset;
-                position: fixed;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                height: 100%;
-                min-width: 90px;
-                display: flex;
-                align-items: flex-end;
-                flex-direction: column;
-                border-right: solid 1px var(--background-dark);
+    @media only screen and (min-width: 700px) {
 
-                .create-options-container {
-                all: unset;
-                }
+        .bottom-section-wrapper {
+            all: unset;
+            position: relative;
+            display: flex;
+            font-weight: 700;
+            font-size: 1rem;
+            /* position: absolute;
+            left: 0px;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            background-color: var(--background-main);
+            border-right: solid 1px var(--background-dark);
+            z-index: 2; */
 
-                .menu-container {
-                    display: flex;
-                    flex-direction: column;
-                    height: 100%;
-                    top: 0;
-                }
+            .create-options-container {
+            display: none;
             }
 
+            .menu-container {
+                all: unset;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                min-width: 0;
+                width: 100%;
+                /* display: flex;
+                flex-direction: column;
+                height: 100%;
+                margin-top: 5rem;
+                width: 90px;
+                
+                
+                .btn-label {
+                    
+                } */
+
+                .icon-container {
+                    justify-content: center;
+                    min-width: 0;
+                    width: 100%;
+
+                    a {
+                        width: 100%;
+                        padding: 9px;
+                        border-radius: 9999px;
+                            &:hover {
+                            background: var(--background-main)
+                        }
+                    }
+                }
+
+                .icon-wrapper {
+                }
+            }
         }
+
+        @media only screen and (min-width: 1350px) {
+            .icon-container {
+                /* padding-right: 1rem; */
+            }
+
+            .icon-wrapper {
+                display: flex;
+                flex-direction: row !important;
+                align-items: center;
+                padding: 9px;
+                border-radius: 9999px;
+
+                .btn-label {
+                    margin-left: 1rem;
+                }
+
+                
+                &:hover {
+                    background: var(--background-main)
+                }
+            }
+    }
+
+    }
 `

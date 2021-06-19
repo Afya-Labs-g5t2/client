@@ -40,4 +40,64 @@ export default createGlobalStyle`
 
     .material-icons.red { color: #D31C5B; }
 
+    @media only screen and (min-width: 700px) {
+        .app-container {
+            display: flex;
+            justify-content: center;            
+        }
+        .page-container {
+            display: grid;
+            grid-template-columns: 10rem 1fr 90px;
+            grid-template-rows: 3.5rem 1fr;
+            justify-items: stretch;
+            height: 100vh;
+            width: 100vw;
+            max-width: 1350px;
+            
+
+            .top-container {
+                grid-column: 2;
+                grid-row: 1;
+                justify-self: stretch;
+                border-right: solid 1px var(--background-dark);
+            }
+
+            .content-container {
+                grid-column: 2;
+                max-width: 1300px;
+                width: 100%;
+                padding: 0 3rem;
+                border-right: solid 1px var(--background-dark);
+                scrollbar-width: none;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+
+            .bot-container {
+                grid-column: 1;
+                grid-row: 1;
+                border-right: solid 1px var(--background-dark);
+                padding-left: 1rem;
+                height: 100vh;
+            }
+        }
+
+        * {
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+
+    @media only screen and (min-width: 1350px) {
+        .page-container {
+            display: grid;
+            grid-template-columns: 14rem 1fr 90px;
+        }
+    }
+
 `

@@ -60,33 +60,4 @@ export const HomeStyle = styled.div`
             } 
        }
    }
-   @media only screen and (min-width: 500px) {
-        .page-container {
-            position: relative;
-            margin-left: auto;
-            width: calc(100% - 90px);
-            .container{
-                width:60%;
-                margin-left:240px;
-                padding:10px;
-                .nav{
-                    margin-top: 2rem;
-                    width:90%;
-                    margin-left:45px;
-                    .texto_home{
-                        font-size: 0.9rem;
-                    }
-                }
-                .principal{
-                    margin-bottom:1.5rem;
-                    a button{
-                        font-size: 1rem;
-                        width: 65%;
-                        height: 9vh;
-                        margin-top: 1.7rem;
-                    }
-                }
-            }
-        }
-    }
 `

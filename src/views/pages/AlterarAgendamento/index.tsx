@@ -121,9 +121,10 @@ const AlterarAgendamento: React.FC = () => {
   return (
     <DivComponent>
       <div className="page-container">
-        <div className="top-Container">
+        <div className="top-container">
           <NavBar />
         </div>
+        <div className="content-container">
           <div className="modal-header">
               <h4 className="modal-title">Alterar agendamento</h4>
             </div>
@@ -206,6 +207,7 @@ const AlterarAgendamento: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
         <div className="bot-container">
           <Menu />
         </div>

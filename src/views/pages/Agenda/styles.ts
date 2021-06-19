@@ -22,13 +22,16 @@ export const DivComponent = styled.div`
         }
 
     }
-    
-    
-    @media only screen and (min-width: 500px) {
+
+    @media only screen and (min-width: 700px) {
+
         .agenda-container {
-            position: relative;
-            margin-left: auto;
-            width: calc(100% - 90px);
+
+            .mid {
+                display: grid;
+                place-items: center;
+            }
         }
     }
+    
 `

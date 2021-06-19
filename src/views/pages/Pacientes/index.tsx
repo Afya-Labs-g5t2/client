@@ -51,7 +51,7 @@ const Paciente: React.FC = () => {
   return (
       <DivComponent>
       <div className="page-container">
-        <div className="top-Container">
+        <div className="top-container">
         <NavBar />
         </div>
         <div className="content-container">

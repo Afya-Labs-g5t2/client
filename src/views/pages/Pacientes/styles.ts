@@ -71,12 +71,4 @@ export const DivComponent = styled.div`
             background: hsla(193, 25%, 85%, 0.96);
         }
     }
-
-   @media only screen and (min-width: 500px) {
-        .page-container {
-            position: relative;
-            margin-left: auto;
-            width: calc(100% - 90px);
-        }
-    }
 `
