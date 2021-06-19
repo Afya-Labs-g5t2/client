@@ -71,4 +71,19 @@ export const DivComponent = styled.div`
             background: hsla(193, 25%, 85%, 0.96);
         }
     }
+
+    @media only screen and (min-width: 700px) {
+        .page-container {
+            overflow: unset;
+
+            .content-container {
+                display: block;
+                margin-top: 0;
+                height: 100%;
+                overflow: scroll;
+                padding-bottom: 5rem;
+            }
+        }
+        
+    }
 `

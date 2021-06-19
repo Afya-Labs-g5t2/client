@@ -73,10 +73,17 @@ export const DivComponent = styled.div`
    }
 
    @media only screen and (min-width: 700px) {
-        .content-container {
-            
+        .page-container {
+            overflow: unset;
 
-            
+            .content-container {
+                display: block;
+                margin-top: 0;
+                height: 100%;
+                overflow: scroll;
+                padding-bottom: 5rem;
+            }
         }
+        
     }
 `

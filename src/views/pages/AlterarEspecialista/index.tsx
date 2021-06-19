@@ -171,6 +171,7 @@ const NovoEspecialista: React.FC = () => {
           <NavBar />
         </div>
         <div className="content-container">
+          <div className="form-wrapper">
           <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="nome">Nome</label>
             <input className="input-form" type='text' placeholder='Nome' {...register('nome', { required: 'Digite o primeiro nome' })} />
@@ -255,6 +256,7 @@ const NovoEspecialista: React.FC = () => {
               value="Custom Reset Field Values & Errors"
             /> */}
           </form>
+          </div>
           <ToastContainer />
         </div>
         <div className="bot-container">

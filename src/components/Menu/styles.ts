@@ -230,8 +230,8 @@ export const DivComponent = styled.div`
 
                 .options-background {
                     position: fixed;
-                    left: 0;
-                    bottom: 0;
+                    left: 15vw;
+                    bottom: 10vh;
                     width: 0;
                     height: 0;
                     background: var(--red);
@@ -245,15 +245,15 @@ export const DivComponent = styled.div`
                     height: 150vw;
                     max-width: 800px;
                     max-height: 800px;
-                    transform: translate(-40%,30%);
+                    transform: translate(-40%,40%);
                     pointer-events: visiblePainted;
                 }
 
                 .options-wrapper {
                     display:flex;
                     position: relative;
-                    left: 6rem;
-                    bottom: 3rem;
+                    left: 7vw;
+                    bottom: 4vh;
                     justify-content: flex-end;
                 }
             }

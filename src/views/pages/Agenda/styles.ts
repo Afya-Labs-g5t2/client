@@ -30,6 +30,7 @@ export const DivComponent = styled.div`
             .mid {
                 display: grid;
                 place-items: center;
+                height: 100%;
             }
         }
     }

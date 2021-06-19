@@ -1,7 +1,15 @@
 import styled from 'styled-components'
 
-export const ContainerLogo = styled.div`
- display: flex;
- justify-content: center;
- padding-top: 20vh ;
+export const DivComponent = styled.div`
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+        margin-top: 10rem;
+     }
+ @media only screen and (min-width: 700px) {
+     .container {
+     }
+ }
 `;

@@ -50,7 +50,7 @@ export default createGlobalStyle`
             grid-template-columns: 10rem 1fr 90px;
             grid-template-rows: 3.5rem 1fr;
             justify-items: stretch;
-            height: 100vh;
+            height: 100vh !important;
             width: 100vw;
             max-width: 1350px;
             
@@ -66,7 +66,6 @@ export default createGlobalStyle`
                 grid-column: 2;
                 max-width: 1300px;
                 width: 100%;
-                height: 100vh;
                 padding: 0 3rem;
                 border-right: solid 1px var(--background-dark);
                 scrollbar-width: none;
