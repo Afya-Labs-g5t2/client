@@ -3,7 +3,13 @@ import Menu from '../../../components/Menu'
 import { DivComponent } from './styles'
 import NavBar from '../../../components/NavBar';
 import { useForm } from "react-hook-form";
+<<<<<<< HEAD
+import { api } from '../../../services/api'
+||||||| merged common ancestors
+import { api,findCep  } from '../../../services/api'
+=======
 import { api  } from '../../../services/api'
+>>>>>>> main
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
