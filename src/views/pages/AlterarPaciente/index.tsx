@@ -20,18 +20,19 @@ interface AddressProps {
 interface IUserRegister{
   cpf: string
   nome: string,
-  tel: string,
+  telefone: string,
   celular: string,
-  data_nasc: string,
+  data_nascimento: string,
   email: string,
   tipo_sangue: string,
-  endereco_paciente: AddressProps,
+  endereco: AddressProps,
 }
 
 const NovoPaciente: React.FC = () => {
   const [apiData, setApiData] = useState<IUserRegister>({} as IUserRegister)
   const [isLoading, setIsLoading] = useState(false)
   let { id } = useParams<any>()
+  console.log(id)
   //Refs
   // const logradouroInputRef = useRef<HTMLInputElement | null>(null)
   // const bairroInputRef = useRef(null)
@@ -40,20 +41,20 @@ const NovoPaciente: React.FC = () => {
 
   //react-hook-form
   const defaultValues = {
-    "nome": apiData.nome,
-    "sobrenome": apiData.nome,
-    "tipo_sangue": apiData.tipo_sangue,
-    "email": apiData.email,
-    "data_nascimento": apiData.data_nasc,
-    "cpf": apiData.cpf,
-    "celular": apiData.celular,
-    "tel": apiData.tel,
-    "cep": apiData.endereco_paciente.cep,
-    "logradouro": apiData.endereco_paciente.logradouro,
-    "numero": apiData.endereco_paciente.numero,
-    "bairro": apiData.endereco_paciente.bairro,
-    "cidade": apiData.endereco_paciente.cidade,
-    "uf": apiData.endereco_paciente.uf,
+    "nome": '',
+    "sobrenome": '',
+    "tipo_sangue": '',
+    "email": '',
+    "data_nascimento": '',
+    "cpf": '',
+    "celular": '',
+    "telefone": '',
+    "cep": '',
+    "logradouro": '',
+    "numero": '',
+    "bairro": '',
+    "cidade": '',
+    "uf": '',
   };
 
   const bloodTypes = ['A+','A-','B+','B-','AB+','AB-','O+','O-']
@@ -62,11 +63,6 @@ const NovoPaciente: React.FC = () => {
   const { register, setValue, getValues, handleSubmit, formState: { errors } } = useForm({ defaultValues, mode: "onBlur" });
   const history = useHistory()
 
-  // useEffect(() => {
-  //   if (formState.isSubmitSuccessful) {
-  //     reset({ defaultValues });
-  //   }
-  // }, [formState, submittedData, reset]);
 
   const onSubmit = (data: FormData) => {
     setIsLoading(true)
@@ -101,6 +97,9 @@ const NovoPaciente: React.FC = () => {
     api.get(`pacientes/${id}`)
       .then(res => {
         setApiData(res.data)
+        const pacienteInfo = res.data
+
+        populatePacienteFields(pacienteInfo)
       })
       .catch(console.error)
   }, [])
@@ -182,6 +181,26 @@ const NovoPaciente: React.FC = () => {
     setValue('cpf', strTemp, { shouldValidate: false })
   }
 
+  async function populatePacienteFields(pacienteData: IUserRegister) {
+
+    setValue('nome', pacienteData?.nome.split(' ')[0])
+    setValue('sobrenome', pacienteData?.nome.replace(`${pacienteData?.nome.split(' ')[0]} `, ''))
+    setValue('tipo_sangue', pacienteData?.tipo_sangue)
+    setValue('email', pacienteData?.email)
+    setValue('data_nascimento', pacienteData?.data_nascimento)
+    setValue('cpf', pacienteData?.cpf)
+    setValue('celular', pacienteData?.celular)
+    setValue('telefone', pacienteData?.telefone)
+    setValue('cep', `${pacienteData.endereco?.cep}`)
+    setValue('numero', `${pacienteData.endereco?.numero}`)
+    setValue('logradouro', `${pacienteData.endereco?.logradouro}`)
+    setValue('bairro', `${pacienteData.endereco?.bairro}`)
+    setValue('cidade', `${pacienteData.endereco?.cidade}`)
+    setValue('uf', `${pacienteData.endereco?.uf}`)
+  }
+
+  
+
   return (
     <DivComponent>
       <div className="page-container">
@@ -206,7 +225,7 @@ const NovoPaciente: React.FC = () => {
               {errors.password && <p>{errors.password.message}</p>} */}
             <label htmlFor="tipo_sangue">Tipo sanguíneo</label>
             <select className={`form-control`} style={{backgroundColor: 'var(--background-main)'}} {...register('tipo_sangue')} >
-              <option value="" selected >Selecione o tipo sanguíneo</option>
+              <option value="" >Selecione o tipo sanguíneo</option>
               {bloodTypesTag}
             </select>
 
@@ -257,8 +276,8 @@ const NovoPaciente: React.FC = () => {
               onKeyDown={blockKeyboardKeys}
             />
             {errors.celular && <p>{errors.celular.message}</p>}
-            <label htmlFor="tel">Telefone</label>
-            <input type='text' placeholder='Telefone' {...register('tel')} />
+            <label htmlFor="telefone">Telefone</label>
+            <input type='text' placeholder='Telefone' {...register('telefone')} />
             <label htmlFor="cep">CEP</label>
             <input
               type='text'
@@ -290,12 +309,6 @@ const NovoPaciente: React.FC = () => {
             {errors.uf && <p>{errors.uf.message}</p>}
 
             <input className='btn-form' type='submit' value='Salvar' />
-            {/* <input
-              style={{ display: "block", marginTop: 20 }}
-              type="button"
-              onClick={() => reset()}
-              value="Custom Reset Field Values & Errors"
-            /> */}
           </form>
         </div>
         <div className="bot-container">

@@ -81,7 +81,9 @@ const PacienteInfo: React.FC = () => {
                     <span className="title-value">Dados</span>
                   </div>
                   <div className="dados-edit">
-                    <span className="edit-dados-value material-icons">mode_edit</span>
+                    <Link to={`${id}/edit`}>
+                      <span className="edit-dados-value material-icons">mode_edit</span>
+                    </Link>
                   </div>
                 </div>
                 <div className="dados-container">
