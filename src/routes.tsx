@@ -14,6 +14,8 @@ import PacienteInfo from './views/pages/PacienteInfo';
 import NovoPaciente from './views/pages/NovoPaciente';
 import AlterarSenha from './views/pages/AlterarSenha';
 import AlterarAgendamento from './views/pages/AlterarAgendamento';
+import AlterarPaciente from './views/pages/AlterarPaciente';
+import AlterarEspecialista from './views/pages/AlterarEspecialista';
 
 
 
@@ -27,11 +29,13 @@ const Routes: React.FC = () => {
         <PrivateRoutes path="/pacientes" exact component={Pacientes}/>
         <PrivateRoutes path="/pacientes/novo" exact component={NovoPaciente}/>
         <PrivateRoutes path="/prontuarios/:id"  component={Prontuario}/>
-        <PrivateRoutes path="/pacientes/:id" component={PacienteInfo}/>
+        <PrivateRoutes path="/pacientes/:id" exact component={PacienteInfo}/>
+        <PrivateRoutes path="/pacientes/:id/edit" component={AlterarPaciente}/>
         <PrivateRoutes path="/atendimentos/:id" component={AlterarAgendamento}/>
         <PrivateRoutes path="/especialistas" exact component={Especialistas}/>
         <PrivateRoutes path="/especialistas/novo" exact component={NovoEspecialista}/>
-        <PrivateRoutes path="/especialistas/:id" component={EspecialistaInfo}/>
+        <PrivateRoutes path="/especialistas/:id" exact component={EspecialistaInfo}/>
+        <PrivateRoutes path="/especialistas/:id/edit" component={AlterarEspecialista}/>
         <PrivateRoutes path="/senha" component={AlterarSenha}/>
         {/* <PrivateRoutes path="/dash" exact component={Dash}/> */}
       </Switch>
