@@ -171,11 +171,12 @@ const NovoEspecialista: React.FC = () => {
     <DivComponent>
       <div className="page-container">
         <div className="top-container">
-          <NavBar />
+          <NavBar title={'Alterar especialista'}/>
         </div>
+        <div className="content-container">
         {isLoading ? <Loading />
         :
-        <div className="content-container">
+        <>
           <div className="form-wrapper">
           <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="nome">Nome</label>
@@ -263,8 +264,9 @@ const NovoEspecialista: React.FC = () => {
           </form>
           </div>
           <ToastContainer />
-        </div>
+          </>
         }
+        </div>
         <div className="bot-container">
           <Menu />
         </div>

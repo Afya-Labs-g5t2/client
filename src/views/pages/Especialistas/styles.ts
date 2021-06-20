@@ -21,37 +21,32 @@ export const DivComponent = styled.div`
                 width: 100%;
                 align-items: center;
                 justify-content: center;
+                padding-bottom: 5rem;
 
-                .search-field {
-                    width: 80%;
-                    max-width: 22.5rem;
+                .navigation-wrapper {
                     display: flex;
-                    background: #fff;
-                    border-radius: 9999px;
-                    border: 1px solid var(--background-dark);
+                    width: 100%;
+                    flex-direction: row;
+                    justify-content: space-between;
                     align-items: center;
-                    font-size: 1.125rem;
-                    padding: 0 1rem;
+                    padding: 0 12px;
 
-                    .search-icon {
-                        padding-right: 12px;
-                        color: var(--background-dark)
+                    .current-page-value {
+                        pointer-events: none;
                     }
 
-                    input {
-                        width: 100%;
-                        outline: none;
-                        border: none;
-                        line-height: 2rem;
-                        font-size: 1rem;
-                        word-wrap: break-word;
-                        font-family: 'Inter';
+                    .next-page-container, .previous-page-container {
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;   
+
+                        .material-icons {
+                            cursor: pointer;
+                        }
                     }
 
-                    .clean-icon {
-                        color: var(--background-dark);
-                        padding: 0 .5rem;
-                        cursor: pointer;
+                    .hide-navigation {
+                        visibility: hidden;
                     }
                 }
            }

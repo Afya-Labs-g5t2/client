@@ -166,7 +166,7 @@ const NovoPaciente: React.FC = () => {
     <DivComponent>
       <div className="page-container">
         <div className="top-container">
-          <NavBar />
+          <NavBar title={`Novo paciente`}/>
         </div>
         <div className="content-container">
           <div className="form-wrapper">

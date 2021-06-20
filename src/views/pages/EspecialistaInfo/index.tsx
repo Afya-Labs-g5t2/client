@@ -50,7 +50,7 @@ const EspecialistaInfo: React.FC = () => {
       <DivComponent>
       <div className="page-container">
         <div className="top-container">
-        <NavBar />
+        <NavBar title={`Especialista ${id}`}/>
         </div>
         {isLoading ? <Loading /> 
         :
@@ -105,10 +105,7 @@ const EspecialistaInfo: React.FC = () => {
               <div className="adress-container">
                 <div className="title-wrapper">
                   <div className="adress-title">
-                    <span className="title-value">Endereco</span>
-                  </div>
-                  <div className="dados-edit">
-                    <span className="edit-adress-value material-icons">mode_edit</span>
+                    <span className="title-value">Endereço</span>
                   </div>
                 </div>
                 <div className="adress-fields">

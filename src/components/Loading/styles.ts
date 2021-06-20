@@ -13,7 +13,7 @@ export const FormContent = styled.div`
         justify-content: center;
         margin: 0 auto;
         pointer-events: none;
-        z-index: 2;
+        z-index: 10;
 
         path {
         stroke: var(--red);

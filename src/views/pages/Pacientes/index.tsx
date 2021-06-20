@@ -56,10 +56,12 @@ const Paciente: React.FC = () => {
       <DivComponent>
       <div className="page-container">
         <div className="top-container">
-        <NavBar />
+        <NavBar title={`Pacientes`}/>
         </div>
-        {isLoading ? <Loading /> :
           <div className="content-container">
+          {isLoading ? <Loading /> 
+          :
+          <>
             <div className="search-container">
               <div className="search-field">
                 <span className="search-icon material-icons" >search</span>
@@ -69,9 +71,10 @@ const Paciente: React.FC = () => {
             </div>  
             <div className="results-container">
               {cardPaciente}
-            </div>  
+            </div> 
+            </> 
+          }
           </div>
-        }
         <div className="bot-container">
           <Menu />
         </div>

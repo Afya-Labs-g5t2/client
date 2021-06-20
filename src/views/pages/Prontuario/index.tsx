@@ -110,7 +110,7 @@ const Prontuario: React.FC = () => {
       <DivComponent>
          <div className="page-container">
            <div className="top-container">
-             <NavBar />
+             <NavBar title={`Prontuario ${id}`}/>
             </div>
             <div className="content-container">
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -129,7 +129,7 @@ const Prontuario: React.FC = () => {
     <DivComponent>
       <div className="page-container">
         <div className="top-container">
-          <NavBar />
+          <NavBar title={`Prontuario ${id}`}/>
         </div>
         <div className="content-container">
           <div className="header-medical-container">

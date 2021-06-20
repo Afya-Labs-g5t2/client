@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { SectionComponent } from './styles'
 
 interface UserProps {
@@ -12,6 +13,7 @@ function User(props: UserProps){
 
   let userName = 'Juliana Jirkowski'
   let userEmail = 'j.jirkowski@gmail.com'
+  const history = useHistory()
 
   // function handleClose() {
   //   setShowComponent(!showComponent)
@@ -38,10 +40,12 @@ function User(props: UserProps){
           </div>
         </div>
         <div className="action-section">
-          <div className="icon">
-            <span className="material-icons">vpn_key</span>
-          </div> 
-          <span>Alterar Senha</span>
+          <div className="change-pass-wrapper" onClick={() => history.push('/senha')}>
+            <div className="icon">
+              <span className="material-icons">vpn_key</span>
+            </div> 
+            <span>Alterar Senha</span>
+          </div>
         </div>
         <div className="btn-container btn">
           <a href="/" className="btn-anchor" onClick={() => localStorage.removeItem('@tokenG5T2Afya')}>

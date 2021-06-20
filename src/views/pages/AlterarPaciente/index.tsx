@@ -208,7 +208,7 @@ const NovoPaciente: React.FC = () => {
     <DivComponent>
       <div className="page-container">
         <div className="top-container">
-          <NavBar />
+          <NavBar title={'Alterar paciente'}/>
         </div>
         {isLoading ? <Loading />
         :

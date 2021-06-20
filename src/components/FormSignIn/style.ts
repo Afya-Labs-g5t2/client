@@ -8,14 +8,11 @@ export const FormContent = styled.div`
 
   form {
     display: grid;
-    padding-top: 15vh;
     z-index : 1;
     
     p {
         font-size: 12px;
         color: var(--red);
-        padding-left: 0.4rem;
-        margin-top: -10px;
     }
   }
 
@@ -48,29 +45,6 @@ input[type=submit]:hover {
   background-color: #FF5A6F;
   cursor: pointer;
 }
-
-.loading {
-    display: flex;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: hsla(100,100%,100%,0.8);
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    pointer-events: none;
-    z-index: 2;
-
-    path {
-      stroke: var(--red);
-    }
-  }
-
-  .loading-on {
-    pointer-events: none;
-  }
 
 @media (max-width: 500px){
 
