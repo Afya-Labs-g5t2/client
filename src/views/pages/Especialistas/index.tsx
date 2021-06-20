@@ -17,6 +17,8 @@ const Especialistas: React.FC = () => {
   const [showUser, setShowUser] = useState(false)
   const [apiData, setApiData] = useState<any>([])
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [pageNumber, setPageNumber] = useState<number>(1)
+  const [totalPagesNumber, setTotalPagesNumber] = useState<number>(0)
 
   function handleToggle() {
     setShowUser(!showUser)
@@ -30,9 +32,10 @@ const Especialistas: React.FC = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    api.get("especialistas")
+    api.get(`especialistas?page=${pageNumber}`)
       .then(res => {
-        setApiData(res.data)
+        setApiData(res.data.temp)
+        setTotalPagesNumber(res.data.pages)
       })
       .catch(console.error)
       .finally(() => setIsLoading(false))
@@ -50,7 +53,34 @@ const Especialistas: React.FC = () => {
           id={especialista.id} 
           handleClick={() => handleClick(especialista.id)} 
         />
-      </Link>)                                
+      </Link>)       
+      
+  function handlePageNavigation(e: any) {
+
+    if (e.target.className.includes('next') && pageNumber <= totalPagesNumber) {
+      setIsLoading(true)
+      const currentPage = pageNumber + 1
+      api.get(`especialistas?page=${currentPage}`)
+      .then(res => {
+        setPageNumber(value => value + 1)
+        setApiData(res.data.temp)
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false))
+    }
+
+    if (e.target.className.includes('previous') && pageNumber > 1) {
+      setIsLoading(true)
+      const currentPage = pageNumber - 1
+      api.get(`especialistas?page=${currentPage}`)
+      .then(res => {
+        setPageNumber(value => value - 1)
+        setApiData(res.data.temp)
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false))
+    }
+  }
 
   return (
       <DivComponent>
@@ -62,16 +92,24 @@ const Especialistas: React.FC = () => {
           {isLoading ? <Loading />
           :
           <>
-            <div className="search-container">
-              <div className="search-field">
-                <span className="search-icon material-icons" onClick={() => console.log(apiData)}>search</span>
-                <input type="text"></input>
-                <span className="clean-icon material-icons">close</span>
-              </div>
-            </div>  
             <div className="results-container">
               {cardPaciente}
-            </div>  
+            </div>
+            <div className="search-container">
+              <div className="navigation-wrapper">
+                <div className={`previous-page-container ${pageNumber === 1 ? 'hide-navigation' : ''}`} onClick={handlePageNavigation}>
+                  <span className={`material-icons`}>arrow_back_ios</span>
+                  <span className="previous-page-text">Anterior</span>
+                </div>
+                <div className="current-page-container">
+                  <span className="current-page-value">Página {pageNumber}</span>
+                </div>
+                <div className={`next-page-container ${pageNumber === totalPagesNumber ? 'hide-navigation' : ''}`} onClick={handlePageNavigation}>
+                  <span className="next-page-text">Próximo</span>
+                  <span className={`material-icons`}>arrow_forward_ios</span>
+                </div>
+              </div>
+            </div>    
             </>
           }
           </div>
