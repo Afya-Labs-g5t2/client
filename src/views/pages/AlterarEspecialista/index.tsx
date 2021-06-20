@@ -173,9 +173,10 @@ const NovoEspecialista: React.FC = () => {
         <div className="top-container">
           <NavBar />
         </div>
+        <div className="content-container">
         {isLoading ? <Loading />
         :
-        <div className="content-container">
+        <>
           <div className="form-wrapper">
           <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="nome">Nome</label>
@@ -263,8 +264,9 @@ const NovoEspecialista: React.FC = () => {
           </form>
           </div>
           <ToastContainer />
-        </div>
+          </>
         }
+        </div>
         <div className="bot-container">
           <Menu />
         </div>

@@ -58,9 +58,10 @@ const Especialistas: React.FC = () => {
         <div className="top-container">
         <NavBar />
         </div>
-        {isLoading ? <Loading />
-        :
           <div className="content-container">
+          {isLoading ? <Loading />
+          :
+          <>
             <div className="search-container">
               <div className="search-field">
                 <span className="search-icon material-icons" onClick={() => console.log(apiData)}>search</span>
@@ -71,8 +72,9 @@ const Especialistas: React.FC = () => {
             <div className="results-container">
               {cardPaciente}
             </div>  
+            </>
+          }
           </div>
-        }
         <div className="bot-container">
           <Menu />
         </div>
