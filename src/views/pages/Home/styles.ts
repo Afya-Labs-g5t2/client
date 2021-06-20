@@ -32,6 +32,7 @@ export const HomeStyle = styled.div`
                              .icon{
                                  background:#fff;
                                  font-size: 2rem;
+                                 cursor: pointer;
                                   } 
                                          }
                                         .principal{ 
@@ -50,29 +51,34 @@ export const HomeStyle = styled.div`
                                                 margin-bottom: 2.3rem;
                                             }
 
-                                                        .card{ 
-                                                            background: #c4c4c4;
-                                                            width: 100%;
-                                                            height:7vh;
-                                                            margin-top: 1rem;
-                                                            border-radius: 0.6rem;
-                                                            text-align: center;
-                                                                .card-ul{
-                                                                    margin-left: -1.6rem;
-                                                                    justify-content: space-around;
-                                                                    list-style: none;
-                                                                        .card-li{ 
-                                                                            display: flex;
-                                                                                
-                                                                                .card-p{
-                                                                                    font-size: 0.9rem;
-                                                                                    margin-left: 0.7rem;
-                                                                                    font-weight: 600;
-                                                                                    margin-top: 1.1rem;
-                                                                                    color: #13132B;
-                                                                                }  
-                                                                            }                                                        
-                                                }   
+                                            .card{ 
+                                                background: #c4c4c4;
+                                                width: 100%;
+                                                height:7vh;
+                                                margin-top: 1rem;
+                                                border-radius: 0.6rem;
+                                                text-align: center;
+                                                justify-content: center;
+                                                
+                                                .card-ul{
+                                                    margin-left: -1.6rem;
+                                                    justify-content: space-around;
+                                                    align-content: center;
+                                                    height: 100%;
+                                                    list-style: none;
+                                                    
+                                                    .card-li{ 
+                                                        display: flex;
+                                                            
+                                                        .card-p{
+                                                            font-size: 0.9rem;
+                                                            margin-left: 0.7rem;
+                                                            font-weight: 600;
+                                                            margin-top: 1.1rem;
+                                                            color: #13132B;
+                                                        }  
+                                                    }                                                        
+                                            }   
                                         } 
                         }  
             }  

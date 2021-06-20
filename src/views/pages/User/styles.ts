@@ -58,9 +58,17 @@ export const SectionComponent = styled.section`
             display: flex;
             flex-direction: row;
 
-            .icon {
-                margin-right: 16px;
+            .change-pass-wrapper {
+                cursor: pointer;
+                display: flex;
+                flex-direction: row;
+
+                .icon {
+                    margin-right: 6px;
+                }
             }
+
+            
         }
 
         .btn-container {
