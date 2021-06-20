@@ -24,17 +24,17 @@ const Home: React.FC = () => {
     console.log(event.target.id)
   }
 
-  useEffect(() => {
-    setIsLoading(true)
-    api.get(`agendamantos/data/${format(new Date(), "yyyy-MM-dd")}`)
-      .then(res => {
-        setApiData(res.data)
-      })
-      .catch(console.error).finally(() =>{
-        console.log(apiData)
-        setIsLoading(false)
-      })
-  }, [])
+  // useEffect(() => {
+  //   setIsLoading(true)
+  //   api.get(`agendamantos/data/${format(new Date(), "yyyy-MM-dd")}`)
+  //     .then(res => {
+  //       setApiData(res.data)
+  //     })
+  //     .catch(console.error).finally(() =>{
+  //       console.log(apiData)
+  //       setIsLoading(false)
+  //     })
+  // }, [])
 
   return (
 

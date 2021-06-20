@@ -2,15 +2,14 @@ import styled from 'styled-components'
 
 export const DivComponent = styled.div`
     .container {
+        margin-top: 5rem;
         display: flex;
-        height: 100vh;
         flex-direction: column;
         align-items: center;
         justify-items: center;
 
         .logo-component {
-            position: absolute;
-            margin-top: 5rem;
+            margin: 3rem 0;
             width: 15rem;
             height: auto;
         }

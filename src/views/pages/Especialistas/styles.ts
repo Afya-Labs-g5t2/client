@@ -77,6 +77,10 @@ export const DivComponent = styled.div`
                 height: 100%;
                 overflow: scroll;
                 padding-bottom: 5rem;
+
+                .results-container {
+                    overflow: scroll;
+                }
             }
         }
         
