@@ -171,7 +171,7 @@ const NovoEspecialista: React.FC = () => {
     <DivComponent>
       <div className="page-container">
         <div className="top-container">
-          <NavBar />
+          <NavBar title={'Alterar especialista'}/>
         </div>
         <div className="content-container">
         {isLoading ? <Loading />

@@ -86,7 +86,7 @@ const Especialistas: React.FC = () => {
       <DivComponent>
       <div className="page-container">
         <div className="top-container">
-        <NavBar />
+        <NavBar title={`Especialistas`}/>
         </div>
           <div className="content-container">
           {isLoading ? <Loading />
