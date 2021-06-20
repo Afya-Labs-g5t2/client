@@ -56,7 +56,7 @@ const Paciente: React.FC = () => {
       <DivComponent>
       <div className="page-container">
         <div className="top-container">
-        <NavBar />
+        <NavBar title={`Pacientes`}/>
         </div>
           <div className="content-container">
           {isLoading ? <Loading /> 

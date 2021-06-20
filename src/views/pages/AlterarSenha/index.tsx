@@ -26,7 +26,7 @@ const AlterarSenha: React.FC = () => {
         <StyleComponent>
             <div className="page-container">
                 <div className="top-container">
-                    <NavBar />
+                    <NavBar title={'Alterar senha'}/>
                 </div>
                 <div className="mid content-container">
                     <div className="form-wrapper">

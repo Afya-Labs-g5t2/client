@@ -14,7 +14,7 @@ const Agenda: React.FC = () => {
         <DivComponent >
         <div className="agenda-container page-container">
             <div className="top top-container">
-                <NavBar />
+                <NavBar title={'Agenda'}/>
             </div>
             <div className="mid content-container">
                 <Calendar />
