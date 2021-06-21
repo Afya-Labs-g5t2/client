@@ -28,14 +28,14 @@ Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **s
 
 ## Menu
 
-- 🛠 [Pré-requisitos](#pre-requisitos)
-- 📚 [Bibliotecas](#bibliotecas)
-- 🚀 [Install](#install)
-- 📂 [Estruturação dos arquivos](#estruturação-dos-arquivos)
-- 🖥️ [Trabalhando no projeto](#trabalhando-no-projeto)
-- 🤓 [Boas práticas](#boas-práticas)
+* 🛠 [Pré-requisitos](#pré-requisitos)
+* 📚 [Bibliotecas](#bibliotecas)
+* 🚀 [Install](#install)
+* 📂 [Estruturação dos arquivos](#estruturação-dos-arquivos)
+* 🖥️ [Trabalhando no projeto](#trabalhando-no-projeto)
+* 🤓 [Boas práticas](#boas-práticas)
 
-### Pré-requisitos
+### 🛠 Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
@@ -153,14 +153,17 @@ client-main
 ```
 ### 🖥️ Trabalhando no projeto
 
-- Sempre que realizar um push do código, é preciso realizar um Pull Request comparando a sua Branch com a Branch Dev, pedir um colega de equipe fazer a Review do Pull Request e por fim realizar o Merge na Branch dev.
-
-- Toda Segunda-feira é realizado o merge de produção. É realizado o merge da Branch dev para a main.
-- Para realizar correções ou criação de novas features, deve-se criar uma nova branch informando a funcionalidade e a ação. Ex:
+1. Crie uma nova branch para fazer suas alterações: `git checkout -b minha-branch`
+2. O nome da nova branch deve informar a funcionalidade e a ação:
  ```
+ # Exemplo
  Feature/fix-home-page
  Feature/create-button-medical-records
  ```
+3. Salve as alterações e crie sua mensagem de commit: `git commit -m "Novo componente criado"`
+4. Envie as alterações para o GitHub: `git push origin minha-branch`
+
+- Sempre que realizar um push do código, é preciso realizar um Pull Request comparando a sua Branch com a Branch Dev, pedir um colega de equipe fazer a Review do Pull Request e por fim realizar o Merge na Branch dev.
  
 - As páginas devem seguir a seguinte estrutura:
 
@@ -194,7 +197,7 @@ Nossa equipe de desenvolvedores que construiu a aplicação.
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/mlamarques"><img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4D03AQFvVEnCp_JluQ/profile-displayphoto-shrink_200_200/0/1542309353353?e=1629331200&v=beta&t=5L0m9gSLY6Ki1i2bcigKRxXdqcAj86uEMZOmKk2tZDE" width="100px;" alt=""/><br /><sub><b>Marcos Lamarques</b></sub></a><br/></td>
+    <td align="center"><a href="https://github.com/mlamarques"><img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4D03AQFvVEnCp_JluQ/profile-displayphoto-shrink_200_200/0/1542309353353?e=1629331200&v=beta&t=5L0m9gSLY6Ki1i2bcigKRxXdqcAj86uEMZOmKk2tZDE" width="100px;" alt=""/><br /><sub><b>Marcos Lamarques</b></sub></a><br/>[![Linkedin Badge](https://img.shields.io/badge/-Marcos-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/mlamarques/)](https://www.linkedin.com/in/mlamarques/)</td>
     <td align="center"><a href="https://github.com/micheleset7"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/60739164?v=4" width="100px;" alt=""/><br /><sub><b>Michele Coelho</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/vinicius-carvalho"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/8262141?v=4" width="100px;" alt=""/><br /><sub><b>Vinicius Carvalho</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/RenataMie"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/73265234?v=4" width="100px;" alt=""/><br /><sub><b>Renata Mie</b></sub></a><br /></td>
