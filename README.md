@@ -44,7 +44,7 @@ Aconselhamos a utilizar o editor [VSCode](https://code.visualstudio.com/)
 
 ### 📚 Bibliotecas
 
-O projeto foi feito utilizando React.js e Typescript. As principais bibliotecas utilizadas foram:
+O projeto foi feito utilizando [React.js](https://reactjs.org/) e [Typescript](https://www.typescriptlang.org/). As principais bibliotecas utilizadas foram:
 
 - [axios](https://github.com/axios/axios)
 - [react-router-dom](https://reactrouter.com/)
@@ -86,7 +86,7 @@ cd client
   # Utilizando npm
   $ npm start
   # Ou utilizando yarn
-  yarn start
+  $ yarn start
   ```
   depois desse comando a aplicação irá abrir na porta 3000: http://localhost:3000/
   
@@ -171,7 +171,7 @@ client-main
 
 ### 🤓 Boas práticas
 
-- As pastas do projeto deve ter o nome no formato CamelCase, os arquivos devem ter os nomes em minúsculo e possuir um arquivo index.tsx e um styles.ts. Exemplo: 
+- As pastas do projeto deve ter o nome no formato Pascal Case, os arquivos devem ter os nomes em minúsculo e possuir um arquivo index.tsx e um styles.ts. Exemplo: 
 ```
 ── ExemploPasta
     ├── index.tsx
