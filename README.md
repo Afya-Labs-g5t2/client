@@ -216,4 +216,4 @@ Nossa equipe de desenvolvedores que construiu a aplicação.
     <tr>
  </table>
 
-Nosso email de contato:  g5t2.desafioafyalabs@gmail.com
+Nosso email de contato: [![Gmail Badge](https://img.shields.io/badge/-g5t2.desafioafyalabs@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:g5t2.desafioafyalabs@gmail.com)](mailto:g5t2.desafioafyalabs@gmail.com)
