@@ -28,12 +28,12 @@ Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **s
 
 ## Menu
 
-* 🛠 [Pré-requisitos](#pré-requisitos)
-* 📚 [Bibliotecas](#bibliotecas)
-* 🚀 [Install](#install)
-* 📂 [Estruturação dos arquivos](#estruturação-dos-arquivos)
-* 🖥️ [Trabalhando no projeto](#trabalhando-no-projeto)
-* 🤓 [Boas práticas](#boas-práticas)
+* 🛠 [Pré-requisitos](#-pré-requisitos)
+* 📚 [Bibliotecas](#-bibliotecas)
+* 🚀 [Install](#-install)
+* 📂 [Estruturação dos arquivos](#-estruturação-dos-arquivos)
+* 🖥️ [Trabalhando no projeto](#-trabalhando-no-projeto)
+* 🤓 [Boas práticas](#-boas-práticas)
 
 ### 🛠 Pré-requisitos
 
