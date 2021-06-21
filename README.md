@@ -1,6 +1,16 @@
-![imagem link ](https://img.shields.io/badge/g5t2-client-red)
+<p align="start">
+  <img alt="GitHub client side" src="https://img.shields.io/badge/g5t2-client-red">
 
-<div style="text-align:center"><img src="https://user-images.githubusercontent.com/8262141/122653204-88890200-d119-11eb-8453-76158b813302.png" /></div>
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Afya-Labs-g5t2/client">
+  
+  <img src="https://img.shields.io/github/deployments/Afya-Labs-g5t2/client/production" alt="production status">
+  
+  <a href="https://i52-afyalabs.herokuapp.com/">
+    <img alt="Landing page" src="https://img.shields.io/badge/Landing_page-white">
+  </a>
+</p>
+
+<div style="text-align:center"><img src="https://user-images.githubusercontent.com/43910483/122756943-6dc7a200-d26d-11eb-9101-ed0cc773c563.png" /></div>
 
 # Desafio Afya labs
 
@@ -16,14 +26,21 @@ Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **s
 
 ---
 
-
 ## Menu
 
+- 🛠 [Pré-requisitos](#pre-requisitos)
 - 📚 [Bibliotecas](#bibliotecas)
 - 🚀 [Install](#install)
 - 📂 [Estruturação dos arquivos](#estruturação-dos-arquivos)
 - 🖥️ [Trabalhando no projeto](#trabalhando-no-projeto)
 - 🤓 [Boas práticas](#boas-práticas)
+
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+
+Aconselhamos a utilizar o editor [VSCode](https://code.visualstudio.com/)
 
 ### 📚 Bibliotecas
 
@@ -43,6 +60,12 @@ O projeto foi feito utilizando React.js e Typescript. As principais bibliotecas 
 - [date-fns](https://github.com/date-fns/date-fns)
 - [react-toastify](https://fkhadra.github.io/react-toastify/introduction/)
 
+#### **Utilitários**
+
+-   Protótipo:  **[Figma](https://www.figma.com/)**  → Fluxograma e Design
+-   API Endereços:  **[ViaCEP](https://viacep.com.br/)**
+-   API Banco de dados:  **[Prontuário API](https://g5t2-api.herokuapp.com/)**
+
 ### 🚀 Install
 
 - Para iniciar a instalação, clone o repositório em sua pasta local ou faça o download 
@@ -52,23 +75,20 @@ cd client
 ```
 - Instale as dependências do projeto
 
-  - npm
   ```bash
-  npm install
-  ```
-  - yarn
-  ```bash
-  yarn add
+  # Utilizando npm
+  $ npm install
+  # Ou yarn
+  $ yarn add
   ```
 - Execute o aplicativo localmente
-  - npm
   ```bash
-  npm start
-  ```
-  - yarn
-  ```bash
+  # Utilizando npm
+  $ npm start
+  # Ou utilizando yarn
   yarn start
   ```
+  depois desse comando a aplicação irá abrir na porta 3000: http://localhost:3000/
   
 ### 📂 Estruturação dos arquivos
 O repositório tem estas pastas:
@@ -76,21 +96,24 @@ O repositório tem estas pastas:
 client-main
 .
 ├── .yarn
+├── build
 ├── public
 ├── src
 │   ├── assets
 │   │   ├── animation
 │   │   ├── GlobalStyles
-│   │   │   └── faces
-│   │   └── js
+│   │   └── Logo.tsx
+│   │
 │   ├── components
 │   │   ├── Calendar
 │   │   ├── CardPaciente
 │   │   ├── CardProntuario
 │   │   ├── FormSignIn
+│   │   ├── Loading
 │   │   ├── Menu
 │   │   ├── ModalAgendamento
 │   │   └── Navbar
+│   │
 │   ├── services
 │   │   └── api.ts
 │   │       
@@ -111,14 +134,17 @@ client-main
 │   │       ├──Pacientes
 │   │       ├──Prontuario
 │   │       └── User
+│   │
 │   ├── App.tsx
 │   ├── index.tsx
 │   ├── private.routes.tsx
 │   ├── react-app-env.d.ts
 │   └── routes.tsx
+│   
 ├── .gitignore
-├── package.json
+├── .yarnrc
 ├── package-lock.json
+├── package.json
 ├── README.md
 ├── tsconfig.json
 |── vercel.json
@@ -135,19 +161,33 @@ client-main
  Feature/fix-home-page
  Feature/create-button-medical-records
  ```
-### 🤓 Boas práticas
-
-- Criação de um novo Componente deve seguir a seguinte estrutura na renderização:
+ 
+- As páginas devem seguir a seguinte estrutura:
 
 ![image](https://user-images.githubusercontent.com/8262141/122313846-585d1b80-ceed-11eb-83c3-9c95f0c4d5b0.png)
 
-- As pastas do projeto deve ter o nome no formato CamelCase, os arquivos devem ter os nomes em minúsculo e possuir um arquivo index.tsx e um styles.ts. Exemplo: 
+### 🤓 Boas práticas
 
+- As pastas do projeto deve ter o nome no formato CamelCase, os arquivos devem ter os nomes em minúsculo e possuir um arquivo index.tsx e um styles.ts. Exemplo: 
 ```
 ── ExemploPasta
     ├── index.tsx
-    ├── styles.ts
+    └── styles.ts
 ```
+
+- As variáveis em JavaScript devem ser camel case:
+```javascript
+let myName = 'John'
+const myOtherName = 'Doe'
+```
+
+- As classes devem ter o nome todo em lowercase separado por uma dash ( - )
+```html
+<!-- Exemplo -->
+<div class='nome-dessa-classe'></div>
+```
+
+
 ### 👩‍💻👨‍💻 Equipe
 
 Nossa equipe de desenvolvedores que construiu a aplicação.
