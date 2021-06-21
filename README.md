@@ -32,7 +32,7 @@ Nosso time decidiu dividir o projeto em duas partes, um **client-side** e um **s
 * 📚 [Bibliotecas](#-bibliotecas)
 * 🚀 [Install](#-install)
 * 📂 [Estruturação dos arquivos](#-estruturação-dos-arquivos)
-* 🖥️ [Trabalhando no projeto](#-trabalhando-no-projeto)
+* 🖥️ [Trabalhando no projeto](#%EF%B8%8F-trabalhando-no-projeto)
 * 🤓 [Boas práticas](#-boas-práticas)
 
 ### 🛠 Pré-requisitos
