@@ -197,7 +197,7 @@ Nossa equipe de desenvolvedores que construiu a aplicação.
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/mlamarques"><img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4D03AQFvVEnCp_JluQ/profile-displayphoto-shrink_200_200/0/1542309353353?e=1629331200&v=beta&t=5L0m9gSLY6Ki1i2bcigKRxXdqcAj86uEMZOmKk2tZDE" width="100px;" alt=""/><br /><sub><b>Marcos Lamarques</b></sub></a><br/>[![Linkedin Badge](https://img.shields.io/badge/-Marcos-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/mlamarques/)](https://www.linkedin.com/in/mlamarques/)</td>
+    <td align="center"><a href="https://github.com/mlamarques"><img style="border-radius: 50%;" src="https://media-exp1.licdn.com/dms/image/C4D03AQFvVEnCp_JluQ/profile-displayphoto-shrink_200_200/0/1542309353353?e=1629331200&v=beta&t=5L0m9gSLY6Ki1i2bcigKRxXdqcAj86uEMZOmKk2tZDE" width="100px;" alt=""/><br /><sub><b>Marcos Lamarques</b></sub></a><br/></td>
     <td align="center"><a href="https://github.com/micheleset7"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/60739164?v=4" width="100px;" alt=""/><br /><sub><b>Michele Coelho</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/vinicius-carvalho"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/8262141?v=4" width="100px;" alt=""/><br /><sub><b>Vinicius Carvalho</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/RenataMie"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/73265234?v=4" width="100px;" alt=""/><br /><sub><b>Renata Mie</b></sub></a><br /></td>
